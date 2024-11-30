@@ -1,3 +1,6 @@
-#vbox {
-     background-image: url("bg1.jpg");
+#HBoxName{
+   -fx-background-image: url("bg1.jpg");
+   -fx-background-repeat: stretch;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
 }

@@ -10,6 +10,7 @@ module com.example.crime_management_system_gui {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.desktop;
 
     opens com.example.crime_management_system_gui to javafx.fxml;
     exports com.example.crime_management_system_gui;

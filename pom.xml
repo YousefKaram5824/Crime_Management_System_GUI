@@ -134,7 +134,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.crime_management_system_gui/com.example.crime_management_system_gui.HelloApplication
+                                com.example.crime_management_system_gui/com.example.crime_management_system_gui.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
