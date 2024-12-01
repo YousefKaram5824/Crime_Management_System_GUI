@@ -21,6 +21,6 @@
         <TextField promptText="ID" />
         <Button mnemonicParsing="false" text="login" />
         <Button mnemonicParsing="false" text="Forget password?" />
-        <Button mnemonicParsing="false" onAction="#switchToMain" text="Back" />
+        <Button mnemonicParsing="false" onAction="" text="Back" />
     </children>
 </VBox>

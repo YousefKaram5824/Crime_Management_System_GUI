@@ -1,5 +1,12 @@
-#HBoxName{
-   -fx-background-image: url("bg1.jpg");
+#main{
+   -fx-background-image: url("img.png");
+   -fx-background-repeat: stretch;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#login{
+   -fx-background-image: url("img_1.png");
    -fx-background-repeat: stretch;
    -fx-background-position: center center;
    -fx-background-size: cover;

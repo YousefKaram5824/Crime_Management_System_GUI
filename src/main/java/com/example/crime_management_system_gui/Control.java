@@ -22,8 +22,8 @@ public class Control {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setScene(scene);
         setupKeyPressEvent();
+        stage.setScene(scene);
         stage.show();
     }
 
@@ -48,6 +48,6 @@ public class Control {
     }
 
     public void switchToMain(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("main.fxml", actionEvent);
+        switchScene("maindemo.fxml", actionEvent);
     }
 }
