@@ -6,24 +6,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Control">
-   <children>
-      <Button layoutX="72.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchToMain" opacity="0.0" prefHeight="26.0" prefWidth="206.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <TextField layoutX="276.0" layoutY="131.0" promptText="User Name" />
-      <TextField layoutX="275.0" layoutY="187.0" promptText="Password" />
-      <Button layoutX="267.0" layoutY="241.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="150.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="444.0" layoutY="341.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="233.0" text="Button">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-   </children>
+<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="700.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Control">
+    <Button layoutX="72.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchToMain" opacity="0.0"
+            prefHeight="26.0" prefWidth="206.0" text="Button">
+        <cursor>
+          <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <TextField layoutX="276.0" layoutY="131.0" promptText="User Name"/>
+    <TextField layoutX="275.0" layoutY="187.0" promptText="Password"/>
+    <Button layoutX="267.0" layoutY="241.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="150.0"
+            text="Button">
+        <cursor>
+          <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
+    <Button layoutX="444.0" layoutY="341.0" mnemonicParsing="false" opacity="0.0" prefHeight="26.0" prefWidth="233.0"
+            text="Button">
+        <cursor>
+          <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
 </AnchorPane>
