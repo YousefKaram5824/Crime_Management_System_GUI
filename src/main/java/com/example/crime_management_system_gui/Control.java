@@ -25,13 +25,13 @@ public class Control {
     @FXML
     private TextField usernameField;
     @FXML
-    private TextField addressField;
-    @FXML
     private TextField phoneField;
     @FXML
     private TextField ssnField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private PasswordField passwordCheckerField;
     @FXML
     private RadioButton maleRadio;
     @FXML
@@ -72,19 +72,24 @@ public class Control {
     @FXML
     private void handleRegister() {
         String name = usernameField.getText();
-        String address = addressField.getText();
         String phone = phoneField.getText();
         String ssn = ssnField.getText();
         String password = passwordField.getText();
+        String passwordChecker = passwordCheckerField.getText();
         String gender = maleRadio.isSelected() ? "Male" : "Female";
 
-        if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || password.isEmpty() || ssn.isEmpty()) {
+        if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || ssn.isEmpty()) {
             messageLabel.setText("Please fill all fields");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
+        if (!password.equals(passwordChecker)) {
+            messageLabel.setText("Password not match");
+            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
         String userId = generateUserId(ssn);
-        String userData = String.join(",", userId, name, address, phone, password, gender);
+        String userData = String.join(",", userId, name, phone, password, gender);
         saveUserData(userData);
 
         messageLabel.setText("Registration successful!\n ID: " + userId);
