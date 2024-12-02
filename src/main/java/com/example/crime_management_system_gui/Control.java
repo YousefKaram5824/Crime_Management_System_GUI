@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-
 public class Control {
-
     private final Random random = new Random();
     private Scene scene;
     @FXML
