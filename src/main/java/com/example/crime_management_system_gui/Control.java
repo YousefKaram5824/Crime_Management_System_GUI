@@ -8,20 +8,36 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
+
 
 public class Control {
 
+    private final Random random = new Random();
     private Scene scene;
     @FXML
     private TextField usernameField;
     @FXML
+    private TextField addressField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField ssnField;
+    @FXML
     private PasswordField passwordField;
+    @FXML
+    private RadioButton maleRadio;
+    @FXML
+    private RadioButton femaleRadio;
     @FXML
     private Label messageLabel;
 
@@ -52,6 +68,44 @@ public class Control {
         } else {
             messageLabel.setText("Incorrect username or password");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+        }
+    }
+
+    @FXML
+    private void handleRegister() {
+        String name = usernameField.getText();
+        String address = addressField.getText();
+        String phone = phoneField.getText();
+        String ssn = ssnField.getText();
+        String password = passwordField.getText();
+        String gender = maleRadio.isSelected() ? "Male" : "Female";
+
+        if (name.isEmpty() || address.isEmpty() || phone.isEmpty() || password.isEmpty() || ssn.isEmpty()) {
+            messageLabel.setText("Please fill all fields");
+            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
+        String userId = generateUserId(ssn);
+        String userData = String.join(",", userId, name, address, phone, password, gender);
+        saveUserData(userData);
+
+        messageLabel.setText("Registration successful!\n ID: " + userId);
+        messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+
+    }
+
+    private String generateUserId(String ssn) {
+        String capitalizedSsn = ssn.toUpperCase();
+        int randomDigits = 1 + random.nextInt(999);
+        return capitalizedSsn + randomDigits;
+    }
+
+    private void saveUserData(String userData) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
+            writer.write(userData);
+            writer.newLine();
+        } catch (IOException e) {
+            messageLabel.setText("Error saving data: " + e.getMessage());
         }
     }
 
