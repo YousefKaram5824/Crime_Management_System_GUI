@@ -1,6 +1,5 @@
 package com.example.crime_management_system_gui;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
@@ -21,7 +19,6 @@ import java.util.Random;
 
 public class Control {
     private final Random random = new Random();
-    private Scene scene;
     @FXML
     private TextField usernameField;
     @FXML
@@ -42,18 +39,9 @@ public class Control {
     private void switchScene(String fxmlFile, javafx.event.ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        setupKeyPressEvent();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void setupKeyPressEvent() {
-        scene.setOnKeyPressed(event -> {
-            if (Objects.requireNonNull(event.getCode()) == KeyCode.ESCAPE) {
-                Platform.exit();
-            }
-        });
     }
 
     @FXML

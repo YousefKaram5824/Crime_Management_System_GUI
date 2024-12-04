@@ -1,7 +1,6 @@
 package com.example.crime_management_system_gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,11 +22,5 @@ public class Main extends Application {
         stage.setX(50);
         stage.setY(0);
         stage.show();
-
-        scene.setOnKeyPressed(event -> {
-            if (Objects.requireNonNull(event.getCode()) == javafx.scene.input.KeyCode.ESCAPE) {
-                Platform.exit();
-            }
-        });
     }
 }
