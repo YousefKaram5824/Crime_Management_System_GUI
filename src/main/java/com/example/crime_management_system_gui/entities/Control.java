@@ -1,4 +1,4 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

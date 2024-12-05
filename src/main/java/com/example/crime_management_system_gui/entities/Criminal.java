@@ -1,9 +1,10 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-enum Danger {Low,Moderate,High,Very_High};
+
+enum Danger {Low, Moderate, High, Very_High}
 
 public class Criminal extends Citizen {
     private final String id;
@@ -26,10 +27,12 @@ public class Criminal extends Citizen {
         this.dangerLevel = dangerLevel;
         this.crimesCommitted = crimesCommitted;
     }
+
     //----------------------------------------------------------------
     public Danger getDangerLevel() {
         return dangerLevel;
     }
+
     public void setDangerLevel(Danger dangerLevel) {
         this.dangerLevel = dangerLevel;
     }
@@ -41,6 +44,7 @@ public class Criminal extends Citizen {
     public String getCurrentLocation() {
         return currentLocation;
     }
+
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
     }
@@ -48,6 +52,7 @@ public class Criminal extends Citizen {
     public List<Case> getCrimesCommitted() {
         return crimesCommitted;
     }
+
     public void setCrimesCommitted(List<Case> crimesCommitted) {
         this.crimesCommitted = crimesCommitted;
     }
@@ -59,7 +64,7 @@ public class Criminal extends Citizen {
         crimesCommitted.add(caseFile);
     }
 
-    public  void Display_Info() {
+    public void Display_Info() {
         System.out.println("Display Criminal : " + getName() + " Informations");
         System.out.println("================================================================");
         System.out.println("Name:  " + getName());

@@ -1,15 +1,16 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Case {
     protected final Department department;
-    protected  List<PoliceOfficer> assignedOfficers;
-    protected  List<Criminal> involvedCriminals;
     private final String id;
     private final String startDate;
     private final String crimeType;
+    protected List<PoliceOfficer> assignedOfficers;
+    protected List<Criminal> involvedCriminals;
     private String description;
     private String lastUpdated;
 
@@ -23,7 +24,8 @@ public class Case {
         this.assignedOfficers = new ArrayList<>();
         this.involvedCriminals = new ArrayList<>();
     }
-    //----------------------------------------------------------------
+
+    //--------------------------------------------------------------------------------------
     public String getId() {
         return id;
     }
@@ -31,6 +33,7 @@ public class Case {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -42,6 +45,7 @@ public class Case {
     public String getLastUpdated() {
         return lastUpdated;
     }
+
     public void updateLastUpdated(String date) {
         this.lastUpdated = date;
     }
@@ -49,14 +53,26 @@ public class Case {
     public void assignOfficer(PoliceOfficer officer) {
         assignedOfficers.add(officer);
     }
+
     public void addCriminal(Criminal criminal) {
         involvedCriminals.add(criminal);
     }
-    //----------------------------------------------------------------
 
+    public void removeCriminal(Criminal criminal) {
+        involvedCriminals.remove(criminal);
+    }
+
+    //--------------------------------------------------------------------------------------
+    public boolean isOfficerAssigned(PoliceOfficer officer) {
+        return assignedOfficers.contains(officer);
+    }
+
+    public boolean isCriminalInvolved(Criminal criminal) {
+        return involvedCriminals.contains(criminal);
+    }
+
+    //--------------------------------------------------------------------------------------
     public String toString() {
-        return "Case{" + "id='" + id +  '\'' + ", description='" + description +
-                '\'' + ", startDate='" + startDate + '\'' + ", lastUpdated='" + lastUpdated +
-                '\'' + ", crimeType='" + crimeType + '\'' + '}';
+        return "\nCase{" + "id='" + id + '\'' + ", description='" + description + '\'' + ", startDate='" + startDate + '\'' + ", lastUpdated='" + lastUpdated + '\'' + ", crimeType='" + crimeType + '\'' + '}' + '\n';
     }
 }

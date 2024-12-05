@@ -1,4 +1,4 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class PoliceOfficer extends Citizen {
     private int Rate;
     private String password;
 
-    public PoliceOfficer(String id, String name, LocalDate birthDate, Gender gender, String address, String phoneNumber, String ssn, double salary, Department department , int Rate) {
+    public PoliceOfficer(String id, String name, LocalDate birthDate, Gender gender, String address, String phoneNumber, String ssn, double salary, Department department, int Rate) {
         super(name, birthDate, gender, address, phoneNumber, ssn);
         this.id = id;
         this.salary = salary;
@@ -21,29 +21,56 @@ public class PoliceOfficer extends Citizen {
         this.Rate = Rate;
     }
 
-    public PoliceOfficer(String id, double salary,String password) {
+    public PoliceOfficer(String id, double salary, String password) {
         this.id = id;
         this.salary = salary;
         this.password = password;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
     //----------------------------------------------------------------
-    public void setDepartment(Department department) {this.department = department;}
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-    public String getId() {return id;}
-    public Department getDepartment() {return department;}
+    public List<Case> getHandledCases() {
+        return handledCases;
+    }
 
-    public void setHandledCases(List<Case> handledCases) {this.handledCases = handledCases;}
-    public List<Case> getHandledCases() {return handledCases;}
+    public void setHandledCases(List<Case> handledCases) {
+        this.handledCases = handledCases;
+    }
 
-    public void setSalary(double salary) {this.salary = salary;}
-    public double getSalary() {return salary;}
+    public double getSalary() {
+        return salary;
+    }
 
-    public int getRate() {return Rate;}
-    public void setRate(int rate) {Rate = rate;}
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 
-    public String getPassword() {return password;}
-    public void setPassword(String password) {this.password = password;}
+    public int getRate() {
+        return Rate;
+    }
+
+    public void setRate(int rate) {
+        Rate = rate;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     //----------------------------------------------------------------
 

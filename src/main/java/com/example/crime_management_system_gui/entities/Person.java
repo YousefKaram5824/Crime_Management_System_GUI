@@ -1,7 +1,8 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
 
 import java.time.LocalDate;
-enum  Gender{Male , Female};
+
+enum Gender {Male, Female}
 
 public abstract class Person {
     protected String name;
@@ -20,9 +21,11 @@ public abstract class Person {
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -30,6 +33,7 @@ public abstract class Person {
     public LocalDate getBirthDate() {
         return birthDate;
     }
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -37,6 +41,7 @@ public abstract class Person {
     public Gender getGender() {
         return gender;
     }
+
     public void setGender(Gender gender) {
         this.gender = gender;
     }
@@ -44,6 +49,7 @@ public abstract class Person {
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -51,6 +57,7 @@ public abstract class Person {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

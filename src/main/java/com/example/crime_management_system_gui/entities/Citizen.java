@@ -1,4 +1,5 @@
-package com.example.crime_management_system_gui;
+package com.example.crime_management_system_gui.entities;
+
 import java.time.LocalDate;
 
 public class Citizen extends Person {
@@ -8,12 +9,18 @@ public class Citizen extends Person {
         super(name, birthDate, gender, address, phoneNumber);
         this.ssn = ssn;
     }
+
     public Citizen() {
 
     }
 
-    public String getSsn() {return ssn;}
-    public void setSsn(String ssn) {this.ssn = ssn;}
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
 
     public void Display_Info() {
         System.out.println("Display Citizen : " + getName() + " Information");
