@@ -1,30 +1,20 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.control.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Random;
 
-public class Control {
-    private final Random random = new Random();
+public class Control extends Switching {
+
     @FXML
     private TextField usernameField;
     @FXML
     private TextField phoneField;
     @FXML
-    private TextField ssnField;
+    private TextField idField;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -36,37 +26,23 @@ public class Control {
     @FXML
     private Label messageLabel;
 
-    private void switchScene(String fxmlFile, javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @FXML
-    private void handleLogin() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        if ("admin".equals(username) && "admin".equals(password)) {
-            messageLabel.setText("Welcome, " + username + "!");
-            messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-        } else {
-            messageLabel.setText("Incorrect username or password");
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
-        }
+    public void initialize() {
+        ToggleGroup genderGroup = new ToggleGroup();
+        maleRadio.setToggleGroup(genderGroup);
+        femaleRadio.setToggleGroup(genderGroup);
     }
 
     @FXML
     private void handleRegister() {
         String name = usernameField.getText();
         String phone = phoneField.getText();
-        String ssn = ssnField.getText();
+        String id = idField.getText();
         String password = passwordField.getText();
         String passwordChecker = passwordCheckerField.getText();
         String gender = maleRadio.isSelected() ? "Male" : "Female";
 
-        if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || ssn.isEmpty()) {
+        if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || id.isEmpty()) {
             messageLabel.setText("Please fill all fields");
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -76,19 +52,11 @@ public class Control {
             messageLabel.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-        String userId = generateUserId(ssn);
-        String userData = String.join(",", userId, name, phone, password, gender);
+        String userData = String.join(",", id, name, phone, password, gender);
         saveUserData(userData);
 
-        messageLabel.setText("Registration successful!\n ID: " + userId);
+        messageLabel.setText("Registration successful!\n ID: " + id);
         messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-
-    }
-
-    private String generateUserId(String ssn) {
-        String capitalizedSsn = ssn.toUpperCase();
-        int randomDigits = 1 + random.nextInt(999);
-        return capitalizedSsn + randomDigits;
     }
 
     private void saveUserData(String userData) {
@@ -99,21 +67,4 @@ public class Control {
             messageLabel.setText("Error saving data: " + e.getMessage());
         }
     }
-
-    public void switchToLogin(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("login.fxml", actionEvent);
-    }
-
-    public void switchToRegister(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("register.fxml", actionEvent);
-    }
-
-    public void switchToReport(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("report.fxml", actionEvent);
-    }
-
-    public void switchToMain(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("main.fxml", actionEvent);
-    }
-
 }

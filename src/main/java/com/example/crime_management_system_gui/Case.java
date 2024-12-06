@@ -1,4 +1,4 @@
-package com.example.crime_management_system_gui.entities;
+package com.example.crime_management_system_gui;
 
 import java.util.ArrayList;
 import java.util.List;
