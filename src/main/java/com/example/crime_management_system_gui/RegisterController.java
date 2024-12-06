@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Control extends Switching {
+public class RegisterController extends Switching {
 
     @FXML
     private TextField usernameField;
