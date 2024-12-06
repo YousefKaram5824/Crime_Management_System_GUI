@@ -10,53 +10,58 @@ import java.io.IOException;
 public class RegisterController extends Switching {
 
     @FXML
-    private TextField usernameField;
+    private TextField username;
     @FXML
-    private TextField phoneField;
+    private TextField phone;
     @FXML
-    private TextField idField;
+    private TextField id;
     @FXML
-    private PasswordField passwordField;
+    private PasswordField password;
     @FXML
-    private PasswordField passwordCheckerField;
+    private PasswordField confirmPassword;
     @FXML
-    private RadioButton maleRadio;
+    private RadioButton male;
     @FXML
-    private RadioButton femaleRadio;
+    private RadioButton female;
     @FXML
-    private Label messageLabel;
+    private Label message;
 
     @FXML
     public void initialize() {
         ToggleGroup genderGroup = new ToggleGroup();
-        maleRadio.setToggleGroup(genderGroup);
-        femaleRadio.setToggleGroup(genderGroup);
+        male.setToggleGroup(genderGroup);
+        female.setToggleGroup(genderGroup);
     }
 
     @FXML
     private void handleRegister() {
-        String name = usernameField.getText();
-        String phone = phoneField.getText();
-        String id = idField.getText();
-        String password = passwordField.getText();
-        String passwordChecker = passwordCheckerField.getText();
-        String gender = maleRadio.isSelected() ? "Male" : "Female";
+        String Name = username.getText();
+        String Phone = phone.getText();
+        String ID = id.getText();
+        String Password = password.getText();
+        String PasswordChecker = confirmPassword.getText();
+        String gender = male.isSelected() ? "Male" : "Female";
 
-        if (name.isEmpty() || phone.isEmpty() || password.isEmpty() || id.isEmpty()) {
-            messageLabel.setText("Please fill all fields");
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+        if (Name.isEmpty() || Phone.isEmpty() || Password.isEmpty() || ID.isEmpty()) {
+            message.setText("Please fill all fields");
+            message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-        if (!password.equals(passwordChecker)) {
-            messageLabel.setText("Password not match");
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+        if (!ID.startsWith("dep") && !ID.startsWith("chf") && !ID.startsWith("poc")) {
+            message.setText("Invalid user type");
+            message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-        String userData = String.join(",", id, name, phone, password, gender);
+        if (!Password.equals(PasswordChecker)) {
+            message.setText("Password not match");
+            message.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
+        String userData = String.join(",", ID, Name, Phone, Password, gender);
         saveUserData(userData);
 
-        messageLabel.setText("Registration successful!\n ID: " + id);
-        messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+        message.setText("Registration successful!");
+        message.setTextFill(javafx.scene.paint.Color.GREEN);
     }
 
     private void saveUserData(String userData) {
@@ -64,7 +69,7 @@ public class RegisterController extends Switching {
             writer.write(userData);
             writer.newLine();
         } catch (IOException e) {
-            messageLabel.setText("Error saving data: " + e.getMessage());
+            message.setText("Error saving data: " + e.getMessage());
         }
     }
 }

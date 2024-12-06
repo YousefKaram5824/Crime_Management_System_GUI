@@ -20,7 +20,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField fx:id="nameField" layoutX="595.0" layoutY="175.0" prefHeight="62.0" prefWidth="358.0" promptText="Name">
+    <TextField fx:id="username" layoutX="595.0" layoutY="175.0" prefHeight="62.0" prefWidth="358.0" promptText="Name">
         <font>
             <Font size="18.0" />
         </font>
@@ -28,7 +28,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <TextField fx:id="phoneField" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="Phone">
+    <TextField fx:id="phone" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="Phone">
         <font>
             <Font size="18.0" />
         </font>
@@ -49,7 +49,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </DatePicker>
-    <TextArea fx:id="descriptionArea" layoutX="339.0" layoutY="505.0" prefHeight="222.0" prefWidth="908.0" promptText="Put your report here, please">
+    <TextArea fx:id="description" layoutX="339.0" layoutY="505.0" prefHeight="222.0" prefWidth="908.0" promptText="Put your report here, please">
         <font>
             <Font size="18.0" />
         </font>
@@ -57,7 +57,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextArea>
-    <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="748.0" prefHeight="62.0" prefWidth="338.0">
+    <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="607.0" layoutY="748.0" prefHeight="62.0" prefWidth="338.0">
         <font>
             <Font size="18.0" />
         </font>

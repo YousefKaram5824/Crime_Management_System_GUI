@@ -11,36 +11,36 @@ import java.time.LocalDate;
 public class reportController extends Switching {
 
     @FXML
-    private TextField nameField;
+    private TextField username;
     @FXML
-    private TextField phoneField;
+    private TextField phone;
     @FXML
     private DatePicker datePicker;
     @FXML
-    private TextArea descriptionArea;
+    private TextArea description;
     @FXML
-    private Label messageLabel;
+    private Label message;
 
 
     @FXML
     private void handleSubmit() {
-        String name = nameField.getText();
-        String phone = phoneField.getText();
+        String Name = username.getText();
+        String Phone = phone.getText();
         LocalDate date = datePicker.getValue();
-        String description = descriptionArea.getText();
+        String Description = description.getText();
 
-        if (name.isEmpty() || phone.isEmpty() || date == null || description.isEmpty()) {
-            messageLabel.setText("Please fill all fields!");
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+        if (Name.isEmpty() || Phone.isEmpty() || date == null || Description.isEmpty()) {
+            message.setText("Please fill all fields!");
+            message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
-        String reportData = String.format("Name: %s\tPhone: %s\tDate: %s\tDescription: %s\n\n", name, phone, date, description);
+        String reportData = String.format("Name: %s\tPhone: %s\tDate: %s\tDescription: %s\n\n", Name, Phone, date, Description);
 
         saveToFile(reportData);
         clearFields();
-        messageLabel.setText("Report submitted successfully!");
-        messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
+        message.setText("Report submitted successfully!");
+        message.setTextFill(javafx.scene.paint.Color.GREEN);
     }
 
     private void saveToFile(String data) {
@@ -52,10 +52,10 @@ public class reportController extends Switching {
     }
 
     private void clearFields() {
-        nameField.clear();
-        phoneField.clear();
+        username.clear();
+        phone.clear();
         datePicker.setValue(null);
-        descriptionArea.clear();
+        description.clear();
     }
 
     private void showAlert(String message) {

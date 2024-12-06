@@ -12,24 +12,24 @@ import java.io.IOException;
 public class LoginController extends Switching {
 
     @FXML
-    private TextField usernameField;
+    private TextField username;
     @FXML
-    private PasswordField passwordField;
+    private PasswordField password;
     @FXML
-    private Label messageLabel;
+    private Label message;
 
     @FXML
     private void handleLogin() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String Name = username.getText();
+        String Password = password.getText();
 
-        if (checkCredentials(username, password)) {
-            messageLabel.setText("Welcome, " + username + "!");
-            messageLabel.setTextFill(javafx.scene.paint.Color.GREEN);
-            redirectUser(username);
+        if (checkCredentials(Name, Password)) {
+            message.setText("Welcome, " + username + "!");
+            message.setTextFill(javafx.scene.paint.Color.GREEN);
+            redirectUser(Name);
         } else {
-            messageLabel.setText("Incorrect username or password");
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+            message.setText("Incorrect username or password");
+            message.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
@@ -39,13 +39,13 @@ public class LoginController extends Switching {
             while ((line = reader.readLine()) != null) {
                 String[] userData = line.split(",");
                 if (userData[0].equals(username) && userData[3].equals(password)) {
-                    return true; // ID and password match
+                    return true;
                 }
             }
         } catch (IOException e) {
-            messageLabel.setText("Error reading data: " + e.getMessage());
+            message.setText("Error reading data: " + e.getMessage());
         }
-        return false; // No match found
+        return false;
     }
 
     private void redirectUser(String username) {
@@ -57,12 +57,12 @@ public class LoginController extends Switching {
             } else if (username.startsWith("chf")) {
                 switchToPage("chief_of_police.fxml");
             } else {
-                messageLabel.setText("Invalid user type");
-                messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+                message.setText("Invalid user type");
+                message.setTextFill(javafx.scene.paint.Color.RED);
             }
         } catch (IOException e) {
-            messageLabel.setText("Error loading page: " + e.getMessage());
-            messageLabel.setTextFill(javafx.scene.paint.Color.RED);
+            message.setText("Error loading page: " + e.getMessage());
+            message.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 }
