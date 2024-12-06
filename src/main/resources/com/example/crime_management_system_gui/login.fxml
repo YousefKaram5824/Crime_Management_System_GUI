@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.loginController">
+<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.LoginController">
     <Button layoutX="97.0" layoutY="709.0" mnemonicParsing="false" onAction="#switchToMain" opacity="0.0" prefHeight="62.0" prefWidth="273.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField fx:id="usernameField" alignment="CENTER" focusTraversable="false" layoutX="589.0" layoutY="267.0" prefHeight="62.0" prefWidth="322.0" promptText="User Name">
+    <TextField fx:id="usernameField" alignment="CENTER" focusTraversable="false" layoutX="589.0" layoutY="304.0" prefHeight="62.0" prefWidth="322.0" promptText="User Name">
         <cursor>
             <Cursor fx:constant="TEXT" />
         </cursor>

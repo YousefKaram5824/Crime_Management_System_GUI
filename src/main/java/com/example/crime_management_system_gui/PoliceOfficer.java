@@ -74,19 +74,4 @@ public class PoliceOfficer extends Citizen {
 
     //----------------------------------------------------------------
 
-    public void Display_Info() {
-        System.out.println("Display Police Officer : " + getName() + " Information");
-        System.out.println("================================================================");
-        System.out.println("Name: " + getName());
-        System.out.println("police ID : " + getId());
-        System.out.println("department : " + getDepartment());
-        System.out.println("Birth Date: " + getBirthDate());
-        System.out.println("Gender: " + getGender());
-        System.out.println("Address: " + getAddress());
-        System.out.println("Phone Number: " + getPhoneNumber());
-        System.out.println("SSN: " + getSsn());
-        System.out.println("salary : " + getSalary());
-        System.out.println("handled Cases : " + handledCases);
-        // need to implement display handledCases for police
-    }
 }

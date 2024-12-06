@@ -6,7 +6,7 @@
 }
 
 #login{
-   -fx-background-image: url("photos/login2/3.png");
+   -fx-background-image: url("photos/login2/login.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
