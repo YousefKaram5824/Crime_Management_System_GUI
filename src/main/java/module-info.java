@@ -14,6 +14,4 @@ module com.example.crime_management_system_gui {
 
     opens com.example.crime_management_system_gui to javafx.fxml;
     exports com.example.crime_management_system_gui;
-    exports com.example.crime_management_system_gui.entities;
-    opens com.example.crime_management_system_gui.entities to javafx.fxml;
 }
