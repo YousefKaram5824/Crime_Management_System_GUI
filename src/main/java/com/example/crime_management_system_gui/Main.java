@@ -23,7 +23,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pages/main.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setMaximized(true);

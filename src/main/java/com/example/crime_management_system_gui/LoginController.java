@@ -51,11 +51,11 @@ public class LoginController extends Switching {
     private void redirectUser(String username) {
         try {
             if (username.startsWith("dep")) {
-                switchToPage("chief_of_department.fxml");
+                switchToPage("pages/chief_of_department.fxml");
             } else if (username.startsWith("poc")) {
-                switchToPage("police_officer.fxml");
+                switchToPage("pages/police_officer.fxml");
             } else if (username.startsWith("chf")) {
-                switchToPage("chief_of_police.fxml");
+                switchToPage("pages/chief_of_police.fxml");
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);
