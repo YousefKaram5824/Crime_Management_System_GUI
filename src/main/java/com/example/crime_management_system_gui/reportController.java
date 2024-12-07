@@ -1,14 +1,15 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class reportController extends Switching {
+public class reportController extends Switching implements Initializable {
 
     @FXML
     private TextField username;
@@ -20,7 +21,10 @@ public class reportController extends Switching {
     private TextArea description;
     @FXML
     private Label message;
+    @FXML
+    private ComboBox<String> crimeType;
 
+    private int reportId;
 
     @FXML
     private void handleSubmit() {
@@ -28,16 +32,17 @@ public class reportController extends Switching {
         String Phone = phone.getText();
         LocalDate date = datePicker.getValue();
         String Description = description.getText();
+        String CrimeType = crimeType.getValue();
 
-        if (Name.isEmpty() || Phone.isEmpty() || date == null || Description.isEmpty()) {
+        if (Name.isEmpty() || Phone.isEmpty() || date == null || Description.isEmpty() || CrimeType == null) {
             message.setText("Please fill all fields!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-
-        String reportData = String.format("Name: %s\nPhone: %s\nDate: %s\nDescription: %s\n\n", Name, Phone, date, Description);
+        String reportData = String.format("Report ID: %d\nName: %s\nPhone: %s\nDate: %s\nCrime Type: %s\nDescription: %s\n\n", reportId, Name, Phone, date, CrimeType, Description);
 
         saveToFile(reportData);
+        saveLastReportId();
         clearFields();
         message.setText("Report submitted successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -56,6 +61,7 @@ public class reportController extends Switching {
         phone.clear();
         datePicker.setValue(null);
         description.clear();
+        crimeType.setValue(null);
     }
 
     private void showAlert(String message) {
@@ -64,5 +70,32 @@ public class reportController extends Switching {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        crimeType.getItems().addAll("Murder", "Robbery", "Assault");
+        reportId = loadLastReportId();
+    }
+
+    private int loadLastReportId() {
+        int lastId = 1;
+        try (BufferedReader reader = new BufferedReader(new FileReader("lastReportId.txt"))) {
+            String line = reader.readLine();
+            if (line != null) {
+                lastId = Integer.parseInt(line);
+            }
+        } catch (IOException | NumberFormatException e) {
+            return 0;
+        }
+        return lastId + 1;
+    }
+
+    private void saveLastReportId() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("lastReportId.txt"))) {
+            writer.write(String.valueOf(reportId));
+        } catch (IOException e) {
+            showAlert("Error saving last report ID: " + e.getMessage());
+        }
     }
 }

@@ -1,9 +1,35 @@
-Name: emfwfe
-Phone: 1234323
-Date: 2024-12-11
-Description: someone kill me
+Report ID: 0
+Name: yuyuy
+Phone: 1234567890
+Date: 2024-12-19
+Crime Type: Robbery
+Description: stolen
 
-Name: wefeff	Phone: wfwefwf	Date: 2024-12-13	Description: fwefwfe
+Report ID: 1
+Name: sdgba
+Phone: 1234567890
+Date: 2024-12-25
+Crime Type: Murder
+Description: afafafevvawvwbagazikl;
 
-Name: 12313131	Phone: 131232	Date: 2024-12-26	Description: 131231231
+Report ID: 1
+Name: efawfef
+Phone: 123456789
+Date: 2024-12-16
+Crime Type: Assault
+Description: fire
+
+Report ID: 1
+Name: wqfwf
+Phone: 12345678
+Date: 2024-12-25
+Crime Type: Murder
+Description: dsafewgbseb
+
+Report ID: 2
+Name: wvavresvse
+Phone: 123456789
+Date: 2024-12-29
+Crime Type: Robbery
+Description: aerhtjryk
 
