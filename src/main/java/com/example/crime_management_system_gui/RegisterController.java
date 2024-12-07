@@ -3,9 +3,9 @@ package com.example.crime_management_system_gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterController extends Switching {
 
@@ -42,7 +42,7 @@ public class RegisterController extends Switching {
         String PasswordChecker = confirmPassword.getText();
         String gender = male.isSelected() ? "Male" : "Female";
 
-        if (Name.isEmpty() || Phone.isEmpty() || Password.isEmpty() || ID.isEmpty()) {
+        if (Name.isEmpty() || Phone.isEmpty() || Password.isEmpty() || ID.isEmpty() || PasswordChecker.isEmpty()) {
             message.setText("Please fill all fields");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -53,15 +53,45 @@ public class RegisterController extends Switching {
             return;
         }
         if (!Password.equals(PasswordChecker)) {
-            message.setText("Password not match");
+            message.setText("Passwords do not match");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
+        if (!isUserIdUnique(ID)) {
+            message.setText("User ID already exists");
+            message.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
+
         String userData = String.join(",", ID, Name, Phone, Password, gender);
         saveUserData(userData);
 
         message.setText("Registration successful!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
+    }
+
+    private boolean isUserIdUnique(String userId) {
+        List<String> userData = readUserData();
+        for (String data : userData) {
+            String[] userDetails = data.split(",");
+            if (userDetails[0].equals(userId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private List<String> readUserData() {
+        List<String> userData = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                userData.add(line);
+            }
+        } catch (IOException e) {
+            message.setText("Error reading user data: " + e.getMessage());
+        }
+        return userData;
     }
 
     private void saveUserData(String userData) {

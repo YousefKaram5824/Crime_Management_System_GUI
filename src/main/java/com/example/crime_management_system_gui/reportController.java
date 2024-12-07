@@ -35,7 +35,7 @@ public class reportController extends Switching {
             return;
         }
 
-        String reportData = String.format("Name: %s\tPhone: %s\tDate: %s\tDescription: %s\n\n", Name, Phone, date, Description);
+        String reportData = String.format("Name: %s\nPhone: %s\nDate: %s\nDescription: %s\n\n", Name, Phone, date, Description);
 
         saveToFile(reportData);
         clearFields();

@@ -19,12 +19,12 @@ public class Switching {
         stage.show();
     }
 
-    // Overloaded method to switch scenes without ActionEvent
     public void switchScene(String fxmlFile) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Stage stage = (Stage) Main.getPrimaryStage().getScene().getWindow(); // Assuming you have a method to get the primary stage
+        Stage stage = (Stage) Main.getPrimaryStage().getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
@@ -48,7 +48,6 @@ public class Switching {
         switchScene("forget_password.fxml", actionEvent);
     }
 
-    // Adjusted to use the new switchScene method
     public void switchToPage(String fxmlFile) throws IOException {
         switchScene(fxmlFile);
     }

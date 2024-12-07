@@ -1,11 +1,15 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import java.io.*;
-import java.util.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
-public class ForgotPasswordController extends Switching{
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ForgotPasswordController extends Switching {
 
     @FXML
     private TextField id;
@@ -40,7 +44,7 @@ public class ForgotPasswordController extends Switching{
         for (int i = 0; i < userData.size(); i++) {
             String[] userDetails = userData.get(i).split(",");
             if (userDetails[0].equals(userId)) {
-                userDetails[1] = NewPassword;
+                userDetails[3] = NewPassword;
                 userData.set(i, String.join(",", userDetails));
                 userFound = true;
                 break;
@@ -51,7 +55,7 @@ public class ForgotPasswordController extends Switching{
             writeUserData(userData);
             message.setText("Password reset successfully!");
             message.setTextFill(javafx.scene.paint.Color.GREEN);
-            clearFields();
+//            clearFields();
         } else {
             message.setText("User ID not found.");
             message.setTextFill(javafx.scene.paint.Color.RED);
@@ -82,9 +86,9 @@ public class ForgotPasswordController extends Switching{
         }
     }
 
-    private void clearFields() {
+    /*private void clearFields() {
         id.clear();
         newPassword.clear();
         newPasswordConfirm.clear();
-    }
+    }*/
 }
