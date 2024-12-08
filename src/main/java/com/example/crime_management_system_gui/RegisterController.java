@@ -3,12 +3,7 @@ package com.example.crime_management_system_gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class RegisterController extends Switching {
-
     @FXML
     private TextField username;
     @FXML
@@ -26,8 +21,11 @@ public class RegisterController extends Switching {
     @FXML
     private Label message;
 
+    private UserDataManager userDataManager;
+
     @FXML
     public void initialize() {
+        userDataManager = Main.getUserDataManager();
         ToggleGroup genderGroup = new ToggleGroup();
         male.setToggleGroup(genderGroup);
         female.setToggleGroup(genderGroup);
@@ -57,49 +55,16 @@ public class RegisterController extends Switching {
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-        if (!isUserIdUnique(ID)) {
+        if (!userDataManager.isUserIdUnique(ID)) {
             message.setText("User ID already exists");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
         String userData = String.join(",", ID, Name, Phone, Password, gender);
-        saveUserData(userData);
+        userDataManager.getUserData().add(userData);
 
         message.setText("Registration successful!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
-    }
-
-    private boolean isUserIdUnique(String userId) {
-        List<String> userData = readUserData();
-        for (String data : userData) {
-            String[] userDetails = data.split(",");
-            if (userDetails[0].equals(userId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private List<String> readUserData() {
-        List<String> userData = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                userData.add(line);
-            }
-        } catch (IOException e) {
-            message.setText("Error reading user data: " + e.getMessage());
-        }
-        return userData;
-    }
-
-    private void saveUserData(String userData) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt", true))) {
-            writer.write(userData);
-            writer.newLine();
-        } catch (IOException e) {
-            message.setText("Error saving data: " + e.getMessage());
-        }
     }
 }

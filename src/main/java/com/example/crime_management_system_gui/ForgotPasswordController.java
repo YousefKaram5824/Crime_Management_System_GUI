@@ -5,12 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ForgotPasswordController extends Switching {
-
     @FXML
     private TextField id;
     @FXML
@@ -19,6 +14,13 @@ public class ForgotPasswordController extends Switching {
     private PasswordField newPasswordConfirm;
     @FXML
     private Label message;
+
+    private UserDataManager userDataManager;
+
+    @FXML
+    public void initialize() {
+        userDataManager = Main.getUserDataManager();
+    }
 
     @FXML
     private void handleResetPassword() {
@@ -38,57 +40,24 @@ public class ForgotPasswordController extends Switching {
             return;
         }
 
-        List<String> userData = readUserData();
         boolean userFound = false;
 
-        for (int i = 0; i < userData.size(); i++) {
-            String[] userDetails = userData.get(i).split(",");
+        for (int i = 0; i < userDataManager.getUserData().size(); i++) {
+            String[] userDetails = userDataManager.getUserData().get(i).split(",");
             if (userDetails[0].equals(userId)) {
                 userDetails[3] = NewPassword;
-                userData.set(i, String.join(",", userDetails));
+                userDataManager.updateUserData(i, String.join(",", userDetails));
                 userFound = true;
                 break;
             }
         }
 
         if (userFound) {
-            writeUserData(userData);
             message.setText("Password reset successfully!");
             message.setTextFill(javafx.scene.paint.Color.GREEN);
-//            clearFields();
         } else {
             message.setText("User ID not found.");
             message.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
-
-    private List<String> readUserData() {
-        List<String> userData = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                userData.add(line);
-            }
-        } catch (IOException e) {
-            message.setText("Error reading user data: " + e.getMessage());
-        }
-        return userData;
-    }
-
-    private void writeUserData(List<String> userData) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"))) {
-            for (String data : userData) {
-                writer.write(data);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            message.setText("Error writing user data: " + e.getMessage());
-        }
-    }
-
-    /*private void clearFields() {
-        id.clear();
-        newPassword.clear();
-        newPasswordConfirm.clear();
-    }*/
 }

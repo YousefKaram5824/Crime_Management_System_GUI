@@ -5,12 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 public class LoginController extends Switching {
-
     @FXML
     private TextField username;
     @FXML
@@ -18,13 +15,20 @@ public class LoginController extends Switching {
     @FXML
     private Label message;
 
+    private UserDataManager userDataManager;
+
+    @FXML
+    public void initialize() {
+        userDataManager = Main.getUserDataManager(); // Access UserDataManager statically
+    }
+
     @FXML
     private void handleLogin() {
         String Name = username.getText();
         String Password = password.getText();
 
         if (checkCredentials(Name, Password)) {
-            message.setText("Welcome, " + username + "!");
+            message.setText("Welcome, " + Name + "!");
             message.setTextFill(javafx.scene.paint.Color.GREEN);
             redirectUser(Name);
         } else {
@@ -34,25 +38,18 @@ public class LoginController extends Switching {
     }
 
     private boolean checkCredentials(String username, String password) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("users.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] userData = line.split(",");
-                if (userData[0].equals(username) && userData[3].equals(password)) {
-                    return true;
-                }
+        for (String data : userDataManager.getUserData()) {
+            String[] userData = data.split(",");
+            if (userData[0].equals(username) && userData[3].equals(password)) {
+                return true;
             }
-        } catch (IOException e) {
-            message.setText("Error reading data: " + e.getMessage());
         }
         return false;
     }
 
     private void redirectUser(String username) {
         try {
-            if (username.startsWith("dep")) {
-                switchToPage("pages/chief_of_department.fxml");
-            } else if (username.startsWith("poc")) {
+            if (username.startsWith("poc")) {
                 switchToPage("pages/police_officer.fxml");
             } else if (username.startsWith("chf")) {
                 switchToPage("pages/chief_of_police.fxml");

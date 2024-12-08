@@ -44,7 +44,10 @@
             <ToggleGroup />
         </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="male" layoutX="813.0" layoutY="360.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Male" textFill="WHITE" />
+    <RadioButton fx:id="male" layoutX="813.0" layoutY="360.0" mnemonicParsing="false" scaleX="2.0" scaleY="2.0" text="Male" textFill="WHITE">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></RadioButton>
     <Label fx:id="message" alignment="CENTER" layoutX="528.0" layoutY="680.0" prefHeight="74.0" prefWidth="358.0">
         <font>
             <Font size="18.0" />
