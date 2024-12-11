@@ -25,7 +25,7 @@ public class Department extends Switching implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        departmentDataManager = Main.getUserDataManager();
+        departmentDataManager = Main.getDataManager();
     }
 
     @FXML

@@ -23,7 +23,7 @@ public class Main extends Application {
         return primaryStage;
     }
 
-    public static DataManager getUserDataManager() {
+    public static DataManager getDataManager() {
         return dataManager;
     }
 

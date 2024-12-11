@@ -19,7 +19,7 @@ public class ForgotPasswordController extends Switching {
 
     @FXML
     public void initialize() {
-        userDataManager = Main.getUserDataManager();
+        userDataManager = Main.getDataManager();
     }
 
     @FXML

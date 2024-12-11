@@ -30,7 +30,7 @@ public class RegisterController extends Switching implements Initializable {
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userDataManager = Main.getUserDataManager();
+        userDataManager = Main.getDataManager();
         ToggleGroup genderGroup = new ToggleGroup();
         male.setToggleGroup(genderGroup);
         female.setToggleGroup(genderGroup);
