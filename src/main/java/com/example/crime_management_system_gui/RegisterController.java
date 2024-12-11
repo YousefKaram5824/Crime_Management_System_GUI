@@ -1,9 +1,13 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class RegisterController extends Switching {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class RegisterController extends Switching implements Initializable {
     @FXML
     private TextField username;
     @FXML
@@ -21,10 +25,11 @@ public class RegisterController extends Switching {
     @FXML
     private Label message;
 
-    private UserDataManager userDataManager;
+    private DataManager userDataManager;
 
     @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getUserDataManager();
         ToggleGroup genderGroup = new ToggleGroup();
         male.setToggleGroup(genderGroup);
@@ -45,13 +50,8 @@ public class RegisterController extends Switching {
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
-        if (!ID.startsWith("dep") && !ID.startsWith("chf") && !ID.startsWith("poc")) {
+        if (!ID.startsWith("chf") && !ID.startsWith("poc") && !ID.startsWith("dep")) {
             message.setText("Invalid user type");
-            message.setTextFill(javafx.scene.paint.Color.RED);
-            return;
-        }
-        if (!Password.equals(PasswordChecker)) {
-            message.setText("Passwords do not match");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
@@ -60,10 +60,14 @@ public class RegisterController extends Switching {
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
+        if (!Password.equals(PasswordChecker)) {
+            message.setText("Passwords do not match");
+            message.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
 
         String userData = String.join(",", ID, Name, Phone, Password, gender);
         userDataManager.getUserData().add(userData);
-
         message.setText("Registration successful!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
     }

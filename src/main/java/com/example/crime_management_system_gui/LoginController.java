@@ -15,7 +15,7 @@ public class LoginController extends Switching {
     @FXML
     private Label message;
 
-    private UserDataManager userDataManager;
+    private DataManager userDataManager;
 
     @FXML
     public void initialize() {
@@ -50,9 +50,11 @@ public class LoginController extends Switching {
     private void redirectUser(String username) {
         try {
             if (username.startsWith("poc")) {
-                switchToPage("pages/police_officer.fxml");
+                switchToPage("police_officer.fxml");
             } else if (username.startsWith("chf")) {
-                switchToPage("pages/chief_of_police.fxml");
+                switchToPage("police_chief.fxml");
+            } else if (username.startsWith("dep")) {
+                switchToPage("department_chief.fxml");
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="report" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.reportController">
+<AnchorPane id="report" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.ReportController">
     <Button layoutX="174.0" layoutY="748.0" mnemonicParsing="false" onAction="#switchToMain" opacity="0.0" prefHeight="94.0" prefWidth="338.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
@@ -29,7 +29,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <TextField fx:id="phone" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="Phone">
+    <TextField fx:id="witness" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="Witness (optional)">
         <font>
             <Font size="18.0" />
         </font>
@@ -55,5 +55,5 @@
             <Font size="18.0" />
         </font>
     </Label>
-   <ComboBox fx:id="crimeType" layoutX="595.0" layoutY="420.0" prefHeight="62.0" prefWidth="358.0" />
+   <ComboBox fx:id="crimeType" layoutX="595.0" layoutY="420.0" prefHeight="62.0" prefWidth="358.0" promptText="None" visibleRowCount="100" />
 </AnchorPane>

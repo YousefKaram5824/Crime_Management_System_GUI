@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main extends Application {
-    private static UserDataManager userDataManager;
+    private static DataManager dataManager;
     private static Stage primaryStage;
 
 
@@ -23,17 +23,20 @@ public class Main extends Application {
         return primaryStage;
     }
 
-    public static UserDataManager getUserDataManager() {
-        return userDataManager;
+    public static DataManager getUserDataManager() {
+        return dataManager;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        userDataManager = new UserDataManager();
-        userDataManager.loadUserData();
+        dataManager = new DataManager();
+        dataManager.loadUserData();
+        dataManager.loadReports();
+        dataManager.loadLastReportId();
+        dataManager.loadDepartmentData();
         primaryStage = stage;
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pages/main.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
 
@@ -48,6 +51,8 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        userDataManager.saveUserData();
+        dataManager.saveUserData();
+        dataManager.saveLastReportId();
+        dataManager.saveDepartmentData();
     }
 }

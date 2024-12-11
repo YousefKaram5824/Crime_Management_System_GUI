@@ -15,7 +15,7 @@ public class ForgotPasswordController extends Switching {
     @FXML
     private Label message;
 
-    private UserDataManager userDataManager;
+    private DataManager userDataManager;
 
     @FXML
     public void initialize() {
