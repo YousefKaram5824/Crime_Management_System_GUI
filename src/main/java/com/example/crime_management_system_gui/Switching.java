@@ -29,23 +29,23 @@ public class Switching {
     }
 
     public void switchToLogin(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("pages/login.fxml", actionEvent);
+        switchScene("login.fxml", actionEvent);
     }
 
     public void switchToRegister(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("pages/register.fxml", actionEvent);
+        switchScene("register.fxml", actionEvent);
     }
 
     public void switchToReport(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("pages/report.fxml", actionEvent);
+        switchScene("report.fxml", actionEvent);
     }
 
     public void switchToMain(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("pages/main.fxml", actionEvent);
+        switchScene("main.fxml", actionEvent);
     }
 
     public void switchToForgetPassword(javafx.event.ActionEvent actionEvent) throws IOException {
-        switchScene("pages/forget_password.fxml", actionEvent);
+        switchScene("forget_password.fxml", actionEvent);
     }
 
     public void switchToPage(String fxmlFile) throws IOException {

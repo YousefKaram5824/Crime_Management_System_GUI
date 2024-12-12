@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.viewProfile">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.viewOfficers">
     <Button layoutX="196.0" layoutY="429.0" mnemonicParsing="false" onAction="#viewUserData" text="show" />
     <Label fx:id="username" layoutX="204.0" layoutY="106.0" text="Name" />
     <Label fx:id="salary" layoutX="204.0" layoutY="254.0" text="Salary" />

@@ -54,7 +54,7 @@ public class Register extends Switching implements Initializable {
             message.setTextFill(Color.RED);
             return;
         }
-        if (!ID.startsWith("chf") && !ID.startsWith("poc") && !ID.startsWith("dep")) {
+        if (!ID.startsWith("chf") && !ID.startsWith("poc")) {
             message.setText("Invalid user type");
             message.setTextFill(Color.RED);
             return;

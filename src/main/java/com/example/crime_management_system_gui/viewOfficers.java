@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class viewProfile extends Switching implements Initializable {
+public class viewOfficers extends Switching implements Initializable {
     @FXML
     private Label username;
     @FXML
@@ -34,7 +34,7 @@ public class viewProfile extends Switching implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getDataManager();
-        rating.getItems().addAll("1", "2", "3", "4", "5");
+        rating.getItems().addAll("1", "2", "3", "4", "5");  // change to strings
     }
 
     private String getUserDataById(String userId) {

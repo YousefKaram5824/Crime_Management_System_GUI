@@ -50,11 +50,12 @@ public class Login extends Switching {
     private void redirectUser(String username) {
         try {
             if (username.startsWith("poc")) {
-                switchToPage("pages/police_officer.fxml");
+                String userData = getUserDataById(username);
+                if (userData != null) {
+                    switchToPage("viewProfile.fxml");
+                }
             } else if (username.startsWith("chf")) {
-                switchToPage("pages/police_chief.fxml");
-            } else if (username.startsWith("dep")) {
-                switchToPage("pages/department_chief.fxml");
+                switchToPage("police_chief.fxml");
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);
@@ -63,5 +64,15 @@ public class Login extends Switching {
             message.setText("Error loading page: " + e.getMessage());
             message.setTextFill(javafx.scene.paint.Color.RED);
         }
+    }
+
+    private String getUserDataById(String userId) {
+        for (String data : userDataManager.getUserData()) {
+            String[] userDetails = data.split(",");
+            if (userDetails[0].equals(userId)) {
+                return data;
+            }
+        }
+        return null;
     }
 }

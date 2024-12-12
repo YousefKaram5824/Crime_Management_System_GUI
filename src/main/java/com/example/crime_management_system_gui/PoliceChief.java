@@ -8,11 +8,11 @@ public class PoliceChief extends Switching {
 
     @FXML
     private void createDepartment() throws IOException {
-        switchToPage("pages/create_department.fxml");
+        switchToPage("create_department.fxml");
     }
 
     @FXML
     private void viewProfile() throws IOException {
-        switchToPage("pages/view_profile.fxml");
+        switchToPage("view_profile.fxml");
     }
 }
