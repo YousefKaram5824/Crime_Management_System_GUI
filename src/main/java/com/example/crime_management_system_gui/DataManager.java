@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataManager {
-    private static final String USER_FILE_NAME = "users.txt";
-    private static final String REPORT_FILE_NAME = "reports.txt";
-    private static final String LAST_REPORT_ID_FILE = "lastReportId.txt";
-    private static final String DEPARTMENT_FILE = "department.txt";
+    private static final String USER_FILE_NAME = "files/users.txt";
+    private static final String REPORT_FILE_NAME = "files/reports.txt";
+    private static final String DEPARTMENT_FILE = "files/department.txt";
     private final List<String> userData = new ArrayList<>();
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
-    private int lastReportId;
 
 
     public void loadDepartmentData() {
@@ -119,34 +117,6 @@ public class DataManager {
         } catch (IOException e) {
             System.err.println("Error saving report: " + e.getMessage());
         }
-    }
-
-    public void loadLastReportId() {
-        lastReportId = 1;
-        try (BufferedReader reader = new BufferedReader(new FileReader(LAST_REPORT_ID_FILE))) {
-            String line = reader.readLine();
-            if (line != null) {
-                lastReportId = Integer.parseInt(line);
-            }
-        } catch (IOException | NumberFormatException e) {
-            lastReportId = 0;
-        }
-    }
-
-    public void saveLastReportId() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LAST_REPORT_ID_FILE))) {
-            writer.write(String.valueOf(lastReportId));
-        } catch (IOException e) {
-            System.err.println("Error saving last report ID: " + e.getMessage());
-        }
-    }
-
-    public int getNextReportId() {
-        return lastReportId++;
-    }
-
-    public void incrementLastReportId() {
-        lastReportId++;
     }
 
     public List<String> getReports() {

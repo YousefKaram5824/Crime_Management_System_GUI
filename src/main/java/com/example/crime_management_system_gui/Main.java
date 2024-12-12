@@ -30,10 +30,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         dataManager = new DataManager();
+
         dataManager.loadUserData();
         dataManager.loadReports();
-        dataManager.loadLastReportId();
         dataManager.loadDepartmentData();
+
         primaryStage = stage;
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")));
@@ -52,7 +53,6 @@ public class Main extends Application {
     @Override
     public void stop() {
         dataManager.saveUserData();
-        dataManager.saveLastReportId();
         dataManager.saveDepartmentData();
     }
 }

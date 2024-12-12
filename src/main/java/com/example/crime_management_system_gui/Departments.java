@@ -10,7 +10,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class Department extends Switching implements Initializable {
+public class Departments extends Switching implements Initializable {
     @FXML
     private TextField name;
     @FXML
@@ -33,7 +33,6 @@ public class Department extends Switching implements Initializable {
         String ID = id.getText();
         String Name = name.getText();
         LocalDate date = datePicker.getValue();
-
 
         if (ID.isEmpty() || Name.isEmpty() || date == null) {
             message.setText("Please fill all fields!");
