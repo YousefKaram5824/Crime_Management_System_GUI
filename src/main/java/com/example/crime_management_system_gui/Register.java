@@ -2,7 +2,10 @@ package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -12,8 +15,6 @@ public class Register extends Switching implements Initializable {
     @FXML
     private TextField username;
     @FXML
-    private TextField phone;
-    @FXML
     private TextField id;
     @FXML
     private TextField salary;
@@ -22,11 +23,9 @@ public class Register extends Switching implements Initializable {
     @FXML
     private PasswordField confirmPassword;
     @FXML
-    private RadioButton male;
-    @FXML
-    private RadioButton female;
-    @FXML
     private Label message;
+    @FXML
+    private ComboBox<String> rank;
 
     private DataManager userDataManager;
 
@@ -34,22 +33,19 @@ public class Register extends Switching implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getDataManager();
-        ToggleGroup genderGroup = new ToggleGroup();
-        male.setToggleGroup(genderGroup);
-        female.setToggleGroup(genderGroup);
+        rank.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
     }
 
     @FXML
     private void handleRegister() {
         String Name = username.getText();
-        String Phone = phone.getText();
-        String Salary = salary.getText();
         String ID = id.getText();
+        String Rank = rank.getValue();
+        String Salary = salary.getText();
         String Password = password.getText();
         String PasswordChecker = confirmPassword.getText();
-        String gender = male.isSelected() ? "Male" : "Female";
 
-        if (Name.isEmpty() || Phone.isEmpty() || Salary.isEmpty() || Password.isEmpty() || ID.isEmpty() || PasswordChecker.isEmpty()) {
+        if (Name.isEmpty() || Salary.isEmpty() || Password.isEmpty() || ID.isEmpty() || PasswordChecker.isEmpty() || Rank.isEmpty()) {
             message.setText("Please fill all fields");
             message.setTextFill(Color.RED);
             return;
@@ -70,7 +66,11 @@ public class Register extends Switching implements Initializable {
             return;
         }
 
-        String userData = String.join(",", ID, Name, Phone, Password, gender, Salary, null);
+        if (ID.startsWith("chf")) {
+            Rank = "Colonel";
+        }
+
+        String userData = String.join(",", Name, ID, Rank, Salary, Password);
         userDataManager.getUserData().add(userData);
         message.setText("Registration successful!");
         message.setTextFill(Color.GREEN);
