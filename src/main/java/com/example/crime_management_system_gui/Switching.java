@@ -1,5 +1,6 @@
 package com.example.crime_management_system_gui;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -50,5 +51,10 @@ public class Switching {
 
     public void switchToPage(String fxmlFile) throws IOException {
         switchScene(fxmlFile);
+    }
+
+    @FXML
+    private void backToPoliceChief() throws IOException {
+        switchToPage("police_chief.fxml");
     }
 }

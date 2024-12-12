@@ -2,7 +2,7 @@ package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -17,17 +17,11 @@ public class viewOfficers extends Switching implements Initializable {
     @FXML
     private TextField id;
     @FXML
-    private Label password;
-    @FXML
-    private Label gender;
-    @FXML
-    private Label salary;
-    @FXML
     private Label rate;
     @FXML
     private Label message;
     @FXML
-    private ChoiceBox<String> rating;
+    private ComboBox<String> rating;
 
     private DataManager userDataManager;
 
@@ -50,9 +44,6 @@ public class viewOfficers extends Switching implements Initializable {
     private void clear() {
         username.setText("");
         phone.setText("");
-        password.setText("");
-        gender.setText("");
-        salary.setText("");
         rate.setText("");
     }
 
@@ -65,9 +56,6 @@ public class viewOfficers extends Switching implements Initializable {
             String[] userDetails = userData.split(",");
             username.setText(userDetails[1]);
             phone.setText(userDetails[2]);
-            password.setText(userDetails[3]);
-            gender.setText(userDetails[4]);
-            salary.setText(userDetails[5] + "$");
             rate.setText(userDetails[6]);
             message.setText("");
         } else {

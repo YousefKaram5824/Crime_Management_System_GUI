@@ -66,8 +66,4 @@ public class Departments extends Switching implements Initializable {
         datePicker.setValue(null);
     }
 
-    @FXML
-    private void back() throws IOException {
-        switchToPage("police_chief.fxml");
-    }
 }
