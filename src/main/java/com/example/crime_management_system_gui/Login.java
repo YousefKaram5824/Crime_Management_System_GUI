@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class LoginController extends Switching {
+public class Login extends Switching {
     @FXML
     private TextField username;
     @FXML
@@ -50,11 +50,11 @@ public class LoginController extends Switching {
     private void redirectUser(String username) {
         try {
             if (username.startsWith("poc")) {
-                switchToPage("police_officer.fxml");
+                switchToPage("pages/police_officer.fxml");
             } else if (username.startsWith("chf")) {
-                switchToPage("police_chief.fxml");
+                switchToPage("pages/police_chief.fxml");
             } else if (username.startsWith("dep")) {
-                switchToPage("department_chief.fxml");
+                switchToPage("pages/department_chief.fxml");
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);

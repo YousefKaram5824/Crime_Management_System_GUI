@@ -1,33 +1,33 @@
 #main{
-   -fx-background-image: url("photos/main.png");
+   -fx-background-image: url("../photos/main.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
 }
 
 #login{
-   -fx-background-image: url("photos/login.png");
+   -fx-background-image: url("../photos/login.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
 }
 
 #register{
-   -fx-background-image: url("photos/register.png");
+   -fx-background-image: url("../photos/register.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
 }
 
 #forgetPassword{
-   -fx-background-image: url("photos/forgetpassword.png");
+   -fx-background-image: url("../photos/forgetpassword.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
 }
 
 #report{
-   -fx-background-image: url("photos/report.png");
+   -fx-background-image: url("../photos/report.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;

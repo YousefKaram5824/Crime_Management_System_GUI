@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class ReportController extends Switching implements Initializable {
+public class Report extends Switching implements Initializable {
     @FXML
     private TextField username;
     @FXML

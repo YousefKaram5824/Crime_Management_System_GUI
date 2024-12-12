@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.PoliceChief">
+    <Button layoutX="283.0" layoutY="238.0" mnemonicParsing="false" onAction="#createDepartment" prefHeight="221.0" prefWidth="303.0" text="create department" />
+    <Button layoutX="283.0" layoutY="482.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="221.0" prefWidth="303.0" text="logout" />
+    <Button layoutX="603.0" layoutY="349.0" mnemonicParsing="false" onAction="#viewProfile" prefHeight="194.0" prefWidth="276.0" text="view profile" />
+</AnchorPane>

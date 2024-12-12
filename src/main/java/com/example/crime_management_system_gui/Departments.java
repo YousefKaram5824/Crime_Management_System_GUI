@@ -6,6 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -63,5 +64,10 @@ public class Departments extends Switching implements Initializable {
         name.clear();
         id.clear();
         datePicker.setValue(null);
+    }
+
+    @FXML
+    private void back() throws IOException {
+        switchToPage("police_chief.fxml");
     }
 }

@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ForgotPasswordController extends Switching {
+public class ForgotPassword extends Switching {
     @FXML
     private TextField id;
     @FXML
@@ -56,7 +56,7 @@ public class ForgotPasswordController extends Switching {
             message.setText("Password reset successfully!");
             message.setTextFill(javafx.scene.paint.Color.GREEN);
         } else {
-            message.setText("User ID not found.");
+            message.setText("User ID not found!");
             message.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
