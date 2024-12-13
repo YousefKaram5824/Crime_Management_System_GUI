@@ -34,7 +34,7 @@
 }
 
 #policeChief{
-   -fx-background-image: url("photos/chief.png");
+   -fx-background-image: url("photos/police_chief.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
@@ -56,6 +56,20 @@
 
 #viewDepartment{
    -fx-background-image: url("photos/view_department.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#addCriminal{
+   -fx-background-image: url("photos/add_criminal.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#viewCriminal{
+   -fx-background-image: url("photos/view_criminal.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;

@@ -34,6 +34,7 @@ public class Main extends Application {
         dataManager.loadUserData();
         dataManager.loadReports();
         dataManager.loadDepartmentData();
+        dataManager.loadCriminalData();
 
         primaryStage = stage;
 
@@ -54,5 +55,6 @@ public class Main extends Application {
     public void stop() {
         dataManager.saveUserData();
         dataManager.saveDepartmentData();
+        dataManager.saveCriminalData();
     }
 }

@@ -81,7 +81,6 @@ public class Register extends Switching implements Initializable {
             return;
         }
 
-
         String userData = String.join(",", Name, ID, Rank, Salary, Password, Department);
         userDataManager.getUserData().add(userData);
         message.setText("Registration successful!");

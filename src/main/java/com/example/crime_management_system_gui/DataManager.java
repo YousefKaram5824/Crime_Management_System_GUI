@@ -7,10 +7,12 @@ import java.util.List;
 public class DataManager {
     private static final String USER_FILE_NAME = "files/users.txt";
     private static final String REPORT_FILE_NAME = "files/reports.txt";
-    private static final String DEPARTMENT_FILE = "files/department.txt";
+    private static final String DEPARTMENT_FILE = "files/departments.txt";
+    private static final String CRIMINAL_FILE = "files/criminals.txt";
     private final List<String> userData = new ArrayList<>();
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
+    private final List<String> criminals = new ArrayList<>();
 
 
     public void loadDepartmentData() {
@@ -57,6 +59,42 @@ public class DataManager {
 
     public List<String> getDepartmentsData() {
         return departments;
+    }
+
+    public void loadCriminalData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(CRIMINAL_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                criminals.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading criminal data: " + e.getMessage());
+        }
+    }
+
+    public void saveCriminalData() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CRIMINAL_FILE))) {
+            for (String data : criminals) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing criminal data: " + e.getMessage());
+        }
+    }
+
+    public boolean isCriminalIdUnique(String criminalId) {
+        for (String data : criminals) {
+            String[] criminalDetails = data.split(",");
+            if (criminalDetails[1].equals(criminalId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public List<String> getCriminalsData() {
+        return criminals;
     }
 
     public void loadUserData() {
