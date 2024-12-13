@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Login">
+<AnchorPane id="login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Login">
     <Button layoutX="97.0" layoutY="709.0" mnemonicParsing="false" onAction="#switchToMain" opacity="0.0" prefHeight="62.0" prefWidth="273.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField id="border" fx:id="username" alignment="CENTER" focusTraversable="false" layoutX="589.0" layoutY="304.0" prefHeight="62.0" prefWidth="322.0" promptText="User Name" stylesheets="@style.css">
+    <TextField id="border" fx:id="id" alignment="CENTER" focusTraversable="false" layoutX="589.0" layoutY="304.0" prefHeight="62.0" prefWidth="322.0">
         <cursor>
             <Cursor fx:constant="TEXT" />
         </cursor>
@@ -22,6 +22,14 @@
          <Font size="18.0" />
       </font>
     </TextField>
+    <PasswordField fx:id="password" alignment="CENTER" layoutX="591.0" layoutY="408.0" onAction="#handleLogin" prefHeight="62.0" prefWidth="322.0">
+        <cursor>
+            <Cursor fx:constant="TEXT" />
+        </cursor>
+      <font>
+         <Font size="18.0" />
+      </font>
+    </PasswordField>
     <Button layoutX="626.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleLogin" opacity="0.0" prefHeight="72.0" prefWidth="296.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
@@ -35,13 +43,6 @@
     <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="673.0" prefHeight="62.0" prefWidth="719.0">
       <font>
          <Font size="18.0" />
-      </font></Label>
-    <PasswordField fx:id="password" alignment="CENTER" layoutX="591.0" layoutY="408.0" onAction="#handleLogin" prefHeight="62.0" prefWidth="322.0" promptText="Password">
-        <cursor>
-            <Cursor fx:constant="TEXT" />
-        </cursor>
-      <font>
-         <Font size="18.0" />
       </font>
-    </PasswordField>
+    </Label>
 </AnchorPane>

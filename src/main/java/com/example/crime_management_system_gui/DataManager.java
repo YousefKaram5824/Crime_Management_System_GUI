@@ -38,7 +38,7 @@ public class DataManager {
     public boolean isDepartmentIdUnique(String departmentId) {
         for (String data : departments) {
             String[] departmentDetails = data.split(",");
-            if (departmentDetails[0].equals(departmentId)) {
+            if (departmentDetails[1].equals(departmentId)) {
                 return false;
             }
         }
@@ -48,7 +48,7 @@ public class DataManager {
     public boolean isDepartmentNameUnique(String departmentName) {
         for (String data : departments) {
             String[] departmentDetails = data.split(",");
-            if (departmentDetails[1].equals(departmentName)) {
+            if (departmentDetails[0].equals(departmentName)) {
                 return false;
             }
         }
@@ -92,7 +92,7 @@ public class DataManager {
     public boolean isUserIdUnique(String userId) {
         for (String data : userData) {
             String[] userDetails = data.split(",");
-            if (userDetails[0].equals(userId)) {
+            if (userDetails[1].equals(userId)) {
                 return false;
             }
         }

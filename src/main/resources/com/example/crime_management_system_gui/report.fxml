@@ -21,7 +21,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField fx:id="username" focusTraversable="false" layoutX="595.0" layoutY="175.0" prefHeight="62.0" prefWidth="358.0" promptText="Name">
+    <TextField fx:id="username" focusTraversable="false" layoutX="595.0" layoutY="175.0" prefHeight="62.0" prefWidth="358.0">
         <font>
             <Font size="24.0" />
         </font>
@@ -29,7 +29,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <TextField fx:id="witness" focusTraversable="false" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="Witness (optional)">
+    <TextField fx:id="witness" focusTraversable="false" layoutX="595.0" layoutY="254.0" prefHeight="62.0" prefWidth="358.0" promptText="(optional)">
         <font>
             <Font size="24.0" />
         </font>
@@ -37,7 +37,7 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <DatePicker fx:id="datePicker" focusTraversable="false" layoutX="595.0" layoutY="336.0" prefHeight="62.0" prefWidth="358.0" promptText="Date of report" showWeekNumbers="true">
+    <DatePicker fx:id="datePicker" focusTraversable="false" layoutX="595.0" layoutY="336.0" prefHeight="62.0" prefWidth="358.0" showWeekNumbers="true">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>

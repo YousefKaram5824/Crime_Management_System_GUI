@@ -20,36 +20,41 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField fx:id="username" layoutX="564.0" layoutY="189.0" prefHeight="57.0" prefWidth="326.0" promptText="Username">
+    <TextField fx:id="username" layoutX="564.0" layoutY="189.0" prefHeight="57.0" prefWidth="326.0">
         <font>
             <Font size="24.0" />
         </font>
     </TextField>
-    <TextField fx:id="id" layoutX="564.0" layoutY="256.0" prefHeight="58.0" prefWidth="326.0" promptText="ID">
+    <TextField fx:id="id" layoutX="564.0" layoutY="256.0" prefHeight="58.0" prefWidth="326.0">
         <font>
             <Font size="24.0" />
         </font>
     </TextField>
+   <TextField fx:id="salary" layoutX="564.0" layoutY="394.0" prefHeight="58.0" prefWidth="326.0">
+      <font>
+         <Font size="24.0" />
+      </font></TextField>
+   <ComboBox fx:id="rank" layoutX="564.0" layoutY="326.0" prefHeight="58.0" prefWidth="326.0">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </ComboBox>
+    <PasswordField fx:id="password" layoutX="563.0" layoutY="462.0" prefHeight="58.0" prefWidth="326.0">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </PasswordField>
+    <PasswordField fx:id="confirmPassword" layoutX="564.0" layoutY="532.0" prefHeight="58.0" prefWidth="326.0">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </PasswordField>
     <Label fx:id="message" alignment="CENTER" layoutX="438.0" layoutY="689.0" prefHeight="74.0" prefWidth="578.0">
         <font>
             <Font size="24.0" />
         </font>
     </Label>
-    <PasswordField fx:id="password" layoutX="563.0" layoutY="462.0" prefHeight="58.0" prefWidth="326.0" promptText="Password">
-        <font>
-            <Font size="24.0" />
-        </font>
-    </PasswordField>
-    <PasswordField fx:id="confirmPassword" layoutX="564.0" layoutY="532.0" prefHeight="58.0" prefWidth="326.0" promptText="Confirm Password">
-        <font>
-            <Font size="24.0" />
-        </font>
-    </PasswordField>
-   <TextField fx:id="salary" layoutX="564.0" layoutY="394.0" prefHeight="58.0" prefWidth="326.0" promptText="Salary">
-      <font>
-         <Font size="24.0" />
-      </font></TextField>
-   <ComboBox fx:id="rank" layoutX="564.0" layoutY="326.0" prefHeight="58.0" prefWidth="326.0" promptText="None">
+   <ComboBox fx:id="assignedDepartment" layoutX="564.0" layoutY="602.0" prefHeight="58.0" prefWidth="326.0">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>

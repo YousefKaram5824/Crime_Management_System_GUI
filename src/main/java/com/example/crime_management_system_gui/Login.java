@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Login extends Switching {
     @FXML
-    private TextField username;
+    private TextField id;
     @FXML
     private PasswordField password;
     @FXML
@@ -24,37 +24,35 @@ public class Login extends Switching {
 
     @FXML
     private void handleLogin() {
-        String Name = username.getText();
+        String ID = id.getText();
         String Password = password.getText();
 
-        if (checkCredentials(Name, Password)) {
-            message.setText("Welcome, " + Name + "!");
-            message.setTextFill(javafx.scene.paint.Color.GREEN);
-            redirectUser(Name);
+        if (checkCredentials(ID, Password)) {
+            redirectUser(ID);
         } else {
             message.setText("Incorrect username or password");
             message.setTextFill(javafx.scene.paint.Color.RED);
         }
     }
 
-    private boolean checkCredentials(String username, String password) {
+    private boolean checkCredentials(String id, String password) {
         for (String data : userDataManager.getUserData()) {
             String[] userData = data.split(",");
-            if (userData[0].equals(username) && userData[3].equals(password)) {
+            if (userData[1].equals(id) && userData[4].equals(password)) {
                 return true;
             }
         }
         return false;
     }
 
-    private void redirectUser(String username) {
+    private void redirectUser(String id) {
         try {
-            if (username.startsWith("poc")) {
-                String userData = getUserDataById(username);
+            if (id.startsWith("poc")) {
+                String userData = getUserDataById(id);
                 if (userData != null) {
                     switchToPage("viewProfile.fxml");
                 }
-            } else if (username.startsWith("chf")) {
+            } else if (id.startsWith("chf")) {
                 switchToPage("police_chief.fxml");
             } else {
                 message.setText("Invalid user type");
@@ -69,7 +67,7 @@ public class Login extends Switching {
     private String getUserDataById(String userId) {
         for (String data : userDataManager.getUserData()) {
             String[] userDetails = data.split(",");
-            if (userDetails[0].equals(userId)) {
+            if (userDetails[1].equals(userId)) {
                 return data;
             }
         }

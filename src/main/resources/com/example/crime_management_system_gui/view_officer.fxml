@@ -28,17 +28,17 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <Label fx:id="phone" alignment="CENTER" focusTraversable="false" layoutX="1056.0" layoutY="256.0" prefHeight="64.0" prefWidth="371.0">
+   <Label fx:id="salary" alignment="CENTER" focusTraversable="false" layoutX="1056.0" layoutY="256.0" prefHeight="64.0" prefWidth="371.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Label fx:id="rate" alignment="CENTER" focusTraversable="false" layoutX="1056.0" layoutY="329.0" prefHeight="64.0" prefWidth="371.0">
+   <Label fx:id="rank" alignment="CENTER" focusTraversable="false" layoutX="1056.0" layoutY="329.0" prefHeight="64.0" prefWidth="371.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <ComboBox fx:id="rating" focusTraversable="false" layoutX="311.0" layoutY="621.0" prefHeight="64.0" prefWidth="364.0" promptText="None">
+   <ComboBox fx:id="ranking" focusTraversable="false" layoutX="311.0" layoutY="621.0" prefHeight="64.0" prefWidth="364.0" promptText="None">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
@@ -48,4 +48,14 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
+   <Label fx:id="message" alignment="CENTER" layoutX="740.0" layoutY="621.0" prefHeight="64.0" prefWidth="371.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="department" alignment="CENTER" layoutX="313.0" layoutY="329.0" prefHeight="64.0" prefWidth="371.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
 </AnchorPane>

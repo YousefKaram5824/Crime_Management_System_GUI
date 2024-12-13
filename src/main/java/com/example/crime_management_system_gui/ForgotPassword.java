@@ -44,8 +44,8 @@ public class ForgotPassword extends Switching {
 
         for (int i = 0; i < userDataManager.getUserData().size(); i++) {
             String[] userDetails = userDataManager.getUserData().get(i).split(",");
-            if (userDetails[0].equals(userId)) {
-                userDetails[3] = NewPassword;
+            if (userDetails[1].equals(userId)) {
+                userDetails[4] = NewPassword;
                 userDataManager.updateUserData(i, String.join(",", userDetails));
                 userFound = true;
                 break;

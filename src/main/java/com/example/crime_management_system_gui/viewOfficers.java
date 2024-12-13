@@ -13,28 +13,30 @@ public class viewOfficers extends Switching implements Initializable {
     @FXML
     private Label username;
     @FXML
-    private Label phone;
+    private Label salary;
     @FXML
     private TextField id;
     @FXML
-    private Label rate;
+    private Label rank;
+    @FXML
+    private Label department;
     @FXML
     private Label message;
     @FXML
-    private ComboBox<String> rating;
+    private ComboBox<String> ranking;
 
     private DataManager userDataManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getDataManager();
-        rating.getItems().addAll("1", "2", "3", "4", "5");  // change to strings
+        ranking.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
     }
 
     private String getUserDataById(String userId) {
         for (String data : userDataManager.getUserData()) {
             String[] userDetails = data.split(",");
-            if (userDetails[0].equals(userId)) {
+            if (userDetails[1].equals(userId)) {
                 return data;
             }
         }
@@ -43,8 +45,9 @@ public class viewOfficers extends Switching implements Initializable {
 
     private void clear() {
         username.setText("");
-        phone.setText("");
-        rate.setText("");
+        salary.setText("");
+        rank.setText("");
+        department.setText("");
     }
 
     @FXML
@@ -54,9 +57,10 @@ public class viewOfficers extends Switching implements Initializable {
 
         if (userData != null) {
             String[] userDetails = userData.split(",");
-            username.setText(userDetails[1]);
-            phone.setText(userDetails[2]);
-            rate.setText(userDetails[6]);
+            username.setText(userDetails[0]);
+            rank.setText(userDetails[2]);
+            salary.setText(userDetails[3] + "$");
+            department.setText(userDetails[5]);
             message.setText("");
         } else {
             message.setText("User id not found!");

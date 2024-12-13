@@ -33,22 +33,8 @@
    -fx-background-size: cover;
 }
 
-#policeOfficer{
-   -fx-background-image: url("photos/officer.png");
-   -fx-background-repeat: no-repeat;
-   -fx-background-position: center center;
-   -fx-background-size: cover;
-}
-
 #policeChief{
    -fx-background-image: url("photos/chief.png");
-   -fx-background-repeat: no-repeat;
-   -fx-background-position: center center;
-   -fx-background-size: cover;
-}
-
-#policeProfile{
-   -fx-background-image: url("photos/officer_profile.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
@@ -61,9 +47,38 @@
    -fx-background-size: cover;
 }
 
+#createDepartment{
+   -fx-background-image: url("photos/create_department.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#viewDepartment{
+   -fx-background-image: url("photos/view_department.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#policeOfficer{
+   -fx-background-image: url("photos/officer.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#policeProfile{
+   -fx-background-image: url("photos/officer_profile.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+/*
 #border{
    -fx-border-radius: 15px;
    -fx-border-color: green;
    -fx-border-width: 2px;
    -fx-background-color: transparent;
-}
+}*/
