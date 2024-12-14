@@ -32,7 +32,6 @@ public class Register extends Switching implements Initializable {
 
     private DataManager userDataManager;
 
-    @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getDataManager();

@@ -31,7 +31,7 @@ public class Report extends Switching implements Initializable {
         List<String> departments = departmentDataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
-            crimeType.getItems().add(deptDetails[1]);
+            crimeType.getItems().add(deptDetails[0]);
         }
     }
 

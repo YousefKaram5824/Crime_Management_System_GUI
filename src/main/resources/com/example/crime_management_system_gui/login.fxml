@@ -40,7 +40,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="392.0" layoutY="673.0" prefHeight="62.0" prefWidth="719.0">
+    <Label fx:id="message" alignment="CENTER" contentDisplay="CENTER" layoutX="77.0" layoutY="606.0" prefHeight="62.0" prefWidth="1385.0">
       <font>
          <Font size="18.0" />
       </font>

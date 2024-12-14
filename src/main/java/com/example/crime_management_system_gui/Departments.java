@@ -36,7 +36,6 @@ public class Departments extends Switching implements Initializable {
     private DataManager userDataManager;
     private DataManager reportDataManager;
 
-    @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         departmentDataManager = Main.getDataManager();
@@ -83,26 +82,26 @@ public class Departments extends Switching implements Initializable {
 
     @FXML
     private void viewDepartment() {
-        String departmentId = name.getText();
-        String departmentData = departmentDataManager.getDepartmentDataById(departmentId);
+        String departmentName = name.getText();
+        String departmentData = departmentDataManager.getDepartmentDataByName(departmentName);
 
         if (departmentData != null) {
             String[] departmentDetails = departmentData.split(",");
             viewId.setText(departmentDetails[1]);
             dateOfActivation.setText(departmentDetails[2]);
-            displayUserIds(departmentId);
-            displayCasesIds(departmentId);
+            displayUserIds(departmentName);
+            displayCasesIds(departmentName);
             message.setText("");
         } else {
-            message.setText("User id not found!");
+            message.setText("Department name not found!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             clear();
         }
     }
 
-    private void displayUserIds(String departmentId) {
+    private void displayUserIds(String departmentName) {
         usersListView.getItems().clear();
-        List<String> userIds = getUserIdsByDepartmentId(departmentId);
+        List<String> userIds = getUserIdsByDepartmentName(departmentName);
 
         if (userIds.isEmpty()) {
             message.setText("No users assigned to this department yet.");
@@ -112,9 +111,9 @@ public class Departments extends Switching implements Initializable {
         }
     }
 
-    private void displayCasesIds(String departmentId) {
+    private void displayCasesIds(String departmentName) {
         casesListView.getItems().clear();
-        List<String> casesIds = getCasesIdsByDepartmentId(departmentId);
+        List<String> casesIds = getCasesIdsByDepartmentName(departmentName);
 
         if (casesIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
@@ -124,22 +123,22 @@ public class Departments extends Switching implements Initializable {
         }
     }
 
-    public List<String> getUserIdsByDepartmentId(String departmentId) {
+    public List<String> getUserIdsByDepartmentName(String departmentName) {
         List<String> userIds = new ArrayList<>();
         for (String userData : userDataManager.getUserData()) {
             String[] userDetails = userData.split(",");
-            if (userDetails[5].equals(departmentId)) {
+            if (userDetails[5].equals(departmentName)) {
                 userIds.add(userDetails[1]);
             }
         }
         return userIds;
     }
 
-    public List<String> getCasesIdsByDepartmentId(String departmentId) {
+    public List<String> getCasesIdsByDepartmentName(String departmentName) {
         List<String> userIds = new ArrayList<>();
         for (String reportData : reportDataManager.getReports()) {
             String[] reportDetails = reportData.split(",");
-            if (reportDetails[4].equals(departmentId)) {
+            if (reportDetails[4].equals(departmentName)) {
                 userIds.add(reportDetails[0]);
             }
         }

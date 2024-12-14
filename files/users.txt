@@ -1,0 +1,22 @@
+yousef,poc123,Captain,10000,123,Kill
+ahmed,poc122,Captain,1000,123,Robbery
+sarah,poc121,Captain,1000,123,Robbery
+salma,poc120,Captain,1000,123,Robbery
+admin,chf123,Colonel,100000,123,Non
+test,poc1234,Major,10000,123,1
+kaled,poc111,Second Lieutenant,10000,123,1
+kaled,poc124,Second Lieutenant,10000,123,1
+kaled,poc125,Second Lieutenant,10000,123,1
+kaled,poc126,Second Lieutenant,10000,123,1
+salah,poc112,Major,1000,123,1
+salah,poc113,Major,1000,123,1
+salah,poc114,Major,1000,123,1
+salah,poc115,Major,1000,123,1
+salah,poc116,Major,1000,123,1
+salah,poc117,Major,1000,123,1
+salah,poc118,Major,1000,123,1
+salah,poc119,Major,1000,123,1
+Ayoooooy🌑,chf282005,Colonel,12000000,882005,Non
+ahmed,poc1223,Second Lieutenant,12000,1234,kil123
+ahmed,poc1224,Second Lieutenant,12000,1234,kil123
+ahmed,poc1225,Second Lieutenant,12000,1234,kil123

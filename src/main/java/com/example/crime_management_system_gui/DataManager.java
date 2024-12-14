@@ -2,18 +2,23 @@ package com.example.crime_management_system_gui;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataManager {
     private static final String USER_FILE_NAME = "files/users.txt";
     private static final String REPORT_FILE_NAME = "files/reports.txt";
     private static final String DEPARTMENT_FILE = "files/departments.txt";
     private static final String CRIMINAL_FILE = "files/criminals.txt";
+
     private final List<String> userData = new ArrayList<>();
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
     private final List<String> criminals = new ArrayList<>();
 
+    private final Map<String, List<String>> departmentOfficers = new HashMap<>();
+    private final Map<String, List<String>> departmentCases = new HashMap<>();
 
     public void loadDepartmentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DEPARTMENT_FILE))) {
@@ -57,10 +62,10 @@ public class DataManager {
         return true;
     }
 
-    public String getDepartmentDataById(String departmentId) {
+    public String getDepartmentDataByName(String departmentName) {
         for (String data : departments) {
             String[] departmentDetails = data.split(",");
-            if (departmentDetails[1].equals(departmentId)) {
+            if (departmentDetails[0].equals(departmentName)) {
                 return data;
             }
         }
