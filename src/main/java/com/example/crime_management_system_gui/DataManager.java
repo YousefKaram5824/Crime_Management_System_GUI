@@ -57,6 +57,16 @@ public class DataManager {
         return true;
     }
 
+    public String getDepartmentDataById(String departmentId) {
+        for (String data : departments) {
+            String[] departmentDetails = data.split(",");
+            if (departmentDetails[1].equals(departmentId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
     public List<String> getDepartmentsData() {
         return departments;
     }
@@ -129,14 +139,6 @@ public class DataManager {
         }
     }
 
-    public List<String> getUserData() {
-        return userData;
-    }
-
-    public void updateUserData(int index, String newData) {
-        userData.set(index, newData);
-    }
-
     public boolean isUserIdUnique(String userId) {
         for (String data : userData) {
             String[] userDetails = data.split(",");
@@ -145,6 +147,14 @@ public class DataManager {
             }
         }
         return true;
+    }
+
+    public void updateUserData(int index, String newData) {
+        userData.set(index, newData);
+    }
+
+    public List<String> getUserData() {
+        return userData;
     }
 
     public void loadReports() {
@@ -158,12 +168,14 @@ public class DataManager {
         }
     }
 
-    public void saveReport(String reportData) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(REPORT_FILE_NAME, true))) {
-            writer.write(reportData);
-            writer.newLine();
+    public void saveReport() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(REPORT_FILE_NAME))) {
+            for (String data : reports) {
+                writer.write(data);
+                writer.newLine();
+            }
         } catch (IOException e) {
-            System.err.println("Error saving report: " + e.getMessage());
+            System.err.println("Error writing reports: " + e.getMessage());
         }
     }
 

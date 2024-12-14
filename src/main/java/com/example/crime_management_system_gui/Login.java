@@ -50,10 +50,10 @@ public class Login extends Switching {
             if (id.startsWith("poc")) {
                 String userData = getUserDataById(id);
                 if (userData != null) {
-                    switchToPage("police_officer.fxml");
+                    switchTOPoliceOfficer();
                 }
             } else if (id.startsWith("chf")) {
-                switchToPage("police_chief.fxml");
+                switchTOPoliceChief();
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);

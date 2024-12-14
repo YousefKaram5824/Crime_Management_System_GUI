@@ -41,7 +41,7 @@ public class Register extends Switching implements Initializable {
         List<String> departments = departmentDataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
-            assignedDepartment.getItems().add(deptDetails[1]);
+            assignedDepartment.getItems().add(deptDetails[0]);
         }
     }
 

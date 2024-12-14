@@ -56,5 +56,6 @@ public class Main extends Application {
         dataManager.saveUserData();
         dataManager.saveDepartmentData();
         dataManager.saveCriminalData();
+        dataManager.saveReport();
     }
 }

@@ -6,10 +6,7 @@ import javafx.scene.control.*;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Report extends Switching implements Initializable {
     @FXML
@@ -26,32 +23,16 @@ public class Report extends Switching implements Initializable {
     private ComboBox<String> crimeType;
 
     private DataManager reportDataManager;
-    private int reportId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reportDataManager = Main.getDataManager();
         DataManager departmentDataManager = Main.getDataManager();
-        reportDataManager.loadReports();
         List<String> departments = departmentDataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
-            crimeType.getItems().add(deptDetails[0]);
+            crimeType.getItems().add(deptDetails[1]);
         }
-        reportId = generateRandomReportId();
-    }
-
-    private int generateRandomReportId() {
-        Random random = new Random();
-        return random.nextInt(100);
-    }
-
-    private void clearFields() {
-        username.clear();
-        witness.clear();
-        datePicker.setValue(null);
-        description.clear();
-        crimeType.setValue(null);
     }
 
     @FXML
@@ -61,7 +42,7 @@ public class Report extends Switching implements Initializable {
         LocalDate date = datePicker.getValue();
         String Description = description.getText();
         String CrimeType = crimeType.getValue();
-        String reportID = String.valueOf(reportId);
+        String reportID = String.valueOf(generateUniqueReportId());
 
         if (Name.isEmpty() || date == null || Description.isEmpty() || CrimeType == null) {
             message.setText("Please fill all fields!");
@@ -69,20 +50,32 @@ public class Report extends Switching implements Initializable {
             return;
         }
 
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
-        String reportData = String.join(",", reportID, Name, Witness, formattedDate, CrimeType, Description);
+        String reportData = String.join(",", reportID, Name, Witness, date.toString(), CrimeType, Description);
+        reportDataManager.getReports().add(reportData);
+        clearFields();
+        message.setText("Report submitted successfully!");
+        message.setTextFill(javafx.scene.paint.Color.GREEN);
+    }
 
-        try {
-            reportDataManager.getReports().add(reportData);
-            reportDataManager.saveReport(reportData);
-            clearFields();
-            message.setText("Report submitted successfully!");
-            message.setTextFill(javafx.scene.paint.Color.GREEN);
-            System.out.println("Report successfully saved:\n" + reportData);
-        } catch (Exception e) {
-            message.setText("An error occurred while saving the report.");
-            message.setTextFill(javafx.scene.paint.Color.RED);
-            e.printStackTrace();
+    private String generateUniqueReportId() {
+        Set<String> existingIds = new HashSet<>();
+        for (String report : reportDataManager.getReports()) {
+            String[] reportDetails = report.split(",");
+            existingIds.add(reportDetails[0]);
         }
+        Random random = new Random();
+        String reportID;
+        do {
+            reportID = String.valueOf(random.nextInt(1000));
+        } while (existingIds.contains(reportID));
+        return reportID;
+    }
+
+    private void clearFields() {
+        username.clear();
+        witness.clear();
+        datePicker.setValue(null);
+        description.clear();
+        crimeType.setValue(null);
     }
 }

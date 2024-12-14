@@ -22,20 +22,26 @@ public class Departments extends Switching implements Initializable {
     @FXML
     private DatePicker datePicker;
     @FXML
+    private Label viewId;
+    @FXML
+    private Label dateOfActivation;
+    @FXML
+    private ListView<String> usersListView;
+    @FXML
+    private ListView<String> casesListView;
+    @FXML
     private Label message;
-    @FXML
-    private Label viewName;
-    @FXML
-    private ListView<String> userListView;
 
     private DataManager departmentDataManager;
     private DataManager userDataManager;
+    private DataManager reportDataManager;
 
     @FXML
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         departmentDataManager = Main.getDataManager();
         userDataManager = Main.getDataManager();
+        reportDataManager = Main.getDataManager();
     }
 
     @FXML
@@ -77,13 +83,15 @@ public class Departments extends Switching implements Initializable {
 
     @FXML
     private void viewDepartment() {
-        String departmentId = id.getText();
-        String departmentData = getDepartmentDataById(departmentId);
+        String departmentId = name.getText();
+        String departmentData = departmentDataManager.getDepartmentDataById(departmentId);
 
         if (departmentData != null) {
             String[] departmentDetails = departmentData.split(",");
-            viewName.setText(departmentDetails[0]);
+            viewId.setText(departmentDetails[1]);
+            dateOfActivation.setText(departmentDetails[2]);
             displayUserIds(departmentId);
+            displayCasesIds(departmentId);
             message.setText("");
         } else {
             message.setText("User id not found!");
@@ -92,41 +100,56 @@ public class Departments extends Switching implements Initializable {
         }
     }
 
-    private String getDepartmentDataById(String departmentId) {
-        for (String data : departmentDataManager.getDepartmentsData()) {
-            String[] departmentDetails = data.split(",");
-            if (departmentDetails[1].equals(departmentId)) {
-                return data;
-            }
-        }
-        return null;
-    }
-
     private void displayUserIds(String departmentId) {
-        userListView.getItems().clear(); // Clear previous items
-        List<String> userIds = getUserIdsByDepartmentName(departmentId); // Assume this method exists
+        usersListView.getItems().clear();
+        List<String> userIds = getUserIdsByDepartmentId(departmentId);
 
         if (userIds.isEmpty()) {
-            message.setText("No users assigned to this department.");
+            message.setText("No users assigned to this department yet.");
             message.setTextFill(Color.RED);
         } else {
-            userListView.getItems().addAll(userIds); // Populate ListView with user IDs
+            usersListView.getItems().addAll(userIds);
         }
     }
 
-    public List<String> getUserIdsByDepartmentName(String departmentId) {
+    private void displayCasesIds(String departmentId) {
+        casesListView.getItems().clear();
+        List<String> casesIds = getCasesIdsByDepartmentId(departmentId);
+
+        if (casesIds.isEmpty()) {
+            message.setText("No cases assigned to this department yet.");
+            message.setTextFill(Color.RED);
+        } else {
+            casesListView.getItems().addAll(casesIds);
+        }
+    }
+
+    public List<String> getUserIdsByDepartmentId(String departmentId) {
         List<String> userIds = new ArrayList<>();
         for (String userData : userDataManager.getUserData()) {
             String[] userDetails = userData.split(",");
-            if (userDetails[5].equals(departmentId)) { // Assuming department is the 6th element
-                userIds.add(userDetails[1]); // Assuming user ID is the 2nd element
+            if (userDetails[5].equals(departmentId)) {
+                userIds.add(userDetails[1]);
+            }
+        }
+        return userIds;
+    }
+
+    public List<String> getCasesIdsByDepartmentId(String departmentId) {
+        List<String> userIds = new ArrayList<>();
+        for (String reportData : reportDataManager.getReports()) {
+            String[] reportDetails = reportData.split(",");
+            if (reportDetails[4].equals(departmentId)) {
+                userIds.add(reportDetails[0]);
             }
         }
         return userIds;
     }
 
     private void clear() {
-        viewName.setText("");
-        userListView.getItems().clear();
+        viewId.setText("");
+        usersListView.getItems().clear();
+        casesListView.getItems().clear();
+        dateOfActivation.setText("");
     }
 }
