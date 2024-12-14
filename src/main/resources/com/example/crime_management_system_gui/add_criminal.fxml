@@ -46,4 +46,12 @@
          <Font size="24.0" />
       </font>
    </Label>
+   <TextField fx:id="level" alignment="CENTER" layoutX="570.0" layoutY="176.0" prefHeight="62.0" prefWidth="370.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </TextField>
 </AnchorPane>

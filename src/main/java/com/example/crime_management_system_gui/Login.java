@@ -50,7 +50,7 @@ public class Login extends Switching {
             if (id.startsWith("poc")) {
                 String userData = getUserDataById(id);
                 if (userData != null) {
-                    switchToPage("viewProfile.fxml");
+                    switchToPage("police_officer.fxml");
                 }
             } else if (id.startsWith("chf")) {
                 switchToPage("police_chief.fxml");

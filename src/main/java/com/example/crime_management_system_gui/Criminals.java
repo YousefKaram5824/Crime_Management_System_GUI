@@ -15,11 +15,17 @@ public class Criminals extends Switching implements Initializable {
     @FXML
     private TextField id;
     @FXML
+    private TextField level;
+    @FXML
     private TextField currentLocation;
     @FXML
     private Label message;
     @FXML
     private Label viewName;
+    @FXML
+    private Label viewLevel;
+    @FXML
+    private Label viewCurrentLocation;
 
     private DataManager criminalDataManager;
 
@@ -33,9 +39,10 @@ public class Criminals extends Switching implements Initializable {
     private void addCriminal() {
         String Name = name.getText();
         String ID = id.getText();
+        String Level = level.getText();
         String CurrentLocation = currentLocation.getText();
 
-        if (Name.isEmpty() || ID.isEmpty() || CurrentLocation.isEmpty()) {
+        if (Name.isEmpty() || ID.isEmpty() || Level.isEmpty() || CurrentLocation.isEmpty()) {
             message.setText("Please fill all fields!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -47,7 +54,7 @@ public class Criminals extends Switching implements Initializable {
             return;
         }
 
-        String criminalData = String.join(",", Name, ID, CurrentLocation);
+        String criminalData = String.join(",", Name, ID, Level, CurrentLocation);
         criminalDataManager.getCriminalsData().add(criminalData);
         message.setText("Criminal added successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -57,37 +64,32 @@ public class Criminals extends Switching implements Initializable {
     private void clearFields() {
         name.clear();
         id.clear();
+        level.clear();
         currentLocation.clear();
     }
 
     @FXML
     private void viewCriminal() {
         String criminalId = id.getText();
-        String criminalData = getCriminalDataById(criminalId);
+        String criminalData = criminalDataManager.getCriminalDataById(criminalId);
 
         if (criminalData != null) {
-            String[] departmentDetails = criminalData.split(",");
-            viewName.setText(departmentDetails[0]);
+            String[] criminalDetails = criminalData.split(",");
+            viewName.setText(criminalDetails[0]);
+            viewLevel.setText(criminalDetails[2]);
+            viewCurrentLocation.setText(criminalDetails[3]);
             message.setText("");
         } else {
-            message.setText("User id not found!");
+            message.setText("Criminal id not found!");
             message.setTextFill(javafx.scene.paint.Color.RED);
-            clear();
+            clearLabels();
         }
     }
 
-    private String getCriminalDataById(String criminalId) {
-        for (String data : criminalDataManager.getCriminalsData()) {
-            String[] criminalDetails = data.split(",");
-            if (criminalDetails[1].equals(criminalId)) {
-                return data;
-            }
-        }
-        return null;
-    }
-
-    private void clear() {
+    private void clearLabels() {
         viewName.setText("");
+        viewLevel.setText("");
+        viewCurrentLocation.setText("");
         id.clear();
     }
 }

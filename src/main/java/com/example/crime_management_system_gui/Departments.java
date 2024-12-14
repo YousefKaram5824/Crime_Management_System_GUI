@@ -129,5 +129,4 @@ public class Departments extends Switching implements Initializable {
         viewName.setText("");
         userListView.getItems().clear();
     }
-
 }

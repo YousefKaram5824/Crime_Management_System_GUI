@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane id="viewCriminal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Criminals">
+   <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToPoliceChief" opacity="0.0" prefHeight="42.0" prefWidth="54.0" text="Button">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Button>
+   <Button layoutX="641.0" layoutY="664.0" mnemonicParsing="false" onAction="#viewCriminal" opacity="0.0" prefHeight="60.0" prefWidth="230.0" text="Button">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </Button>
+   <ListView layoutX="236.0" layoutY="526.0" prefHeight="130.0" prefWidth="1114.0" />
+   <TextField fx:id="id" layoutX="563.0" layoutY="199.0" prefHeight="66.0" prefWidth="375.0">
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </TextField>
+   <Label fx:id="viewName" alignment="CENTER" layoutX="563.0" layoutY="280.0" prefHeight="66.0" prefWidth="375.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="viewCurrentLocation" alignment="CENTER" layoutX="562.0" layoutY="443.0" prefHeight="66.0" prefWidth="375.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="viewLevel" alignment="CENTER" layoutX="563.0" layoutY="363.0" prefHeight="66.0" prefWidth="375.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+   <Label fx:id="message" alignment="CENTER" layoutX="946.0" layoutY="420.0" prefHeight="66.0" prefWidth="375.0">
+      <font>
+         <Font size="24.0" />
+      </font>
+   </Label>
+</AnchorPane>

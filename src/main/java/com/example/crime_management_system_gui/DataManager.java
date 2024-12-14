@@ -93,6 +93,16 @@ public class DataManager {
         return true;
     }
 
+    public String getCriminalDataById(String criminalId) {
+        for (String data : criminals) {
+            String[] criminalDetails = data.split(",");
+            if (criminalDetails[1].equals(criminalId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
     public List<String> getCriminalsData() {
         return criminals;
     }
