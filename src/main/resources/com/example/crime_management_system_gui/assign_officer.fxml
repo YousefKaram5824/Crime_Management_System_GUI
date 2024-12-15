@@ -14,7 +14,7 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <ComboBox fx:id="assignedCases" layoutX="592.0" layoutY="336.0" prefHeight="65.0" prefWidth="398.0">
+   <ComboBox fx:id="assignedCases" layoutX="584.0" layoutY="348.0" prefHeight="58.0" prefWidth="406.0">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></ComboBox>
@@ -22,17 +22,20 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <Label fx:id="message" alignment="CENTER" layoutX="607.0" layoutY="646.0" prefHeight="66.0" prefWidth="398.0">
+   <Label fx:id="message" alignment="CENTER" layoutX="427.0" layoutY="657.0" prefHeight="66.0" prefWidth="686.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Button layoutX="693.0" layoutY="563.0" mnemonicParsing="false" onAction="#getCases" prefHeight="66.0" prefWidth="226.0" text="get cases">
+   <Button layoutX="1036.0" layoutY="220.0" mnemonicParsing="false" onAction="#getCases" opacity="0.0" prefHeight="58.0" prefWidth="210.0" text="get cases">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <TextField fx:id="nameOfDepartment" layoutX="592.0" layoutY="215.0" prefHeight="66.0" prefWidth="398.0" />
-   <Button layoutX="137.0" layoutY="560.0" mnemonicParsing="false" onAction="#assignOfficers" prefHeight="66.0" prefWidth="398.0" text="assign officer" />
-   <TextField fx:id="officersOfDepartment" layoutX="592.0" layoutY="453.0" prefHeight="66.0" prefWidth="398.0" />
+   <TextField fx:id="nameOfDepartment" layoutX="581.0" layoutY="224.0" prefHeight="58.0" prefWidth="406.0" />
+   <Button layoutX="633.0" layoutY="591.0" mnemonicParsing="false" onAction="#assignOfficers" opacity="0.0" prefHeight="66.0" prefWidth="258.0" text="assign officer">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
+   <TextField fx:id="officersOfDepartment" layoutX="584.0" layoutY="471.0" prefHeight="58.0" prefWidth="406.0" />
 </AnchorPane>

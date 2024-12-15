@@ -86,6 +86,16 @@ public class PoliceChief extends Switching implements Initializable {
             return;
         }
 
+        List<String> assignedCasesList = assignDataManager.getAssignedCases();
+        for (String assignment : assignedCasesList) {
+            String[] parts = assignment.split(",");
+            if (parts[0].equals(selectedCase) && parts[1].equals(departmentOfficers)) {
+                message.setText("This officer is already assigned to the selected case!");
+                message.setTextFill(Color.RED);
+                return;
+            }
+        }
+
         String assignData = String.join(",", selectedCase, departmentOfficers);
         assignDataManager.getAssignedCases().add(assignData);
         message.setText("Officer assigned to case successfully.");

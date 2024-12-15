@@ -20,3 +20,4 @@ Ayoooooy🌑,chf282005,Colonel,12000000,882005,Non
 ahmed,poc1223,Second Lieutenant,12000,1234,kil123
 ahmed,poc1224,Second Lieutenant,12000,1234,kil123
 ahmed,poc1225,Second Lieutenant,12000,1234,kil123
+ahmed,poc129,Second Lieutenant,12000,123,Robbery
