@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,14 +25,14 @@ public class PoliceChief extends Switching implements Initializable {
     private DataManager reportDataManager;
     private DataManager departmentDataManager;
     private DataManager userDataManager;
-
-    private List<String> assignedOfficers = new ArrayList<>();
+    private DataManager assignDataManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reportDataManager = Main.getDataManager();
         departmentDataManager = Main.getDataManager();
         userDataManager = Main.getDataManager();
+        assignDataManager = Main.getDataManager();
     }
 
     @FXML
@@ -47,7 +46,7 @@ public class PoliceChief extends Switching implements Initializable {
             message.setText("");
         } else {
             message.setText("Department name not found!");
-            message.setTextFill(javafx.scene.paint.Color.RED);
+            message.setTextFill(Color.RED);
             clear();
         }
     }
@@ -58,8 +57,6 @@ public class PoliceChief extends Switching implements Initializable {
         String departmentOfficers = officersOfDepartment.getText();
         String selectedCase = assignedCases.getValue();
         String departmentData = departmentDataManager.getDepartmentDataByName(departmentName);
-        String[] departmentDetails = departmentData.split(",");
-        List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentDetails[0]);
 
 
         if (selectedCase == null || selectedCase.isEmpty()) {
@@ -74,13 +71,23 @@ public class PoliceChief extends Switching implements Initializable {
             return;
         }
 
-        if(!userIds.contains(departmentOfficers)){
+        if (departmentData == null) {
+            message.setText("Department name not found!");
+            message.setTextFill(Color.RED);
+            return;
+        }
+
+        String[] departmentDetails = departmentData.split(",");
+        List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentDetails[0]);
+
+        if (!userIds.contains(departmentOfficers)) {
             message.setText("Officer name cannot be found!");
             message.setTextFill(Color.RED);
             return;
         }
 
-        assignedOfficers.add(selectedCase + " assigned to " + departmentOfficers);
+        String assignData = String.join(",", selectedCase, departmentOfficers);
+        assignDataManager.getAssignedCases().add(assignData);
         message.setText("Officer assigned to case successfully.");
         message.setTextFill(Color.GREEN);
     }
@@ -98,10 +105,6 @@ public class PoliceChief extends Switching implements Initializable {
     }
 
     private void clear() {
-        assignedCases.getItems().clear(); // Clear previous cases
-    }
-
-    public List<String> getAssignedOfficers() {
-        return assignedOfficers;
+        assignedCases.getItems().clear();
     }
 }

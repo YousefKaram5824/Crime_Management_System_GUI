@@ -9,11 +9,13 @@ public class DataManager {
     private static final String REPORT_FILE_NAME = "files/reports.txt";
     private static final String DEPARTMENT_FILE = "files/departments.txt";
     private static final String CRIMINAL_FILE = "files/criminals.txt";
+    private static final String ASSIGNED_CASES_FILE = "files/assigned_cases.txt"; // New file
 
     private final List<String> userData = new ArrayList<>();
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
     private final List<String> criminals = new ArrayList<>();
+    private final List<String> assignedCases = new ArrayList<>();
 
     public void loadDepartmentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DEPARTMENT_FILE))) {
@@ -203,5 +205,31 @@ public class DataManager {
 
     public List<String> getReports() {
         return reports;
+    }
+
+    public void loadAssignedCases() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(ASSIGNED_CASES_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                assignedCases.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading assigned cases data: " + e.getMessage());
+        }
+    }
+
+    public void saveAssignedCases() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ASSIGNED_CASES_FILE))) {
+            for (String data : assignedCases) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing assigned cases data: " + e.getMessage());
+        }
+    }
+
+    public List<String> getAssignedCases() {
+        return assignedCases;
     }
 }

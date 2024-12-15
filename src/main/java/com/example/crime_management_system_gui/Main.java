@@ -35,6 +35,7 @@ public class Main extends Application {
         dataManager.loadReports();
         dataManager.loadDepartmentData();
         dataManager.loadCriminalData();
+        dataManager.loadAssignedCases();
 
         primaryStage = stage;
 
@@ -57,5 +58,6 @@ public class Main extends Application {
         dataManager.saveDepartmentData();
         dataManager.saveCriminalData();
         dataManager.saveReport();
+        dataManager.saveAssignedCases();
     }
 }
