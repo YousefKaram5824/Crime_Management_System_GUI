@@ -32,11 +32,11 @@
       <font>
          <Font size="24.0" />
       </font></Label>
-   <ListView fx:id="usersListView" editable="true" layoutX="321.0" layoutY="484.0" prefHeight="234.0" prefWidth="383.0" />
+   <ListView fx:id="officers" editable="true" layoutX="321.0" layoutY="484.0" prefHeight="234.0" prefWidth="383.0" />
    <Label fx:id="dateOfActivation" alignment="CENTER" layoutX="1076.0" layoutY="401.0" prefHeight="63.0" prefWidth="383.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <ListView fx:id="casesListView" layoutX="1078.0" layoutY="484.0" prefHeight="234.0" prefWidth="383.0" />
+   <ListView fx:id="cases" layoutX="1078.0" layoutY="484.0" prefHeight="234.0" prefWidth="383.0" />
 </AnchorPane>

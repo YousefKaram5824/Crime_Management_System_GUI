@@ -26,9 +26,9 @@ public class Departments extends Switching implements Initializable {
     @FXML
     private Label dateOfActivation;
     @FXML
-    private ListView<String> usersListView;
+    private ListView<String> officers;
     @FXML
-    private ListView<String> casesListView;
+    private ListView<String> cases;
     @FXML
     private Label message;
 
@@ -87,10 +87,10 @@ public class Departments extends Switching implements Initializable {
 
         if (departmentData != null) {
             String[] departmentDetails = departmentData.split(",");
-            viewId.setText(departmentDetails[1]);
+            viewId.setText(departmentDetails[0]);
             dateOfActivation.setText(departmentDetails[2]);
-            displayUserIds(departmentName);
-            displayCasesIds(departmentName);
+            displayUserIds(departmentDetails[0]);
+            displayCasesIds(departmentDetails[0]);
             message.setText("");
         } else {
             message.setText("Department name not found!");
@@ -100,55 +100,33 @@ public class Departments extends Switching implements Initializable {
     }
 
     private void displayUserIds(String departmentName) {
-        usersListView.getItems().clear();
-        List<String> userIds = getUserIdsByDepartmentName(departmentName);
+        officers.getItems().clear();
+        List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentName);
 
         if (userIds.isEmpty()) {
-            message.setText("No users assigned to this department yet.");
             message.setTextFill(Color.RED);
+            message.setText("No users assigned to this department yet.");
         } else {
-            usersListView.getItems().addAll(userIds);
+            officers.getItems().addAll(userIds);
         }
     }
 
     private void displayCasesIds(String departmentName) {
-        casesListView.getItems().clear();
-        List<String> casesIds = getCasesIdsByDepartmentName(departmentName);
+        cases.getItems().clear();
+        List<String> casesIds = reportDataManager.getCasesIdsByDepartmentName(departmentName);
 
         if (casesIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
             message.setTextFill(Color.RED);
         } else {
-            casesListView.getItems().addAll(casesIds);
+            cases.getItems().addAll(casesIds);
         }
-    }
-
-    public List<String> getUserIdsByDepartmentName(String departmentName) {
-        List<String> userIds = new ArrayList<>();
-        for (String userData : userDataManager.getUserData()) {
-            String[] userDetails = userData.split(",");
-            if (userDetails[5].equals(departmentName)) {
-                userIds.add(userDetails[1]);
-            }
-        }
-        return userIds;
-    }
-
-    public List<String> getCasesIdsByDepartmentName(String departmentName) {
-        List<String> userIds = new ArrayList<>();
-        for (String reportData : reportDataManager.getReports()) {
-            String[] reportDetails = reportData.split(",");
-            if (reportDetails[4].equals(departmentName)) {
-                userIds.add(reportDetails[0]);
-            }
-        }
-        return userIds;
     }
 
     private void clear() {
         viewId.setText("");
-        usersListView.getItems().clear();
-        casesListView.getItems().clear();
+        officers.getItems().clear();
+        cases.getItems().clear();
         dateOfActivation.setText("");
     }
 }

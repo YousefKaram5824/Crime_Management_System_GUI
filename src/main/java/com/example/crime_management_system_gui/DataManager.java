@@ -2,9 +2,7 @@ package com.example.crime_management_system_gui;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class DataManager {
     private static final String USER_FILE_NAME = "files/users.txt";
@@ -16,9 +14,6 @@ public class DataManager {
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
     private final List<String> criminals = new ArrayList<>();
-
-    private final Map<String, List<String>> departmentOfficers = new HashMap<>();
-    private final Map<String, List<String>> departmentCases = new HashMap<>();
 
     public void loadDepartmentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DEPARTMENT_FILE))) {
@@ -65,11 +60,33 @@ public class DataManager {
     public String getDepartmentDataByName(String departmentName) {
         for (String data : departments) {
             String[] departmentDetails = data.split(",");
-            if (departmentDetails[0].equals(departmentName)) {
+            if (departmentDetails[1].equals(departmentName)) {
                 return data;
             }
         }
         return null;
+    }
+
+    public List<String> getUserIdsByDepartmentName(String departmentName) {
+        List<String> userIds = new ArrayList<>();
+        for (String userData : getUserData()) {
+            String[] userDetails = userData.split(",");
+            if (userDetails[5].equals(departmentName)) {
+                userIds.add(userDetails[1]);
+            }
+        }
+        return userIds;
+    }
+
+    public List<String> getCasesIdsByDepartmentName(String departmentName) {
+        List<String> userIds = new ArrayList<>();
+        for (String reportData : getReports()) {
+            String[] reportDetails = reportData.split(",");
+            if (reportDetails[4].equals(departmentName)) {
+                userIds.add(reportDetails[0]);
+            }
+        }
+        return userIds;
     }
 
     public List<String> getDepartmentsData() {
