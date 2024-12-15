@@ -79,14 +79,14 @@ public class DataManager {
     }
 
     public List<String> getCasesIdsByDepartmentName(String departmentName) {
-        List<String> userIds = new ArrayList<>();
+        List<String> caseIds = new ArrayList<>();
         for (String reportData : getReports()) {
             String[] reportDetails = reportData.split(",");
             if (reportDetails[4].equals(departmentName)) {
-                userIds.add(reportDetails[0]);
+                caseIds.add(reportDetails[0]);
             }
         }
-        return userIds;
+        return caseIds;
     }
 
     public List<String> getDepartmentsData() {

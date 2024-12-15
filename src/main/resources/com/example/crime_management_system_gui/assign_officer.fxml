@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="assignOfficer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.PoliceChief">
-   <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="39.0" prefWidth="53.0" text="Button">
+   <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchTOPoliceChief" opacity="0.0" prefHeight="39.0" prefWidth="53.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
@@ -34,5 +34,5 @@
    </Button>
    <TextField fx:id="nameOfDepartment" layoutX="592.0" layoutY="215.0" prefHeight="66.0" prefWidth="398.0" />
    <Button layoutX="137.0" layoutY="560.0" mnemonicParsing="false" onAction="#assignOfficers" prefHeight="66.0" prefWidth="398.0" text="assign officer" />
-   <TextField fx:id="assignedOfficers" layoutX="592.0" layoutY="453.0" prefHeight="66.0" prefWidth="398.0" />
+   <TextField fx:id="officersOfDepartment" layoutX="592.0" layoutY="453.0" prefHeight="66.0" prefWidth="398.0" />
 </AnchorPane>

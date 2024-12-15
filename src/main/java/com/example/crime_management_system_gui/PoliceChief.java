@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,11 +25,15 @@ public class PoliceChief extends Switching implements Initializable {
 
     private DataManager reportDataManager;
     private DataManager departmentDataManager;
+    private DataManager userDataManager;
+
+    private List<String> assignedOfficers = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reportDataManager = Main.getDataManager();
         departmentDataManager = Main.getDataManager();
+        userDataManager = Main.getDataManager();
     }
 
     @FXML
@@ -37,7 +42,8 @@ public class PoliceChief extends Switching implements Initializable {
         String departmentData = departmentDataManager.getDepartmentDataByName(departmentName);
 
         if (departmentData != null) {
-            displayCasesIds(departmentName);
+            String[] departmentDetails = departmentData.split(",");
+            displayCasesIds(departmentDetails[0]);
             message.setText("");
         } else {
             message.setText("Department name not found!");
@@ -48,8 +54,35 @@ public class PoliceChief extends Switching implements Initializable {
 
     @FXML
     private void assignOfficers() {
-        String DepartmentOfficers = officersOfDepartment.getText();
+        String departmentName = nameOfDepartment.getText();
+        String departmentOfficers = officersOfDepartment.getText();
+        String selectedCase = assignedCases.getValue();
+        String departmentData = departmentDataManager.getDepartmentDataByName(departmentName);
+        String[] departmentDetails = departmentData.split(",");
+        List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentDetails[0]);
 
+
+        if (selectedCase == null || selectedCase.isEmpty()) {
+            message.setText("Please select a case to assign.");
+            message.setTextFill(Color.RED);
+            return;
+        }
+
+        if (departmentOfficers.isEmpty()) {
+            message.setText("Officer name cannot be empty!");
+            message.setTextFill(Color.RED);
+            return;
+        }
+
+        if(!userIds.contains(departmentOfficers)){
+            message.setText("Officer name cannot be found!");
+            message.setTextFill(Color.RED);
+            return;
+        }
+
+        assignedOfficers.add(selectedCase + " assigned to " + departmentOfficers);
+        message.setText("Officer assigned to case successfully.");
+        message.setTextFill(Color.GREEN);
     }
 
     private void displayCasesIds(String departmentName) {
@@ -66,5 +99,9 @@ public class PoliceChief extends Switching implements Initializable {
 
     private void clear() {
         assignedCases.getItems().clear(); // Clear previous cases
+    }
+
+    public List<String> getAssignedOfficers() {
+        return assignedOfficers;
     }
 }
