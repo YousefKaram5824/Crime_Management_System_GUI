@@ -22,7 +22,7 @@
       <font>
          <Font size="24.0" />
       </font></Label>
-    <Button layoutX="657.0" layoutY="620.0" mnemonicParsing="false" onAction="#switchTOCreateDepartment" opacity="0.0" prefHeight="62.0" prefWidth="226.0" text="create">
+    <Button layoutX="657.0" layoutY="620.0" mnemonicParsing="false" onAction="#createDepartment" opacity="0.0" prefHeight="62.0" prefWidth="226.0" text="create">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>

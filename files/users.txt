@@ -1,0 +1,8 @@
+admin,chf123,Colonel,120000,0123456789,123,Non
+yousef,poc120,First Lieutenant,120000,0123456789,123,Robbery
+ahmed,poc121,First Lieutenant,120000,0123456789,123,Robbery
+salma,poc122,First Lieutenant,120000,0123456789,123,Robbery
+samir,poc123,First Lieutenant,120000,0123456789,123,Robbery
+sarah,poc124,First Lieutenant,120000,0123456789,123,Robbery
+yousef,poc120,Major,120000,0123456789,123,Robbery
+aya,poc126,Captain,120000,0123456789,123,Robbery

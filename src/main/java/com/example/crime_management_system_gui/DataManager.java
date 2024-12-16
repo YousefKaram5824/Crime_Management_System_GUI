@@ -73,7 +73,7 @@ public class DataManager {
         List<String> userIds = new ArrayList<>();
         for (String userData : getUserData()) {
             String[] userDetails = userData.split(",");
-            if (userDetails[5].equals(departmentName)) {
+            if (userDetails[6].equals(departmentName)) {
                 userIds.add(userDetails[1]);
             }
         }

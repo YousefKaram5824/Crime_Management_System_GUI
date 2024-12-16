@@ -66,8 +66,14 @@ public class viewOfficers extends Switching implements Initializable {
         if (newRank != null) {
             String userData = userDataManager.getUserDataById(userId);
             if (userData != null) {
-                String[] userDetails = userData.split(",");
-                userDetails[2] = newRank;
+                for (int i = 0; i < userDataManager.getUserData().size(); i++) {
+                    String[] userDetails = userDataManager.getUserData().get(i).split(",");
+                    if (userDetails[1].equals(userId)) {
+                        userDetails[2] = newRank;
+                        userDataManager.updateUserData(i, String.join(",", userDetails));
+                        break;
+                    }
+                }
                 message.setText("User rated successfully!");
                 message.setTextFill(javafx.scene.paint.Color.GREEN);
             } else {
