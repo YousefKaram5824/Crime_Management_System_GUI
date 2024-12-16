@@ -1,2 +1,0 @@
-ahmed,12,next to me
-ahmed,13,next to you

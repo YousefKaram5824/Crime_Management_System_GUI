@@ -59,32 +59,32 @@ public class Switching {
     }
 
     @FXML
-    private void viewOfficer() throws IOException {
+    private void switchTOViewOfficer() throws IOException {
         switchToPage("view_officer.fxml");
     }
 
     @FXML
-    private void assignOfficer() throws IOException {
+    private void switchTOAssignOfficer() throws IOException {
         switchToPage("assign_officer.fxml");
     }
 
     @FXML
-    private void viewDepartment() throws IOException {
+    private void switchTOViewDepartment() throws IOException {
         switchToPage("view_department.fxml");
     }
 
     @FXML
-    private void createDepartment() throws IOException {
+    private void switchTOCreateDepartment() throws IOException {
         switchToPage("create_department.fxml");
     }
 
     @FXML
-    private void addCriminal() throws IOException {
+    private void switchTOAddCriminal() throws IOException {
         switchToPage("add_criminal.fxml");
     }
 
     @FXML
-    private void viewCriminal() throws IOException {
+    private void switchTOViewCriminal() throws IOException {
         switchToPage("view_criminal.fxml");
     }
 }

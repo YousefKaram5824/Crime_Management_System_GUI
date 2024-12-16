@@ -173,6 +173,26 @@ public class DataManager {
         return true;
     }
 
+    public boolean checkCredentials(String id, String password) {
+        for (String data : getUserData()) {
+            String[] userData = data.split(",");
+            if (userData[1].equals(id) && userData[5].equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getUserDataById(String userId) {
+        for (String data : getUserData()) {
+            String[] userDetails = data.split(",");
+            if (userDetails[1].equals(userId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
     public void updateUserData(int index, String newData) {
         userData.set(index, newData);
     }

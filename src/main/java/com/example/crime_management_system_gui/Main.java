@@ -14,7 +14,6 @@ public class Main extends Application {
     private static DataManager dataManager;
     private static Stage primaryStage;
 
-
     public static void main(String[] args) {
         launch(args);
     }

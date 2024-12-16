@@ -27,7 +27,7 @@ public class Login extends Switching {
         String ID = id.getText();
         String Password = password.getText();
 
-        if (checkCredentials(ID, Password)) {
+        if (userDataManager.checkCredentials(ID, Password)) {
             redirectUser(ID);
         } else {
             message.setText("Incorrect username or password");
@@ -35,20 +35,10 @@ public class Login extends Switching {
         }
     }
 
-    private boolean checkCredentials(String id, String password) {
-        for (String data : userDataManager.getUserData()) {
-            String[] userData = data.split(",");
-            if (userData[1].equals(id) && userData[4].equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void redirectUser(String id) {
         try {
             if (id.startsWith("poc")) {
-                String userData = getUserDataById(id);
+                String userData = userDataManager.getUserDataById(id);
                 if (userData != null) {
                     switchTOPoliceOfficer();
                 }
@@ -62,15 +52,5 @@ public class Login extends Switching {
             message.setText("Error loading page: " + e.getMessage());
             message.setTextFill(javafx.scene.paint.Color.RED);
         }
-    }
-
-    private String getUserDataById(String userId) {
-        for (String data : userDataManager.getUserData()) {
-            String[] userDetails = data.split(",");
-            if (userDetails[1].equals(userId)) {
-                return data;
-            }
-        }
-        return null;
     }
 }

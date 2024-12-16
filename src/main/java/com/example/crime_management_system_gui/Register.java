@@ -18,17 +18,19 @@ public class Register extends Switching implements Initializable {
     @FXML
     private TextField id;
     @FXML
+    private ComboBox<String> rank;
+    @FXML
     private TextField salary;
+    @FXML
+    private TextField phone;
     @FXML
     private PasswordField password;
     @FXML
     private PasswordField confirmPassword;
     @FXML
-    private Label message;
-    @FXML
-    private ComboBox<String> rank;
-    @FXML
     private ComboBox<String> assignedDepartment;
+    @FXML
+    private Label message;
 
     private DataManager userDataManager;
 
@@ -50,6 +52,7 @@ public class Register extends Switching implements Initializable {
         String ID = id.getText();
         String Rank = rank.getValue();
         String Salary = salary.getText();
+        String Phone = phone.getText();
         String Password = password.getText();
         String PasswordChecker = confirmPassword.getText();
         String Department = assignedDepartment.getValue();
@@ -59,7 +62,7 @@ public class Register extends Switching implements Initializable {
             Department = "Non";
         }
 
-        if (Name.isEmpty() || ID.isEmpty() || Rank == null || Salary.isEmpty() || Password.isEmpty() || PasswordChecker.isEmpty() || Department == null) {
+        if (Name.isEmpty() || ID.isEmpty() || Rank == null || Salary.isEmpty() || Password.isEmpty() || PasswordChecker.isEmpty() || Department == null || Phone.isEmpty()) {
             message.setText("Please fill all fields!");
             message.setTextFill(Color.RED);
             return;
@@ -80,7 +83,7 @@ public class Register extends Switching implements Initializable {
             return;
         }
 
-        String userData = String.join(",", Name, ID, Rank, Salary, Password, Department);
+        String userData = String.join(",", Name, ID, Rank, Salary, Phone, Password, Department);
         userDataManager.getUserData().add(userData);
         message.setText("Registration successful!");
         message.setTextFill(Color.GREEN);

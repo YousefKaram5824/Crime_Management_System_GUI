@@ -33,16 +33,6 @@ public class viewOfficers extends Switching implements Initializable {
         ranking.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
     }
 
-    private String getUserDataById(String userId) {
-        for (String data : userDataManager.getUserData()) {
-            String[] userDetails = data.split(",");
-            if (userDetails[1].equals(userId)) {
-                return data;
-            }
-        }
-        return null;
-    }
-
     private void clear() {
         username.setText("");
         salary.setText("");
@@ -53,14 +43,14 @@ public class viewOfficers extends Switching implements Initializable {
     @FXML
     private void viewUserData() {
         String userId = id.getText();
-        String userData = getUserDataById(userId);
+        String userData = userDataManager.getUserDataById(userId);
 
         if (userData != null) {
             String[] userDetails = userData.split(",");
             username.setText(userDetails[0]);
             rank.setText(userDetails[2]);
             salary.setText(userDetails[3] + "$");
-            department.setText(userDetails[5]);
+            department.setText(userDetails[6]);
             message.setText("");
         } else {
             message.setText("User id not found!");
@@ -71,20 +61,15 @@ public class viewOfficers extends Switching implements Initializable {
 
     @FXML
     private void rateUser() {
-        /*String userId = id.getText();
-        String newRating = rating.getValue();
-
-        if (newRating != null) {
-            String userData = getUserDataById(userId);
+        String userId = id.getText();
+        String newRank = ranking.getValue();
+        if (newRank != null) {
+            String userData = userDataManager.getUserDataById(userId);
             if (userData != null) {
                 String[] userDetails = userData.split(",");
-                userDetails[6] = newRating;
-                String updatedUserData = String.join(",", userDetails);
-                userDataManager.updateUserData(6, updatedUserData);
-                userDataManager.saveUserData();
+                userDetails[2] = newRank;
                 message.setText("User rated successfully!");
                 message.setTextFill(javafx.scene.paint.Color.GREEN);
-
             } else {
                 message.setText("User id not found!");
                 message.setTextFill(javafx.scene.paint.Color.RED);
@@ -92,7 +77,6 @@ public class viewOfficers extends Switching implements Initializable {
         } else {
             message.setText("Please select a rating!");
             message.setTextFill(javafx.scene.paint.Color.RED);
-        }*/
+        }
     }
-
 }
