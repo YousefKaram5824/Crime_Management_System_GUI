@@ -71,6 +71,7 @@ public class viewOfficers extends Switching implements Initializable {
                     if (userDetails[1].equals(userId)) {
                         userDetails[2] = newRank;
                         userDataManager.updateUserData(i, String.join(",", userDetails));
+                        viewUserData();
                         break;
                     }
                 }
