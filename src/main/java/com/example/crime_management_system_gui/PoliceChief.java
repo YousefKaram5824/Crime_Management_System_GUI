@@ -81,7 +81,7 @@ public class PoliceChief extends Switching implements Initializable {
         List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentDetails[0]);
 
         if (!userIds.contains(departmentOfficers)) {
-            message.setText("Officer name cannot be found!");
+            message.setText("Officer ID cannot be found!");
             message.setTextFill(Color.RED);
             return;
         }
@@ -100,6 +100,7 @@ public class PoliceChief extends Switching implements Initializable {
         assignDataManager.getAssignedCases().add(assignData);
         message.setText("Officer assigned to case successfully.");
         message.setTextFill(Color.GREEN);
+        officersOfDepartment.clear();
     }
 
     private void displayCasesIds(String departmentName) {
