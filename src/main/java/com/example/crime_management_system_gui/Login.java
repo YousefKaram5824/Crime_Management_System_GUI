@@ -28,6 +28,7 @@ public class Login extends Switching {
         String Password = password.getText();
 
         if (userDataManager.checkCredentials(ID, Password)) {
+            UserSession.getInstance().setCurrentUserId(ID);
             redirectUser(ID);
         } else {
             message.setText("Incorrect username or password");
@@ -38,10 +39,7 @@ public class Login extends Switching {
     private void redirectUser(String id) {
         try {
             if (id.startsWith("poc")) {
-                String userData = userDataManager.getUserDataById(id);
-                if (userData != null) {
-                    switchTOPoliceOfficer();
-                }
+                switchTOPoliceOfficer();
             } else if (id.startsWith("chf")) {
                 switchTOPoliceChief();
             } else {

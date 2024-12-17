@@ -20,10 +20,13 @@
       </cursor>
    </Button>
    <ListView layoutX="236.0" layoutY="526.0" prefHeight="130.0" prefWidth="1114.0" />
-   <TextField fx:id="id" layoutX="563.0" layoutY="199.0" prefHeight="66.0" prefWidth="375.0">
+   <TextField fx:id="id" alignment="CENTER" layoutX="563.0" layoutY="199.0" prefHeight="66.0" prefWidth="375.0" promptText="ID">
       <cursor>
          <Cursor fx:constant="TEXT" />
       </cursor>
+      <font>
+         <Font size="24.0" />
+      </font>
    </TextField>
    <Label fx:id="viewName" alignment="CENTER" layoutX="563.0" layoutY="280.0" prefHeight="66.0" prefWidth="375.0">
       <font>

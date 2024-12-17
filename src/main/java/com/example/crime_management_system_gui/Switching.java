@@ -49,8 +49,9 @@ public class Switching {
         switchToPage("forget_password.fxml");
     }
 
+    @FXML
     public void switchTOPoliceOfficer() throws IOException {
-        switchToPage("police_officer.fxml");
+        switchToPage("view_profile.fxml");
     }
 
     @FXML
@@ -86,5 +87,10 @@ public class Switching {
     @FXML
     private void switchTOViewCriminal() throws IOException {
         switchToPage("view_criminal.fxml");
+    }
+
+    @FXML
+    private void switchTOViewProfile() throws IOException {
+        switchToPage("view_profile.fxml");
     }
 }

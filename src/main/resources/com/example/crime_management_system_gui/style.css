@@ -47,6 +47,13 @@
    -fx-background-size: cover;
 }
 
+#viewProfile{
+   -fx-background-image: url("photos/view_profile.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
 #assignOfficer{
    -fx-background-image: url("photos/assign_officer.png");
    -fx-background-repeat: no-repeat;
