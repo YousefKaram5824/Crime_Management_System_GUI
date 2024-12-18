@@ -51,7 +51,7 @@ public class Switching {
 
     @FXML
     public void switchTOPoliceOfficer() throws IOException {
-        switchToPage("view_profile.fxml");
+        switchToPage("police_officer.fxml");
     }
 
     @FXML
@@ -90,7 +90,12 @@ public class Switching {
     }
 
     @FXML
-    private void switchTOViewProfile() throws IOException {
-        switchToPage("view_profile.fxml");
+    private void switchTOViewProfileForOfficer() throws IOException {
+        switchToPage("view_profile_for_officer.fxml");
+    }
+
+    @FXML
+    private void switchTOViewProfileForChief() throws IOException {
+        switchToPage("view_profile_for_chief.fxml");
     }
 }
