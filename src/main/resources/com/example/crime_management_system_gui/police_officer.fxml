@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="policeOfficer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Switching">
-    <Button layoutX="43.0" layoutY="16.0" mnemonicParsing="false" onAction="#switchTOViewProfile" opacity="0.0" prefHeight="39.0" prefWidth="46.0" text="logout">
+    <Button layoutX="43.0" layoutY="16.0" mnemonicParsing="false" onAction="#switchToViewProfile" opacity="0.0" prefHeight="39.0" prefWidth="46.0" text="logout">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
@@ -13,22 +13,22 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <Button layoutX="340.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchTOAddCriminal" opacity="0.0" prefHeight="70.0" prefWidth="258.0" text="Button">
+   <Button layoutX="340.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchToAddCriminal" opacity="0.0" prefHeight="70.0" prefWidth="258.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button layoutX="339.0" layoutY="608.0" mnemonicParsing="false" opacity="0.0" prefHeight="64.0" prefWidth="258.0" text="Button">
+   <Button layoutX="339.0" layoutY="608.0" mnemonicParsing="false" onAction="#switchToSolve" opacity="0.0" prefHeight="64.0" prefWidth="258.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button layoutX="939.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchTOViewCriminal" opacity="0.0" prefHeight="70.0" prefWidth="266.0" text="Button">
+   <Button layoutX="939.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchToViewCriminal" opacity="0.0" prefHeight="70.0" prefWidth="266.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <Button layoutX="957.0" layoutY="599.0" mnemonicParsing="false" opacity="0.0" prefHeight="64.0" prefWidth="258.0" text="Button">
+   <Button layoutX="957.0" layoutY="599.0" mnemonicParsing="false" onAction="#switchToUpdate" opacity="0.0" prefHeight="64.0" prefWidth="258.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>

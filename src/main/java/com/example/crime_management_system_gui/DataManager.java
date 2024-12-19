@@ -13,7 +13,7 @@ public class DataManager {
     private static final String CRIMINAL_CASES_FILE = "files/criminal_cases.txt";
 
     private final List<String> userData = new ArrayList<>();
-    private final List<String> reports = new ArrayList<>();
+    private final List<String> cases = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
     private final List<String> criminals = new ArrayList<>();
     private final List<String> assignedCases = new ArrayList<>();
@@ -39,6 +39,27 @@ public class DataManager {
         } catch (IOException e) {
             System.err.println("Error writing user data: " + e.getMessage());
         }
+    }
+
+    public boolean isCaseAssignedToCriminal(String caseId, String criminalId) {
+        for (String data : criminalCases) {
+            String[] criminalCasesDetails = data.split(",");
+            if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[1].equals(criminalId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public List<String> getCasesIdsByCriminalId(String id) {
+        List<String> caseIds = new ArrayList<>();
+        for (String criminalCases : getCriminalCasesData()) {
+            String[] casesDetails = criminalCases.split(",");
+            if (casesDetails[1].equals(id)) {
+                caseIds.add(casesDetails[0]);
+            }
+        }
+        return caseIds;
     }
 
     public List<String> getCriminalCasesData() {
@@ -110,7 +131,7 @@ public class DataManager {
 
     public List<String> getCasesIdsByDepartmentName(String departmentName) {
         List<String> caseIds = new ArrayList<>();
-        for (String reportData : getReports()) {
+        for (String reportData : getCases()) {
             String[] reportDetails = reportData.split(",");
             if (reportDetails[3].equals(departmentName)) {
                 caseIds.add(reportDetails[0]);
@@ -244,7 +265,7 @@ public class DataManager {
         try (BufferedReader reader = new BufferedReader(new FileReader(REPORT_FILE_NAME))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                reports.add(line);
+                cases.add(line);
             }
         } catch (IOException e) {
             System.err.println("Error reading reports: " + e.getMessage());
@@ -253,7 +274,7 @@ public class DataManager {
 
     public void saveReport() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(REPORT_FILE_NAME))) {
-            for (String data : reports) {
+            for (String data : cases) {
                 writer.write(data);
                 writer.newLine();
             }
@@ -262,8 +283,28 @@ public class DataManager {
         }
     }
 
-    public List<String> getReports() {
-        return reports;
+    public List<String> getCases() {
+        return cases;
+    }
+
+    public String getCaseDataById(String caseId) {
+        for (String data : cases) {
+            String[] caseDetails = data.split(",");
+            if (caseDetails[0].equals(caseId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    public boolean isCaseAssignedToOfficer(String caseId, String userId) {
+        for (String data : assignedCases) {
+            String[] assignedCasesDetails = data.split(",");
+            if (assignedCasesDetails[0].equals(caseId) && assignedCasesDetails[1].equals(userId)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void loadAssignedCases() {

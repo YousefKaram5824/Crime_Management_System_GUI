@@ -48,7 +48,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </ComboBox>
-    <Button focusTraversable="false" layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchTOPoliceChief" opacity="0.0" prefHeight="38.0" prefWidth="55.0" text="Button">
+    <Button focusTraversable="false" layoutX="45.0" layoutY="13.0" mnemonicParsing="false" onAction="#switchToPoliceChief" opacity="0.0" prefHeight="38.0" prefWidth="55.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>

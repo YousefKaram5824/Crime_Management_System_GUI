@@ -50,47 +50,57 @@ public class Switching {
     }
 
     @FXML
-    public void switchTOPoliceOfficer() throws IOException {
+    public void switchToPoliceOfficer() throws IOException {
         switchToPage("police_officer.fxml");
     }
 
     @FXML
-    public void switchTOPoliceChief() throws IOException {
+    public void switchToPoliceChief() throws IOException {
         switchToPage("police_chief.fxml");
     }
 
     @FXML
-    private void switchTOViewOfficer() throws IOException {
+    private void switchToViewOfficer() throws IOException {
         switchToPage("view_officer.fxml");
     }
 
     @FXML
-    private void switchTOAssignOfficer() throws IOException {
-        switchToPage("assign_officer.fxml");
+    private void switchToAssignOfficer() throws IOException {
+        switchToPage("assign.fxml");
     }
 
     @FXML
-    private void switchTOViewDepartment() throws IOException {
+    private void switchToViewDepartment() throws IOException {
         switchToPage("view_department.fxml");
     }
 
     @FXML
-    private void switchTOCreateDepartment() throws IOException {
+    private void switchToCreateDepartment() throws IOException {
         switchToPage("create_department.fxml");
     }
 
     @FXML
-    private void switchTOAddCriminal() throws IOException {
+    private void switchToAddCriminal() throws IOException {
         switchToPage("add_criminal.fxml");
     }
 
     @FXML
-    private void switchTOViewCriminal() throws IOException {
+    private void switchToViewCriminal() throws IOException {
         switchToPage("view_criminal.fxml");
     }
 
     @FXML
-    private void switchTOViewProfile() throws IOException {
+    private void switchToViewProfile() throws IOException {
         switchToPage("view_profile.fxml");
+    }
+
+    @FXML
+    private void switchToSolve() throws IOException {
+        switchToPage("solve.fxml");
+    }
+
+    @FXML
+    private void switchToUpdate() throws IOException {
+        switchToPage("update.fxml");
     }
 }

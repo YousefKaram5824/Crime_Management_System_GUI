@@ -39,9 +39,9 @@ public class Login extends Switching {
     private void redirectUser(String id) {
         try {
             if (id.startsWith("poc")) {
-                switchTOPoliceOfficer();
+                switchToPoliceOfficer();
             } else if (id.startsWith("chf")) {
-                switchTOPoliceChief();
+                switchToPoliceChief();
             } else {
                 message.setText("Invalid user type");
                 message.setTextFill(javafx.scene.paint.Color.RED);

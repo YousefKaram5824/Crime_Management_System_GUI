@@ -3,9 +3,11 @@ package com.example.crime_management_system_gui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Criminals extends Switching implements Initializable {
@@ -24,13 +26,17 @@ public class Criminals extends Switching implements Initializable {
     private Label viewLevel;
     @FXML
     private Label viewCurrentLocation;
+    @FXML
+    private ListView<String> assignedCases;
 
     private DataManager criminalDataManager;
+    private DataManager assingedCriminalDataManager;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         criminalDataManager = Main.getDataManager();
+        assingedCriminalDataManager = Main.getDataManager();
     }
 
     @FXML
@@ -69,13 +75,14 @@ public class Criminals extends Switching implements Initializable {
     private void viewCriminal() {
         String criminalId = id.getText();
         String criminalData = criminalDataManager.getCriminalDataById(criminalId);
-
         if (criminalData != null) {
             String[] criminalDetails = criminalData.split(",");
+            List<String> casesAssigned = assingedCriminalDataManager.getCasesIdsByCriminalId(criminalDetails[0]);
             viewName.setText(criminalDetails[0]);
             viewLevel.setText(criminalDetails[2]);
             viewCurrentLocation.setText(criminalDetails[3]);
             message.setText("");
+            assignedCases.getItems().addAll(casesAssigned);
         } else {
             message.setText("Criminal id not found!");
             message.setTextFill(javafx.scene.paint.Color.RED);
@@ -88,5 +95,6 @@ public class Criminals extends Switching implements Initializable {
         viewLevel.setText("");
         viewCurrentLocation.setText("");
         id.clear();
+        assignedCases.getItems().clear();
     }
 }

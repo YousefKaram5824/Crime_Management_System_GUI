@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="viewProfile" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.OfficerProfile">
-    <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchTOPoliceOfficer" opacity="0.0" prefHeight="44.0" prefWidth="49.0" text="Button">
+    <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPoliceOfficer" opacity="0.0" prefHeight="44.0" prefWidth="49.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>

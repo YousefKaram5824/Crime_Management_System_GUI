@@ -47,7 +47,7 @@ public class Cases extends Switching implements Initializable {
         }
 
         String reportData = String.join(",", reportID, Name, Witness, CrimeType, Description);
-        reportDataManager.getReports().add(reportData);
+        reportDataManager.getCases().add(reportData);
         clearFields();
         message.setText("Report submitted successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -55,7 +55,7 @@ public class Cases extends Switching implements Initializable {
 
     private String generateUniqueReportId() {
         Set<String> existingIds = new HashSet<>();
-        for (String report : reportDataManager.getReports()) {
+        for (String report : reportDataManager.getCases()) {
             String[] reportDetails = report.split(",");
             existingIds.add(reportDetails[0]);
         }

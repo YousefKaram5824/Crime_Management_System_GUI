@@ -55,7 +55,7 @@
 }
 
 #assignOfficer{
-   -fx-background-image: url("photos/assign_officer.png");
+   -fx-background-image: url("photos/assign.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;
@@ -98,6 +98,20 @@
 
 #policeProfile{
    -fx-background-image: url("photos/officer_profile.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#solve{
+   -fx-background-image: url("photos/solve.png");
+   -fx-background-repeat: no-repeat;
+   -fx-background-position: center center;
+   -fx-background-size: cover;
+}
+
+#update{
+   -fx-background-image: url("photos/update.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;

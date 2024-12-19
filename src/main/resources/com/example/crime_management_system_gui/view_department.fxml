@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="viewDepartment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Departments">
-    <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchTOPoliceChief" opacity="0.0" prefHeight="38.0" prefWidth="54.0" text="Back">
+    <Button layoutX="46.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPoliceChief" opacity="0.0" prefHeight="38.0" prefWidth="54.0" text="Back">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>
