@@ -1,60 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
-<AnchorPane id="addCriminal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Criminals">
-    <Button layoutX="52.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchTOPoliceChief" opacity="0.0"
-            prefHeight="42.0" prefWidth="46.0" text="Button">
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="addCriminal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Criminals">
+    <Button layoutX="52.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchTOPoliceOfficer" opacity="0.0" prefHeight="42.0" prefWidth="46.0" text="Button">
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button layoutX="652.0" layoutY="576.0" mnemonicParsing="false" onAction="#switchTOAddCriminal" opacity="0.0"
-            prefHeight="62.0" prefWidth="220.0" text="Button">
+    <Button layoutX="652.0" layoutY="576.0" mnemonicParsing="false" onAction="#addCriminal" opacity="0.0" prefHeight="62.0" prefWidth="220.0" text="Button">
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <TextField fx:id="name" alignment="CENTER" layoutX="570.0" layoutY="252.0" prefHeight="62.0" prefWidth="370.0">
+    <TextField fx:id="name" alignment="CENTER" layoutX="570.0" layoutY="252.0" prefHeight="62.0" prefWidth="370.0" promptText="Name">
         <font>
-            <Font size="24.0"/>
+            <Font size="24.0" />
         </font>
         <cursor>
-            <Cursor fx:constant="TEXT"/>
+            <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <TextField fx:id="currentLocation" alignment="CENTER" layoutX="575.0" layoutY="451.0" prefHeight="62.0"
-               prefWidth="370.0">
+    <TextField fx:id="currentLocation" alignment="CENTER" layoutX="575.0" layoutY="451.0" prefHeight="62.0" prefWidth="379.0" promptText="Current Location">
         <font>
-            <Font size="24.0"/>
+            <Font size="24.0" />
         </font>
         <cursor>
-            <Cursor fx:constant="TEXT"/>
+            <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-    <TextField fx:id="id" alignment="CENTER" layoutX="572.0" layoutY="347.0" prefHeight="62.0" prefWidth="370.0">
+    <TextField fx:id="id" alignment="CENTER" layoutX="572.0" layoutY="347.0" prefHeight="62.0" prefWidth="379.0" promptText="ID">
         <font>
-            <Font size="24.0"/>
+            <Font size="24.0" />
         </font>
         <cursor>
-            <Cursor fx:constant="TEXT"/>
+            <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
     <Label fx:id="message" alignment="CENTER" layoutX="572.0" layoutY="638.0" prefHeight="62.0" prefWidth="370.0">
         <font>
-            <Font size="24.0"/>
+            <Font size="24.0" />
         </font>
     </Label>
-    <TextField fx:id="level" alignment="CENTER" layoutX="570.0" layoutY="176.0" prefHeight="62.0" prefWidth="370.0">
-        <font>
-            <Font size="24.0"/>
-        </font>
-        <cursor>
-            <Cursor fx:constant="TEXT"/>
-        </cursor>
-    </TextField>
 </AnchorPane>

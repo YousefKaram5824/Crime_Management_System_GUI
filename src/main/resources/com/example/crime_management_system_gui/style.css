@@ -90,7 +90,7 @@
 }
 
 #policeOfficer{
-   -fx-background-image: url("photos/officer.png");
+   -fx-background-image: url("photos/police_officer.png");
    -fx-background-repeat: no-repeat;
    -fx-background-position: center center;
    -fx-background-size: cover;

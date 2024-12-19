@@ -4,9 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class viewOfficers extends Switching implements Initializable {
@@ -24,12 +26,17 @@ public class viewOfficers extends Switching implements Initializable {
     private Label message;
     @FXML
     private ComboBox<String> ranking;
+    @FXML
+    private ListView<String> cases;
 
     private DataManager userDataManager;
+    private DataManager assignedCasesDataManager;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userDataManager = Main.getDataManager();
+        assignedCasesDataManager=Main.getDataManager();
         ranking.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
     }
 
@@ -44,6 +51,7 @@ public class viewOfficers extends Switching implements Initializable {
     private void viewUserData() {
         String userId = id.getText();
         String userData = userDataManager.getUserDataById(userId);
+        List<String> casesIds = assignedCasesDataManager.getCasesIdsByOfficerId(userId);
 
         if (userData != null) {
             String[] userDetails = userData.split(",");
@@ -51,6 +59,7 @@ public class viewOfficers extends Switching implements Initializable {
             rank.setText(userDetails[2]);
             salary.setText(userDetails[3] + "$");
             department.setText(userDetails[6]);
+            cases.getItems().addAll(casesIds);
             message.setText("");
         } else {
             message.setText("User id not found!");

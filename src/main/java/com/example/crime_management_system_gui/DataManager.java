@@ -9,13 +9,41 @@ public class DataManager {
     private static final String REPORT_FILE_NAME = "files/reports.txt";
     private static final String DEPARTMENT_FILE = "files/departments.txt";
     private static final String CRIMINAL_FILE = "files/criminals.txt";
-    private static final String ASSIGNED_CASES_FILE = "files/assigned_cases.txt"; // New file
+    private static final String ASSIGNED_CASES_FILE = "files/assigned_cases.txt";
+    private static final String CRIMINAL_CASES_FILE = "files/criminal_cases.txt";
 
     private final List<String> userData = new ArrayList<>();
     private final List<String> reports = new ArrayList<>();
     private final List<String> departments = new ArrayList<>();
     private final List<String> criminals = new ArrayList<>();
     private final List<String> assignedCases = new ArrayList<>();
+    private final List<String> criminalCases = new ArrayList<>();
+
+    public void loadCriminalCasesData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(CRIMINAL_CASES_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                criminalCases.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user data: " + e.getMessage());
+        }
+    }
+
+    public void saveCriminalCasesData() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CRIMINAL_CASES_FILE))) {
+            for (String data : criminalCases) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing user data: " + e.getMessage());
+        }
+    }
+
+    public List<String> getCriminalCasesData() {
+        return criminalCases;
+    }
 
     public void loadDepartmentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DEPARTMENT_FILE))) {
@@ -84,8 +112,19 @@ public class DataManager {
         List<String> caseIds = new ArrayList<>();
         for (String reportData : getReports()) {
             String[] reportDetails = reportData.split(",");
-            if (reportDetails[4].equals(departmentName)) {
+            if (reportDetails[3].equals(departmentName)) {
                 caseIds.add(reportDetails[0]);
+            }
+        }
+        return caseIds;
+    }
+
+    public List<String> getCasesIdsByOfficerId(String id) {
+        List<String> caseIds = new ArrayList<>();
+        for (String AssignedCases : getAssignedCases()) {
+            String[] casesDetails = AssignedCases.split(",");
+            if (casesDetails[1].equals(id)) {
+                caseIds.add(casesDetails[0]);
             }
         }
         return caseIds;

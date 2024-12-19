@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Cases extends Switching implements Initializable {
@@ -13,8 +12,6 @@ public class Cases extends Switching implements Initializable {
     private TextField username;
     @FXML
     private TextField witness;
-    @FXML
-    private DatePicker datePicker;
     @FXML
     private TextArea description;
     @FXML
@@ -39,18 +36,17 @@ public class Cases extends Switching implements Initializable {
     private void handleSubmit() {
         String Name = username.getText();
         String Witness = witness.getText();
-        LocalDate date = datePicker.getValue();
         String Description = description.getText();
         String CrimeType = crimeType.getValue();
-        String reportID = String.valueOf(generateUniqueReportId());
+        String reportID = "Case " + generateUniqueReportId();
 
-        if (Name.isEmpty() || date == null || Description.isEmpty() || CrimeType == null) {
+        if (Name.isEmpty() || Description.isEmpty() || CrimeType == null) {
             message.setText("Please fill all fields!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
-        String reportData = String.join(",", reportID, Name, Witness, date.toString(), CrimeType, Description, "0");
+        String reportData = String.join(",", reportID, Name, Witness, CrimeType, Description);
         reportDataManager.getReports().add(reportData);
         clearFields();
         message.setText("Report submitted successfully!");
@@ -74,7 +70,6 @@ public class Cases extends Switching implements Initializable {
     private void clearFields() {
         username.clear();
         witness.clear();
-        datePicker.setValue(null);
         description.clear();
         crimeType.setValue(null);
     }

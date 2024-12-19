@@ -15,8 +15,6 @@ public class Criminals extends Switching implements Initializable {
     @FXML
     private TextField id;
     @FXML
-    private TextField level;
-    @FXML
     private TextField currentLocation;
     @FXML
     private Label message;
@@ -39,10 +37,10 @@ public class Criminals extends Switching implements Initializable {
     private void addCriminal() {
         String Name = name.getText();
         String ID = id.getText();
-        String Level = level.getText();
+        String Level = "Low";
         String CurrentLocation = currentLocation.getText();
 
-        if (Name.isEmpty() || ID.isEmpty() || Level.isEmpty() || CurrentLocation.isEmpty()) {
+        if (Name.isEmpty() || ID.isEmpty() || CurrentLocation.isEmpty()) {
             message.setText("Please fill all fields!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
@@ -64,7 +62,6 @@ public class Criminals extends Switching implements Initializable {
     private void clearFields() {
         name.clear();
         id.clear();
-        level.clear();
         currentLocation.clear();
     }
 
