@@ -2,12 +2,16 @@ package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.*;
 
 public class Cases extends Switching implements Initializable {
+    DataManager dataManager = Main.getDataManager();
     @FXML
     private TextField username;
     @FXML
@@ -19,13 +23,9 @@ public class Cases extends Switching implements Initializable {
     @FXML
     private ComboBox<String> crimeType;
 
-    private DataManager reportDataManager;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reportDataManager = Main.getDataManager();
-        DataManager departmentDataManager = Main.getDataManager();
-        List<String> departments = departmentDataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             crimeType.getItems().add(deptDetails[0]);
@@ -47,7 +47,7 @@ public class Cases extends Switching implements Initializable {
         }
 
         String reportData = String.join(",", reportID, Name, Witness, CrimeType, Description);
-        reportDataManager.getCases().add(reportData);
+        dataManager.getCases().add(reportData);
         clearFields();
         message.setText("Report submitted successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -55,7 +55,7 @@ public class Cases extends Switching implements Initializable {
 
     private String generateUniqueReportId() {
         Set<String> existingIds = new HashSet<>();
-        for (String report : reportDataManager.getCases()) {
+        for (String report : dataManager.getCases()) {
             String[] reportDetails = report.split(",");
             existingIds.add(reportDetails[0]);
         }

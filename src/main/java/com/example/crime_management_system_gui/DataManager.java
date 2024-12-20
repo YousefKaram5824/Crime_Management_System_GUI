@@ -11,6 +11,7 @@ public class DataManager {
     private static final String CRIMINAL_FILE = "files/criminals.txt";
     private static final String ASSIGNED_CASES_FILE = "files/assigned_cases.txt";
     private static final String CRIMINAL_CASES_FILE = "files/criminal_cases.txt";
+    private static final String UPDATED_CRIMINAL_CASES_FILE = "files/updated_criminal_cases.txt";
 
     private final List<String> userData = new ArrayList<>();
     private final List<String> cases = new ArrayList<>();
@@ -18,6 +19,7 @@ public class DataManager {
     private final List<String> criminals = new ArrayList<>();
     private final List<String> assignedCases = new ArrayList<>();
     private final List<String> criminalCases = new ArrayList<>();
+    private final List<String> updatedCriminalCases = new ArrayList<>();
 
     /*======================Start of User data====================================*/
 
@@ -147,9 +149,9 @@ public class DataManager {
     }
 
     public boolean isCaseAssignedToCriminal(String caseId, String criminalId) {
-        for (String data : getCriminalCasesData()) {
+        for (String data : getUpdatedCriminalCases()) {
             String[] criminalCasesDetails = data.split(",");
-            if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[4].equals(criminalId)) {
+            if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[2].equals(criminalId)) {
                 return true;
             }
         }
@@ -169,10 +171,10 @@ public class DataManager {
 
     public List<String> getCriminalsIdsByCaseId(String id) {
         List<String> criminalIds = new ArrayList<>();
-        for (String criminalCases : getCriminalCasesData()) {
+        for (String criminalCases : getUpdatedCriminalCases()) {
             String[] casesDetails = criminalCases.split(",");
             if (casesDetails[0].equals(id)) {
-                criminalIds.add(casesDetails[4]);
+                criminalIds.add(casesDetails[2]);
             }
         }
         return criminalIds;
@@ -358,6 +360,42 @@ public class DataManager {
 
     /*======================End of Case data====================================*/
 
+    /*======================Start of Updated Case data====================================*/
+
+    public void loadUpdatedCriminalCases() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(UPDATED_CRIMINAL_CASES_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                getUpdatedCriminalCases().add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading assigned cases data: " + e.getMessage());
+        }
+    }
+
+    public void saveUpdatedCriminalCases() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(UPDATED_CRIMINAL_CASES_FILE))) {
+            for (String data : getUpdatedCriminalCases()) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing assigned cases data: " + e.getMessage());
+        }
+    }
+
+    public String getUpdatedCaseDataById(String caseId) {
+        for (String data : getUpdatedCriminalCases()) {
+            String[] caseDetails = data.split(",");
+            if (caseDetails[0].equals(caseId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    /*======================End of Updated Case data====================================*/
+
     /*==========================Getters============================ */
 
     public List<String> getCriminalCasesData() {
@@ -382,5 +420,8 @@ public class DataManager {
 
     public List<String> getAssignedCases() {
         return assignedCases;
+    }
+    public List<String> getUpdatedCriminalCases() {
+        return updatedCriminalCases;
     }
 }

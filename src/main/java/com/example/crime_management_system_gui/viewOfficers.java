@@ -29,14 +29,12 @@ public class viewOfficers extends Switching implements Initializable {
     @FXML
     private ListView<String> cases;
 
-    private DataManager userDataManager;
-    private DataManager assignedCasesDataManager;
+    private DataManager dataManager;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userDataManager = Main.getDataManager();
-        assignedCasesDataManager=Main.getDataManager();
+        dataManager = Main.getDataManager();
         ranking.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
     }
 
@@ -45,13 +43,15 @@ public class viewOfficers extends Switching implements Initializable {
         salary.setText("");
         rank.setText("");
         department.setText("");
+        cases.getItems().clear();
     }
 
     @FXML
     private void viewUserData() {
+        clear();
         String userId = id.getText();
-        String userData = userDataManager.getUserDataById(userId);
-        List<String> casesIds = assignedCasesDataManager.getCasesIdsByOfficerId(userId);
+        String userData = dataManager.getUserDataById(userId);
+        List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
 
         if (userData != null) {
             String[] userDetails = userData.split(",");
@@ -73,13 +73,13 @@ public class viewOfficers extends Switching implements Initializable {
         String userId = id.getText();
         String newRank = ranking.getValue();
         if (newRank != null) {
-            String userData = userDataManager.getUserDataById(userId);
+            String userData = dataManager.getUserDataById(userId);
             if (userData != null) {
-                for (int i = 0; i < userDataManager.getUserData().size(); i++) {
-                    String[] userDetails = userDataManager.getUserData().get(i).split(",");
+                for (int i = 0; i < dataManager.getUserData().size(); i++) {
+                    String[] userDetails = dataManager.getUserData().get(i).split(",");
                     if (userDetails[1].equals(userId)) {
                         userDetails[2] = newRank;
-                        userDataManager.updateUserData(i, String.join(",", userDetails));
+                        dataManager.updateUserData(i, String.join(",", userDetails));
                         viewUserData();
                         break;
                     }

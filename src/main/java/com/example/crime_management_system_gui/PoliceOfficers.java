@@ -34,22 +34,19 @@ public class PoliceOfficers extends Switching implements Initializable {
     private Label viewLastUpdate;
     @FXML
     private ListView<String> assignedCriminals;
-    private DataManager reportDataManager;
-    private DataManager assingedCriminalDataManager;
+    private DataManager dataManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        DataManager criminalDataManager = Main.getDataManager();
-        reportDataManager = Main.getDataManager();
-        assingedCriminalDataManager = Main.getDataManager();
+        dataManager = Main.getDataManager();
 
-        List<String> Criminals = criminalDataManager.getCriminalsData();
+        List<String> Criminals = dataManager.getCriminalsData();
         for (String criminal : Criminals) {
             String[] criminalDetails = criminal.split(",");
             criminals.getItems().add(criminalDetails[0]);
         }
         String userId = UserSession.getInstance().getCurrentUserId();
-        List<String> casesIds = assingedCriminalDataManager.getCasesIdsByOfficerId(userId);
+        List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
         for (String Cases : casesIds) {
             String[] caseDetails = Cases.split(",");
             cases.getItems().add(caseDetails[0]);
@@ -59,7 +56,7 @@ public class PoliceOfficers extends Switching implements Initializable {
     @FXML
     private void getCaseInfoForSolve() {
         String CaseId = cases.getValue();
-        String CaseData = reportDataManager.getCaseDataById(CaseId);
+        String CaseData = dataManager.getCaseDataById(CaseId);
         String[] caseDetails = CaseData.split(",");
         crimeType.setText(caseDetails[3]);
         description.setText(caseDetails[4]);
@@ -74,7 +71,7 @@ public class PoliceOfficers extends Switching implements Initializable {
         String Criminal = criminals.getValue();
         String isSolved = "yes";
 
-        if (assingedCriminalDataManager.isCaseIsSolved(CaseId)) {
+        if (dataManager.isCaseIsSolved(CaseId)) {
             message.setText("Case is already solved!");
             message.setTextFill(Color.RED);
             return;
@@ -86,34 +83,24 @@ public class PoliceOfficers extends Switching implements Initializable {
             return;
         }
 
-        if (assingedCriminalDataManager.isCaseAssignedToCriminal(CaseId, Criminal)) {
+        if (dataManager.isCaseAssignedToCriminal(CaseId, Criminal)) {
             message.setText("Criminal is already assigned to this case!");
             message.setTextFill(Color.RED);
             return;
         }
 
         String criminalAssigned = String.join(",", CaseId, StartDate.toString(), LastUpdate.toString(), isSolved, Criminal);
-        assingedCriminalDataManager.getCriminalCasesData().add(criminalAssigned);
+        String UpdatedCriminalCases = String.join(",", CaseId, LastUpdate.toString(), Criminal);
+        dataManager.getCriminalCasesData().add(criminalAssigned);
+        dataManager.getUpdatedCriminalCases().add(UpdatedCriminalCases);
         message.setText("Case Solved successful!");
         message.setTextFill(Color.GREEN);
     }
 
     @FXML
-    private void getCaseInfoForUpdate() {
-        String CaseId = cases.getValue();
-        String SolvedCaseData = reportDataManager.getSolvedCaseDataById(CaseId);
-        String[] caseDetails = SolvedCaseData.split(",");
-        viewStartDate.setText(caseDetails[1]);
-        viewLastUpdate.setText(caseDetails[2]);
-
-        List<String> criminalIds = assingedCriminalDataManager.getCriminalsIdsByCaseId(CaseId);
-        assignedCriminals.getItems().addAll(criminalIds);
-    }
-
-    @FXML
     private void update() {
         String CaseId = cases.getValue();
-        LocalDate LastUpdate = lastUpdate.getValue();
+        String LastUpdate = String.valueOf(lastUpdate.getValue());
         String Criminal = criminals.getValue();
 
         if (LastUpdate == null || Criminal == null) {
@@ -122,7 +109,7 @@ public class PoliceOfficers extends Switching implements Initializable {
             return;
         }
 
-        if (assingedCriminalDataManager.isCaseAssignedToCriminal(CaseId, Criminal)) {
+        if (dataManager.isCaseAssignedToCriminal(CaseId, Criminal)) {
             message.setText("Criminal is already assigned to this case!");
             message.setTextFill(Color.RED);
             return;
@@ -131,5 +118,21 @@ public class PoliceOfficers extends Switching implements Initializable {
 
         message.setText("Criminal added successfully!");
         message.setTextFill(Color.GREEN);
+    }
+
+    @FXML
+    private void getCaseInfoForUpdate() {
+        assignedCriminals.getItems().clear();
+        String CaseId = cases.getValue();
+        String SolvedCaseData = dataManager.getSolvedCaseDataById(CaseId);
+        String[] caseDetails = SolvedCaseData.split(",");
+        viewStartDate.setText(caseDetails[1]);
+
+        String UpdatedCaseData = dataManager.getUpdatedCaseDataById(CaseId);
+        String[] updatedCaseDetails = UpdatedCaseData.split(",");
+        viewLastUpdate.setText(updatedCaseDetails[1]);
+
+        List<String> criminalIds = dataManager.getCriminalsIdsByCaseId(CaseId);
+        assignedCriminals.getItems().addAll(criminalIds);
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import java.util.List;
 
 public class OfficerProfile extends Switching {
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private Label name;
     @FXML
@@ -22,19 +23,14 @@ public class OfficerProfile extends Switching {
     @FXML
     private ListView<String> cases;
 
-    private DataManager userDataManager;
-    private DataManager assignedCasesDataManager;
-
     public void initialize() {
-        userDataManager = Main.getDataManager();
-        assignedCasesDataManager = Main.getDataManager();
         loadUserProfile();
     }
 
     private void loadUserProfile() {
         String userId = UserSession.getInstance().getCurrentUserId();
-        List<String> casesIds = assignedCasesDataManager.getCasesIdsByOfficerId(userId);
-        String userData = userDataManager.getUserDataById(userId);
+        List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
+        String userData = dataManager.getUserDataById(userId);
         String[] userDetails = userData.split(",");
         name.setText(userDetails[0]);
         id.setText(userDetails[1]);

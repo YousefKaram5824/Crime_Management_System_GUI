@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 
 public class PoliceChief extends Switching implements Initializable {
 
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private ComboBox<String> cases;
     @FXML
@@ -21,18 +22,10 @@ public class PoliceChief extends Switching implements Initializable {
     @FXML
     private Label message;
 
-    private DataManager reportDataManager;
-    private DataManager userDataManager;
-    private DataManager assignDataManager;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reportDataManager = Main.getDataManager();
-        userDataManager = Main.getDataManager();
-        assignDataManager = Main.getDataManager();
 
-        DataManager departmentDataManager = Main.getDataManager();
-        List<String> departments = departmentDataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             dep.getItems().add(deptDetails[0]);
@@ -48,7 +41,7 @@ public class PoliceChief extends Switching implements Initializable {
 
     private void displayCasesIds(String departmentName) {
         cases.getItems().clear();
-        List<String> casesIds = reportDataManager.getCasesIdsByDepartmentName(departmentName);
+        List<String> casesIds = dataManager.getCasesIdsByDepartmentName(departmentName);
 
         if (casesIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
@@ -60,7 +53,7 @@ public class PoliceChief extends Switching implements Initializable {
 
     private void displayOfficersIds(String departmentName) {
         officer.getItems().clear();
-        List<String> officersIds = userDataManager.getUserIdsByDepartmentName(departmentName);
+        List<String> officersIds = dataManager.getUserIdsByDepartmentName(departmentName);
 
         if (officersIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
@@ -88,7 +81,7 @@ public class PoliceChief extends Switching implements Initializable {
             return;
         }
 
-        List<String> assignedCasesList = assignDataManager.getAssignedCases();
+        List<String> assignedCasesList = dataManager.getAssignedCases();
         for (String assignment : assignedCasesList) {
             String[] parts = assignment.split(",");
             if (parts[0].equals(selectedCase) && parts[1].equals(selectedOfficer)) {
@@ -99,7 +92,7 @@ public class PoliceChief extends Switching implements Initializable {
         }
 
         String assignData = String.join(",", selectedCase, selectedOfficer);
-        assignDataManager.getAssignedCases().add(assignData);
+        dataManager.getAssignedCases().add(assignData);
         message.setText("Officer assigned to case successfully.");
         message.setTextFill(Color.GREEN);
     }

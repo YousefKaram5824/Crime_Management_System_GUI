@@ -32,14 +32,13 @@ public class Register extends Switching implements Initializable {
     @FXML
     private Label message;
 
-    private DataManager userDataManager;
+    private DataManager dataManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userDataManager = Main.getDataManager();
-        DataManager departmentDataManager = Main.getDataManager();
+        dataManager = Main.getDataManager();
         rank.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
-        List<String> departments = departmentDataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentsData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             assignedDepartment.getItems().add(deptDetails[0]);
@@ -72,7 +71,7 @@ public class Register extends Switching implements Initializable {
             message.setTextFill(Color.RED);
             return;
         }
-        if (!userDataManager.isUserIdUnique(ID)) {
+        if (!dataManager.isUserIdUnique(ID)) {
             message.setText("User ID already exists!");
             message.setTextFill(Color.RED);
             return;
@@ -84,7 +83,7 @@ public class Register extends Switching implements Initializable {
         }
 
         String userData = String.join(",", Name, ID, Rank, Salary, Phone, Password, Department);
-        userDataManager.getUserData().add(userData);
+        dataManager.getUserData().add(userData);
         message.setText("Registration successful!");
         message.setTextFill(Color.GREEN);
     }

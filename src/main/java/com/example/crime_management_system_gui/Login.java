@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class Login extends Switching {
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private TextField id;
     @FXML
@@ -15,19 +16,12 @@ public class Login extends Switching {
     @FXML
     private Label message;
 
-    private DataManager userDataManager;
-
-    @FXML
-    public void initialize() {
-        userDataManager = Main.getDataManager();
-    }
-
     @FXML
     private void handleLogin() {
         String ID = id.getText();
         String Password = password.getText();
 
-        if (userDataManager.checkCredentials(ID, Password)) {
+        if (dataManager.checkCredentials(ID, Password)) {
             UserSession.getInstance().setCurrentUserId(ID);
             redirectUser(ID);
         } else {

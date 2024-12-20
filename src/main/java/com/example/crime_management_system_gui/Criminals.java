@@ -1,17 +1,15 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class Criminals extends Switching implements Initializable {
+public class Criminals extends Switching {
 
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private TextField name;
     @FXML
@@ -29,16 +27,6 @@ public class Criminals extends Switching implements Initializable {
     @FXML
     private ListView<String> assignedCases;
 
-    private DataManager criminalDataManager;
-    private DataManager assingedCriminalDataManager;
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        criminalDataManager = Main.getDataManager();
-        assingedCriminalDataManager = Main.getDataManager();
-    }
-
     @FXML
     private void addCriminal() {
         String Name = name.getText();
@@ -52,14 +40,14 @@ public class Criminals extends Switching implements Initializable {
             return;
         }
 
-        if (!criminalDataManager.isCriminalIdUnique(ID)) {
+        if (!dataManager.isCriminalIdUnique(ID)) {
             message.setText("Criminal ID already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
         String criminalData = String.join(",", Name, ID, Level, CurrentLocation);
-        criminalDataManager.getCriminalsData().add(criminalData);
+        dataManager.getCriminalsData().add(criminalData);
         message.setText("Criminal added successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
         clearFields();
@@ -74,11 +62,11 @@ public class Criminals extends Switching implements Initializable {
     @FXML
     private void viewCriminal() {
         String criminalId = id.getText();
-        String criminalData = criminalDataManager.getCriminalDataById(criminalId);
+        String criminalData = dataManager.getCriminalDataById(criminalId);
         if (criminalData != null) {
             String[] criminalDetails = criminalData.split(",");
-            List<String> casesAssigned = assingedCriminalDataManager.getCasesIdsByCriminalId(criminalDetails[0]);
-            int numberOfCases = assingedCriminalDataManager.getNumberOfCasesForCriminal(criminalDetails[0]);
+            List<String> casesAssigned = dataManager.getCasesIdsByCriminalId(criminalDetails[0]);
+            int numberOfCases = dataManager.getNumberOfCasesForCriminal(criminalDetails[0]);
             viewName.setText(criminalDetails[0]);
             if (numberOfCases > 3 && numberOfCases <= 7) {
                 criminalDetails[2] = "Moderate";

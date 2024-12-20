@@ -6,6 +6,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class ForgotPassword extends Switching {
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private TextField id;
     @FXML
@@ -14,13 +15,6 @@ public class ForgotPassword extends Switching {
     private PasswordField newPasswordConfirm;
     @FXML
     private Label message;
-
-    private DataManager userDataManager;
-
-    @FXML
-    public void initialize() {
-        userDataManager = Main.getDataManager();
-    }
 
     @FXML
     private void handleResetPassword() {
@@ -42,11 +36,11 @@ public class ForgotPassword extends Switching {
 
         boolean userFound = false;
 
-        for (int i = 0; i < userDataManager.getUserData().size(); i++) {
-            String[] userDetails = userDataManager.getUserData().get(i).split(",");
+        for (int i = 0; i < dataManager.getUserData().size(); i++) {
+            String[] userDetails = dataManager.getUserData().get(i).split(",");
             if (userDetails[1].equals(userId)) {
                 userDetails[5] = NewPassword;
-                userDataManager.updateUserData(i, String.join(",", userDetails));
+                dataManager.updateUserData(i, String.join(",", userDetails));
                 userFound = true;
                 break;
             }

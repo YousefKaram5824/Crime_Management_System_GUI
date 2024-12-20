@@ -1,19 +1,17 @@
 package com.example.crime_management_system_gui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public class Departments extends Switching implements Initializable {
+public class Departments extends Switching {
+    private final DataManager dataManager = Main.getDataManager();
     @FXML
     private TextField name;
     @FXML
@@ -31,17 +29,6 @@ public class Departments extends Switching implements Initializable {
     @FXML
     private Label message;
 
-    private DataManager departmentDataManager;
-    private DataManager userDataManager;
-    private DataManager reportDataManager;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        departmentDataManager = Main.getDataManager();
-        userDataManager = Main.getDataManager();
-        reportDataManager = Main.getDataManager();
-    }
-
     @FXML
     private void createDepartment() {
         String Name = name.getText();
@@ -54,20 +41,20 @@ public class Departments extends Switching implements Initializable {
             return;
         }
 
-        if (!departmentDataManager.isDepartmentIdUnique(ID)) {
+        if (!dataManager.isDepartmentIdUnique(ID)) {
             message.setText("Department ID already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
-        if (!departmentDataManager.isDepartmentNameUnique(Name)) {
+        if (!dataManager.isDepartmentNameUnique(Name)) {
             message.setText("Department name already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
         String departmentData = String.join(",", Name, ID, date.toString());
-        departmentDataManager.getDepartmentsData().add(departmentData);
+        dataManager.getDepartmentsData().add(departmentData);
         message.setText("Department created successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
         clearFields();
@@ -82,7 +69,7 @@ public class Departments extends Switching implements Initializable {
     @FXML
     private void viewDepartment() {
         String departmentName = name.getText();
-        String departmentData = departmentDataManager.getDepartmentDataByName(departmentName);
+        String departmentData = dataManager.getDepartmentDataByName(departmentName);
 
         if (departmentData != null) {
             String[] departmentDetails = departmentData.split(",");
@@ -100,7 +87,7 @@ public class Departments extends Switching implements Initializable {
 
     private void displayUserIds(String departmentName) {
         officers.getItems().clear();
-        List<String> userIds = userDataManager.getUserIdsByDepartmentName(departmentName);
+        List<String> userIds = dataManager.getUserIdsByDepartmentName(departmentName);
 
         if (userIds.isEmpty()) {
             message.setTextFill(Color.RED);
@@ -112,7 +99,7 @@ public class Departments extends Switching implements Initializable {
 
     private void displayCasesIds(String departmentName) {
         cases.getItems().clear();
-        List<String> casesIds = reportDataManager.getCasesIdsByDepartmentName(departmentName);
+        List<String> casesIds = dataManager.getCasesIdsByDepartmentName(departmentName);
 
         if (casesIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
