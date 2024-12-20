@@ -19,6 +19,111 @@ public class DataManager {
     private final List<String> assignedCases = new ArrayList<>();
     private final List<String> criminalCases = new ArrayList<>();
 
+    /*======================Start of User data====================================*/
+
+    public void loadUserData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                userData.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user data: " + e.getMessage());
+        }
+    }
+
+    public void saveUserData() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_NAME))) {
+            for (String data : userData) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing user data: " + e.getMessage());
+        }
+    }
+
+    public boolean isUserIdUnique(String userId) {
+        for (String data : userData) {
+            String[] userDetails = data.split(",");
+            if (userDetails[1].equals(userId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkCredentials(String id, String password) {
+        for (String data : getUserData()) {
+            String[] userData = data.split(",");
+            if (userData[1].equals(id) && userData[5].equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getUserDataById(String userId) {
+        for (String data : getUserData()) {
+            String[] userDetails = data.split(",");
+            if (userDetails[1].equals(userId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    public void updateUserData(int index, String newData) {
+        getUserData().set(index, newData);
+    }
+
+    /*======================End of User data====================================*/
+
+    /*======================Start of Criminal data====================================*/
+
+
+    public void loadCriminalData() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(CRIMINAL_FILE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                criminals.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading criminal data: " + e.getMessage());
+        }
+    }
+
+    public void saveCriminalData() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CRIMINAL_FILE))) {
+            for (String data : criminals) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing criminal data: " + e.getMessage());
+        }
+    }
+
+    public boolean isCriminalIdUnique(String criminalId) {
+        for (String data : getCriminalsData()) {
+            String[] criminalDetails = data.split(",");
+            if (criminalDetails[1].equals(criminalId)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String getCriminalDataById(String criminalId) {
+        for (String data : getCriminalsData()) {
+            String[] criminalDetails = data.split(",");
+            if (criminalDetails[1].equals(criminalId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
     public void loadCriminalCasesData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(CRIMINAL_CASES_FILE))) {
             String line;
@@ -42,7 +147,7 @@ public class DataManager {
     }
 
     public boolean isCaseAssignedToCriminal(String caseId, String criminalId) {
-        for (String data : criminalCases) {
+        for (String data : getCriminalCasesData()) {
             String[] criminalCasesDetails = data.split(",");
             if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[4].equals(criminalId)) {
                 return true;
@@ -94,27 +199,19 @@ public class DataManager {
         return null;
     }
 
-    public boolean isCaseIsSolved() {
+    public boolean isCaseIsSolved(String caseId) {
         for (String data : getCriminalCasesData()) {
             String[] casesDetails = data.split(",");
-            if (casesDetails[3].equals("yes")) {
+            if (casesDetails[0].equals(caseId) && casesDetails[3].equals("yes")) {
                 return true;
             }
         }
         return false;
     }
 
-    public void updateCriminalCasesData(String caseId, String updatedData) {
-        for (int i = 0; i < getCriminalCasesData().size(); i++) {
-            String[] caseDetails = getCriminalCasesData().get(i).split(",");
-            if (caseDetails[0].equals(caseId)) {
-                getCriminalCasesData().set(i, updatedData);
-                saveCriminalCasesData();
-                return;
-            }
-        }
-        System.err.println("Case ID not found: " + caseId);
-    }
+    /*======================End of Criminal data====================================*/
+
+    /*======================Start of Department data====================================*/
 
     public void loadDepartmentData() {
         try (BufferedReader reader = new BufferedReader(new FileReader(DEPARTMENT_FILE))) {
@@ -179,6 +276,32 @@ public class DataManager {
         return userIds;
     }
 
+    /*======================End of Department data====================================*/
+
+    /*======================Start of Case data====================================*/
+
+    public void loadCase() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(REPORT_FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                cases.add(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading reports: " + e.getMessage());
+        }
+    }
+
+    public void saveCase() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(REPORT_FILE_NAME))) {
+            for (String data : cases) {
+                writer.write(data);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing reports: " + e.getMessage());
+        }
+    }
+
     public List<String> getCasesIdsByDepartmentName(String departmentName) {
         List<String> caseIds = new ArrayList<>();
         for (String reportData : getCases()) {
@@ -199,126 +322,6 @@ public class DataManager {
             }
         }
         return caseIds;
-    }
-
-    public void loadCriminalData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(CRIMINAL_FILE))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                criminals.add(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading criminal data: " + e.getMessage());
-        }
-    }
-
-    public void saveCriminalData() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CRIMINAL_FILE))) {
-            for (String data : criminals) {
-                writer.write(data);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing criminal data: " + e.getMessage());
-        }
-    }
-
-    public boolean isCriminalIdUnique(String criminalId) {
-        for (String data : criminals) {
-            String[] criminalDetails = data.split(",");
-            if (criminalDetails[1].equals(criminalId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public String getCriminalDataById(String criminalId) {
-        for (String data : criminals) {
-            String[] criminalDetails = data.split(",");
-            if (criminalDetails[1].equals(criminalId)) {
-                return data;
-            }
-        }
-        return null;
-    }
-
-    public void loadUserData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE_NAME))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                userData.add(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading user data: " + e.getMessage());
-        }
-    }
-
-    public void saveUserData() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_NAME))) {
-            for (String data : userData) {
-                writer.write(data);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing user data: " + e.getMessage());
-        }
-    }
-
-    public boolean isUserIdUnique(String userId) {
-        for (String data : userData) {
-            String[] userDetails = data.split(",");
-            if (userDetails[1].equals(userId)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean checkCredentials(String id, String password) {
-        for (String data : getUserData()) {
-            String[] userData = data.split(",");
-            if (userData[1].equals(id) && userData[5].equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public String getUserDataById(String userId) {
-        for (String data : getUserData()) {
-            String[] userDetails = data.split(",");
-            if (userDetails[1].equals(userId)) {
-                return data;
-            }
-        }
-        return null;
-    }
-
-    public void updateUserData(int index, String newData) {
-        userData.set(index, newData);
-    }
-
-    public void loadReports() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(REPORT_FILE_NAME))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                cases.add(line);
-            }
-        } catch (IOException e) {
-            System.err.println("Error reading reports: " + e.getMessage());
-        }
-    }
-
-    public void saveReport() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(REPORT_FILE_NAME))) {
-            for (String data : cases) {
-                writer.write(data);
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            System.err.println("Error writing reports: " + e.getMessage());
-        }
     }
 
     public String getCaseDataById(String caseId) {
@@ -344,7 +347,7 @@ public class DataManager {
 
     public void saveAssignedCases() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(ASSIGNED_CASES_FILE))) {
-            for (String data : assignedCases) {
+            for (String data : getAssignedCases()) {
                 writer.write(data);
                 writer.newLine();
             }
@@ -352,6 +355,10 @@ public class DataManager {
             System.err.println("Error writing assigned cases data: " + e.getMessage());
         }
     }
+
+    /*======================End of Case data====================================*/
+
+    /*==========================Getters============================ */
 
     public List<String> getCriminalCasesData() {
         return criminalCases;

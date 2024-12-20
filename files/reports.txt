@@ -2,3 +2,7 @@ Case 25,ahmed,sameh,Robbery,esvrthdvergstbsrfgdc
 Case 968,sarah,habiba,Robbery,frgtrbdgfvsrgtrsvfregd
 Case 152,hmada,samar,Robbery,sfdghjgfdsrtjyfmdsgrhtj
 Case 567,habiba,,Robbery,steale my effort
+Case 238,alaa,,Robbery,dsrfgyhdgsfagtyhbgserfgt
+Case 587,salah,,Robbery,dadfrgthfbdvsfgh
+Case 793,salah,,Robbery,rtsdvfadfrvfasfg
+Case 736,habiba,,Robbery,oirfutyghvfhsnfjkvas

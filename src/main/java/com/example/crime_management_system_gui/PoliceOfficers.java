@@ -74,7 +74,7 @@ public class PoliceOfficers extends Switching implements Initializable {
         String Criminal = criminals.getValue();
         String isSolved = "yes";
 
-        if(assingedCriminalDataManager.isCaseIsSolved()){
+        if (assingedCriminalDataManager.isCaseIsSolved(CaseId)) {
             message.setText("Case is already solved!");
             message.setTextFill(Color.RED);
             return;
@@ -128,36 +128,6 @@ public class PoliceOfficers extends Switching implements Initializable {
             return;
         }
 
-        String SolvedCaseData = reportDataManager.getSolvedCaseDataById(CaseId);
-
-        if (SolvedCaseData == null || SolvedCaseData.isEmpty()) {
-            message.setText("No data found for the given case ID!");
-            message.setTextFill(Color.RED);
-            return;
-        }
-
-        String[] caseDetails = SolvedCaseData.split(",");
-        String[] assignedCriminals = caseDetails.length > 4 ? caseDetails[4].split(",") : new String[0];
-
-        for (String assignedCriminal : assignedCriminals) {
-            if (assignedCriminal.equals(Criminal)) {
-                message.setText("This criminal is already assigned to the case!");
-                message.setTextFill(Color.RED);
-                return;
-            }
-        }
-
-        caseDetails[3] = String.valueOf(LastUpdate);
-        String updatedCriminals = caseDetails.length > 4 ? caseDetails[4] : "";
-
-        if (!updatedCriminals.isEmpty()) {
-            updatedCriminals += ",";
-        }
-        updatedCriminals += Criminal;
-
-        String updatedCaseData = String.join(",", caseDetails[0], caseDetails[1], caseDetails[2], caseDetails[3], updatedCriminals);
-
-        assingedCriminalDataManager.updateCriminalCasesData(CaseId, updatedCaseData);
 
         message.setText("Criminal added successfully!");
         message.setTextFill(Color.GREEN);

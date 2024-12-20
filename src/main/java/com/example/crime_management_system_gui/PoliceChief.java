@@ -67,6 +67,7 @@ public class PoliceChief extends Switching implements Initializable {
             message.setTextFill(Color.RED);
         } else {
             officer.getItems().addAll(officersIds);
+            message.setText("");
         }
     }
 

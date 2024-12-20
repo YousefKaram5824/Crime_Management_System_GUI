@@ -31,7 +31,7 @@ public class Main extends Application {
         dataManager = new DataManager();
 
         dataManager.loadUserData();
-        dataManager.loadReports();
+        dataManager.loadCase();
         dataManager.loadDepartmentData();
         dataManager.loadCriminalData();
         dataManager.loadAssignedCases();
@@ -57,7 +57,7 @@ public class Main extends Application {
         dataManager.saveUserData();
         dataManager.saveDepartmentData();
         dataManager.saveCriminalData();
-        dataManager.saveReport();
+        dataManager.saveCase();
         dataManager.saveAssignedCases();
         dataManager.saveCriminalCasesData();
     }
