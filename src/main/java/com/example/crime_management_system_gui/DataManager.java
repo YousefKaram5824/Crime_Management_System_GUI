@@ -160,9 +160,9 @@ public class DataManager {
 
     public List<String> getCasesIdsByCriminalId(String id) {
         List<String> caseIds = new ArrayList<>();
-        for (String criminalCases : getCriminalCasesData()) {
+        for (String criminalCases : getUpdatedCriminalCases()) {
             String[] casesDetails = criminalCases.split(",");
-            if (casesDetails[1].equals(id)) {
+            if (casesDetails[2].equals(id)) {
                 caseIds.add(casesDetails[0]);
             }
         }
@@ -182,9 +182,9 @@ public class DataManager {
 
     public int getNumberOfCasesForCriminal(String id) {
         int num = 0;
-        for (String criminalCases : getCriminalCasesData()) {
+        for (String criminalCases : getUpdatedCriminalCases()) {
             String[] casesDetails = criminalCases.split(",");
-            if (casesDetails[1].equals(id)) {
+            if (casesDetails[2].equals(id)) {
                 num++;
             }
         }
@@ -257,10 +257,10 @@ public class DataManager {
         return true;
     }
 
-    public String getDepartmentDataByName(String departmentName) {
+    public String getDepartmentDataById(String departmentId) {
         for (String data : getDepartmentsData()) {
             String[] departmentDetails = data.split(",");
-            if (departmentDetails[1].equals(departmentName)) {
+            if (departmentDetails[1].equals(departmentId)) {
                 return data;
             }
         }

@@ -19,7 +19,7 @@ public class Departments extends Switching {
     @FXML
     private DatePicker datePicker;
     @FXML
-    private Label viewId;
+    private Label viewName;
     @FXML
     private Label dateOfActivation;
     @FXML
@@ -68,32 +68,32 @@ public class Departments extends Switching {
 
     @FXML
     private void viewDepartment() {
-        String departmentName = name.getText();
-        String departmentData = dataManager.getDepartmentDataByName(departmentName);
+        String departmentId = id.getText();
+        String departmentData = dataManager.getDepartmentDataById(departmentId);
 
         if (departmentData != null) {
             String[] departmentDetails = departmentData.split(",");
-            viewId.setText(departmentDetails[0]);
+            viewName.setText(departmentDetails[0]);
             dateOfActivation.setText(departmentDetails[2]);
-            displayUserIds(departmentDetails[0]);
+            displayOfficersIds(departmentDetails[0]);
             displayCasesIds(departmentDetails[0]);
             message.setText("");
         } else {
-            message.setText("Department name not found!");
+            message.setText("Department ID not found!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             clear();
         }
     }
 
-    private void displayUserIds(String departmentName) {
+    private void displayOfficersIds(String departmentName) {
         officers.getItems().clear();
-        List<String> userIds = dataManager.getUserIdsByDepartmentName(departmentName);
+        List<String> officersIds = dataManager.getUserIdsByDepartmentName(departmentName);
 
-        if (userIds.isEmpty()) {
+        if (officersIds.isEmpty()) {
             message.setTextFill(Color.RED);
-            message.setText("No users assigned to this department yet.");
+            message.setText("No officers assigned to this department yet.");
         } else {
-            officers.getItems().addAll(userIds);
+            officers.getItems().addAll(officersIds);
         }
     }
 
@@ -110,7 +110,7 @@ public class Departments extends Switching {
     }
 
     private void clear() {
-        viewId.setText("");
+        viewName.setText("");
         officers.getItems().clear();
         cases.getItems().clear();
         dateOfActivation.setText("");

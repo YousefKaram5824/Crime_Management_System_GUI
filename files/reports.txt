@@ -6,3 +6,5 @@ Case 238,alaa,,Robbery,dsrfgyhdgsfagtyhbgserfgt
 Case 587,salah,,Robbery,dadfrgthfbdvsfgh
 Case 793,salah,,Robbery,rtsdvfadfrvfasfg
 Case 736,habiba,,Robbery,oirfutyghvfhsnfjkvas
+Case 746,razan,yousef,Steale,degrhmhgfdgbvsaetrhyjug
+Case 477,salah,,Steale,sfgdhmghfdsrgdthyfjgbdvsgh

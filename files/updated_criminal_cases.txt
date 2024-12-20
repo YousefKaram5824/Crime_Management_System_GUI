@@ -5,3 +5,8 @@ Case 152,2025-01-01,salah
 Case 475,2024-12-21,ahmed
 Case 475,2024-12-21,sameh
 Case 475,2024-12-21,salah
+Case 587,2024-12-20,razan
+Case 793,2024-12-28,razan
+Case 793,2024-12-28,yousef
+Case 736,2024-12-26,razan
+Case 238,2024-12-26,razan

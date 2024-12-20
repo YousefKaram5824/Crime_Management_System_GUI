@@ -31,8 +31,8 @@ public class Criminals extends Switching {
     private void addCriminal() {
         String Name = name.getText();
         String ID = id.getText();
-        String Level = "Low";
         String CurrentLocation = currentLocation.getText();
+        String Level = "Low";
 
         if (Name.isEmpty() || ID.isEmpty() || CurrentLocation.isEmpty()) {
             message.setText("Please fill all fields!");
