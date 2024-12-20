@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -14,39 +13,27 @@
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor></Button>
-   <TextField fx:id="caseId" alignment="CENTER" layoutX="596.0" layoutY="191.0" prefHeight="62.0" prefWidth="369.0">
-      <font>
-         <Font size="24.0" />
-      </font>
-      <cursor>
-         <Cursor fx:constant="TEXT" />
-      </cursor>
-   </TextField>
-   <Button layoutX="660.0" layoutY="285.0" mnemonicParsing="false" onAction="#getCaseInfo" opacity="0.0" prefHeight="62.0" prefWidth="218.0" text="Button">
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
-   </Button>
-   <Label fx:id="crimeType" alignment="CENTER" layoutX="591.0" layoutY="361.0" prefHeight="62.0" prefWidth="378.0">
+   <Label fx:id="crimeType" alignment="CENTER" layoutX="601.0" layoutY="310.0" prefHeight="62.0" prefWidth="378.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Label fx:id="message" alignment="CENTER" layoutX="584.0" layoutY="617.0" prefHeight="62.0" prefWidth="370.0">
+   <Label fx:id="message" alignment="CENTER" layoutX="559.0" layoutY="593.0" prefHeight="62.0" prefWidth="508.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <DatePicker fx:id="startDate" layoutX="1052.0" layoutY="561.0" prefHeight="62.0" prefWidth="370.0" />
-   <Label fx:id="description" alignment="TOP_LEFT" layoutX="297.0" layoutY="441.0" prefHeight="107.0" prefWidth="1027.0">
+   <DatePicker fx:id="startDate" layoutX="1051.0" layoutY="531.0" prefHeight="62.0" prefWidth="370.0" />
+   <Label fx:id="description" alignment="TOP_LEFT" layoutX="299.0" layoutY="395.0" prefHeight="107.0" prefWidth="1027.0">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Button layoutX="682.0" layoutY="678.0" mnemonicParsing="false" onAction="#solve" opacity="0.0" prefHeight="50.0" prefWidth="202.0" text="Button">
+   <Button layoutX="682.0" layoutY="659.0" mnemonicParsing="false" onAction="#solve" opacity="0.0" prefHeight="50.0" prefWidth="202.0" text="Button">
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </Button>
-   <ComboBox fx:id="criminals" layoutX="216.0" layoutY="560.0" prefHeight="62.0" prefWidth="370.0" />
+   <ComboBox fx:id="criminals" layoutX="215.0" layoutY="530.0" prefHeight="62.0" prefWidth="370.0" />
+   <ComboBox fx:id="cases" layoutX="594.0" layoutY="171.0" onAction="#getCaseInfoForSolve" prefHeight="62.0" prefWidth="378.0" />
 </AnchorPane>

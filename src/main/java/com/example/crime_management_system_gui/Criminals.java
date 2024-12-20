@@ -78,7 +78,15 @@ public class Criminals extends Switching implements Initializable {
         if (criminalData != null) {
             String[] criminalDetails = criminalData.split(",");
             List<String> casesAssigned = assingedCriminalDataManager.getCasesIdsByCriminalId(criminalDetails[0]);
+            int numberOfCases = assingedCriminalDataManager.getNumberOfCasesForCriminal(criminalDetails[0]);
             viewName.setText(criminalDetails[0]);
+            if (numberOfCases > 3 && numberOfCases <= 7) {
+                criminalDetails[2] = "Moderate";
+            } else if (numberOfCases > 7 && numberOfCases <= 10) {
+                criminalDetails[2] = "High";
+            } else if (numberOfCases > 10) {
+                criminalDetails[2] = "Very High";
+            }
             viewLevel.setText(criminalDetails[2]);
             viewCurrentLocation.setText(criminalDetails[3]);
             message.setText("");

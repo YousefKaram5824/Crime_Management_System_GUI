@@ -44,11 +44,11 @@ public class DataManager {
     public boolean isCaseAssignedToCriminal(String caseId, String criminalId) {
         for (String data : criminalCases) {
             String[] criminalCasesDetails = data.split(",");
-            if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[1].equals(criminalId)) {
-                return false;
+            if (criminalCasesDetails[0].equals(caseId) && criminalCasesDetails[4].equals(criminalId)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public List<String> getCasesIdsByCriminalId(String id) {
@@ -62,8 +62,58 @@ public class DataManager {
         return caseIds;
     }
 
-    public List<String> getCriminalCasesData() {
-        return criminalCases;
+    public List<String> getCriminalsIdsByCaseId(String id) {
+        List<String> criminalIds = new ArrayList<>();
+        for (String criminalCases : getCriminalCasesData()) {
+            String[] casesDetails = criminalCases.split(",");
+            if (casesDetails[0].equals(id)) {
+                criminalIds.add(casesDetails[4]);
+            }
+        }
+        return criminalIds;
+    }
+
+    public int getNumberOfCasesForCriminal(String id) {
+        int num = 0;
+        for (String criminalCases : getCriminalCasesData()) {
+            String[] casesDetails = criminalCases.split(",");
+            if (casesDetails[1].equals(id)) {
+                num++;
+            }
+        }
+        return num;
+    }
+
+    public String getSolvedCaseDataById(String caseId) {
+        for (String data : getCriminalCasesData()) {
+            String[] caseDetails = data.split(",");
+            if (caseDetails[0].equals(caseId)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    public boolean isCaseIsSolved() {
+        for (String data : getCriminalCasesData()) {
+            String[] casesDetails = data.split(",");
+            if (casesDetails[3].equals("yes")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void updateCriminalCasesData(String caseId, String updatedData) {
+        for (int i = 0; i < getCriminalCasesData().size(); i++) {
+            String[] caseDetails = getCriminalCasesData().get(i).split(",");
+            if (caseDetails[0].equals(caseId)) {
+                getCriminalCasesData().set(i, updatedData);
+                saveCriminalCasesData();
+                return;
+            }
+        }
+        System.err.println("Case ID not found: " + caseId);
     }
 
     public void loadDepartmentData() {
@@ -79,7 +129,7 @@ public class DataManager {
 
     public void saveDepartmentData() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(DEPARTMENT_FILE))) {
-            for (String data : departments) {
+            for (String data : getDepartmentsData()) {
                 writer.write(data);
                 writer.newLine();
             }
@@ -89,7 +139,7 @@ public class DataManager {
     }
 
     public boolean isDepartmentIdUnique(String departmentId) {
-        for (String data : departments) {
+        for (String data : getDepartmentsData()) {
             String[] departmentDetails = data.split(",");
             if (departmentDetails[1].equals(departmentId)) {
                 return false;
@@ -99,7 +149,7 @@ public class DataManager {
     }
 
     public boolean isDepartmentNameUnique(String departmentName) {
-        for (String data : departments) {
+        for (String data : getDepartmentsData()) {
             String[] departmentDetails = data.split(",");
             if (departmentDetails[0].equals(departmentName)) {
                 return false;
@@ -109,7 +159,7 @@ public class DataManager {
     }
 
     public String getDepartmentDataByName(String departmentName) {
-        for (String data : departments) {
+        for (String data : getDepartmentsData()) {
             String[] departmentDetails = data.split(",");
             if (departmentDetails[1].equals(departmentName)) {
                 return data;
@@ -149,10 +199,6 @@ public class DataManager {
             }
         }
         return caseIds;
-    }
-
-    public List<String> getDepartmentsData() {
-        return departments;
     }
 
     public void loadCriminalData() {
@@ -195,10 +241,6 @@ public class DataManager {
             }
         }
         return null;
-    }
-
-    public List<String> getCriminalsData() {
-        return criminals;
     }
 
     public void loadUserData() {
@@ -257,10 +299,6 @@ public class DataManager {
         userData.set(index, newData);
     }
 
-    public List<String> getUserData() {
-        return userData;
-    }
-
     public void loadReports() {
         try (BufferedReader reader = new BufferedReader(new FileReader(REPORT_FILE_NAME))) {
             String line;
@@ -283,28 +321,14 @@ public class DataManager {
         }
     }
 
-    public List<String> getCases() {
-        return cases;
-    }
-
     public String getCaseDataById(String caseId) {
-        for (String data : cases) {
+        for (String data : getCases()) {
             String[] caseDetails = data.split(",");
             if (caseDetails[0].equals(caseId)) {
                 return data;
             }
         }
         return null;
-    }
-
-    public boolean isCaseAssignedToOfficer(String caseId, String userId) {
-        for (String data : assignedCases) {
-            String[] assignedCasesDetails = data.split(",");
-            if (assignedCasesDetails[0].equals(caseId) && assignedCasesDetails[1].equals(userId)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void loadAssignedCases() {
@@ -327,6 +351,26 @@ public class DataManager {
         } catch (IOException e) {
             System.err.println("Error writing assigned cases data: " + e.getMessage());
         }
+    }
+
+    public List<String> getCriminalCasesData() {
+        return criminalCases;
+    }
+
+    public List<String> getDepartmentsData() {
+        return departments;
+    }
+
+    public List<String> getCriminalsData() {
+        return criminals;
+    }
+
+    public List<String> getUserData() {
+        return userData;
+    }
+
+    public List<String> getCases() {
+        return cases;
     }
 
     public List<String> getAssignedCases() {
