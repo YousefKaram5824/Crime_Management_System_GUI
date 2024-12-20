@@ -394,6 +394,10 @@ public class DataManager {
         return null;
     }
 
+    public void updateUpdatedCriminalCasesData(int index, String newData) {
+        getUpdatedCriminalCases().set(index, newData);
+    }
+
     /*======================End of Updated Case data====================================*/
 
     /*==========================Getters============================ */

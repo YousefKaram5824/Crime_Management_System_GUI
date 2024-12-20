@@ -21,6 +21,10 @@ public class PoliceOfficers extends Switching implements Initializable {
     @FXML
     private Label description;
     @FXML
+    private Label witness;
+    @FXML
+    private Label complainant;
+    @FXML
     private DatePicker startDate;
     @FXML
     private DatePicker lastUpdate;
@@ -39,7 +43,6 @@ public class PoliceOfficers extends Switching implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataManager = Main.getDataManager();
-
         List<String> Criminals = dataManager.getCriminalsData();
         for (String criminal : Criminals) {
             String[] criminalDetails = criminal.split(",");
@@ -58,6 +61,8 @@ public class PoliceOfficers extends Switching implements Initializable {
         String CaseId = cases.getValue();
         String CaseData = dataManager.getCaseDataById(CaseId);
         String[] caseDetails = CaseData.split(",");
+        complainant.setText(caseDetails[1]);
+        witness.setText(caseDetails[2]);
         crimeType.setText(caseDetails[3]);
         description.setText(caseDetails[4]);
         message.setText("");
@@ -114,7 +119,15 @@ public class PoliceOfficers extends Switching implements Initializable {
             message.setTextFill(Color.RED);
             return;
         }
-
+        for (int i = 0; i < dataManager.getUpdatedCriminalCases().size(); i++) {
+            String[] caseDetails = dataManager.getUpdatedCriminalCases().get(i).split(",");
+            if (caseDetails[0].equals(CaseId)) {
+                caseDetails[1] = LastUpdate;
+                dataManager.updateUpdatedCriminalCasesData(i, String.join(",", caseDetails));
+            }
+        }
+        String UpdatedCriminalCases = String.join(",", CaseId, LastUpdate, Criminal);
+        dataManager.getUpdatedCriminalCases().add(UpdatedCriminalCases);
 
         message.setText("Criminal added successfully!");
         message.setTextFill(Color.GREEN);
@@ -122,7 +135,7 @@ public class PoliceOfficers extends Switching implements Initializable {
 
     @FXML
     private void getCaseInfoForUpdate() {
-        assignedCriminals.getItems().clear();
+        clear();
         String CaseId = cases.getValue();
         String SolvedCaseData = dataManager.getSolvedCaseDataById(CaseId);
         String[] caseDetails = SolvedCaseData.split(",");
@@ -134,5 +147,11 @@ public class PoliceOfficers extends Switching implements Initializable {
 
         List<String> criminalIds = dataManager.getCriminalsIdsByCaseId(CaseId);
         assignedCriminals.getItems().addAll(criminalIds);
+    }
+
+    private void clear(){
+        assignedCriminals.getItems().clear();
+        viewLastUpdate.setText("");
+        viewStartDate.setText("");
     }
 }
