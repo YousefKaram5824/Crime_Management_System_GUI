@@ -117,11 +117,23 @@ public class DataManager {
         }
     }
 
-    public boolean isCriminalIdUnique(String criminalId) {
+    public boolean isCriminalUnique(String criminalId) {
         for (String data : getCriminalData()) {
             String[] criminalDetails = data.split(",");
             if (criminalDetails[1].equals(criminalId)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isCriminalUnique(String criminalId, String criminalName) {
+        for (String data : getCriminalData()) {
+            String[] criminalDetails = data.split(",");
+            if (!criminalDetails[1].equals(criminalId)) {
+                if(criminalDetails[0].equals(criminalName)){
+                    return true;
+                }
             }
         }
         return false;

@@ -7,13 +7,10 @@ import javafx.scene.control.TextField;
 
 import java.util.List;
 
-public class Criminals extends Switching {
+public class Criminals extends Person {
 
     private final DataManager dataManager = Main.getDataManager();
-    @FXML
-    private TextField name;
-    @FXML
-    private TextField id;
+    Person criminal = new Criminals();
     @FXML
     private TextField currentLocation;
     @FXML
@@ -29,8 +26,8 @@ public class Criminals extends Switching {
 
     @FXML
     private void addCriminal() {
-        String Name = name.getText();
-        String ID = id.getText();
+        String Name = criminal.name.getText();
+        String ID = criminal.id.getText();
         String CurrentLocation = currentLocation.getText();
         String Level = "Low";
 
@@ -40,8 +37,14 @@ public class Criminals extends Switching {
             return;
         }
 
-        if (dataManager.isCriminalIdUnique(ID)) {
+        if (dataManager.isCriminalUnique(ID)) {
             message.setText("Criminal ID already exists!");
+            message.setTextFill(javafx.scene.paint.Color.RED);
+            return;
+        }
+
+        if (dataManager.isCriminalUnique(ID,Name)) {
+            message.setText("Criminal Name already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }

@@ -6,12 +6,9 @@ import javafx.scene.control.ListView;
 
 import java.util.List;
 
-public class OfficerProfile extends Switching {
+public class OfficerProfile extends Person {
     private final DataManager dataManager = Main.getDataManager();
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
+    Person officerOfficer = new OfficerProfile();
     @FXML
     private Label rank;
     @FXML
@@ -32,8 +29,8 @@ public class OfficerProfile extends Switching {
         List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
         String userData = dataManager.getOfficerDataById(userId);
         String[] userDetails = userData.split(",");
-        name.setText(userDetails[0]);
-        id.setText(userDetails[1]);
+        officerOfficer.name.setText(userDetails[0]);
+        officerOfficer.id.setText(userDetails[1]);
         rank.setText(userDetails[2]);
         salary.setText(userDetails[3] + "$");
         phone.setText(userDetails[4]);
