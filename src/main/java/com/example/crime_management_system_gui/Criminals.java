@@ -62,8 +62,9 @@ public class Criminals extends Person {
         currentLocation.clear();
     }
 
+    @Override
     @FXML
-    private void viewCriminal() {
+    void view() {
         String criminalId = id.getText();
         String criminalData = dataManager.getCriminalDataById(criminalId);
         if (criminalData != null) {

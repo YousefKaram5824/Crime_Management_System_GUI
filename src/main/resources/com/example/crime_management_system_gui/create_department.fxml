@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="createDepartment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1540.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crime_management_system_gui.Departments">
-    <TextField fx:id="name" alignment="CENTER" layoutX="580.0" layoutY="263.0" prefHeight="62.0" prefWidth="375.0" promptText="Name">
+    <TextField fx:id="name" alignment="CENTER" layoutX="580.0" layoutY="272.0" prefHeight="62.0" prefWidth="375.0" promptText="Name">
         <font>
             <Font size="24.0" />
         </font>

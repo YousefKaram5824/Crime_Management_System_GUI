@@ -14,7 +14,7 @@
             <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
-    <Button layoutX="671.0" layoutY="309.0" mnemonicParsing="false" onAction="#viewCriminal" opacity="0.0" prefHeight="54.0" prefWidth="207.0" text="Button">
+    <Button layoutX="671.0" layoutY="309.0" mnemonicParsing="false" onAction="#view" opacity="0.0" prefHeight="54.0" prefWidth="207.0" text="Button">
         <cursor>
             <Cursor fx:constant="HAND" />
         </cursor>

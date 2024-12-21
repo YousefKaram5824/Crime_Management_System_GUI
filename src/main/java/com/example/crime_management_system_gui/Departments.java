@@ -41,13 +41,13 @@ public class Departments extends Switching {
             return;
         }
 
-        if (!dataManager.isDepartmentIdUnique(ID)) {
+        if (dataManager.isDepartmentIdUnique(ID)) {
             message.setText("Department ID already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
-        if (!dataManager.isDepartmentNameUnique(Name)) {
+        if (dataManager.isDepartmentNameUnique(Name)) {
             message.setText("Department name already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;

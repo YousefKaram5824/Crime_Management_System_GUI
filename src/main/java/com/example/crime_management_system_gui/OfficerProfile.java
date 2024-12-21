@@ -21,10 +21,11 @@ public class OfficerProfile extends Person {
     private ListView<String> cases;
 
     public void initialize() {
-        loadUserProfile();
+        view();
     }
 
-    private void loadUserProfile() {
+    @Override
+    void view() {
         String userId = UserSession.getInstance().getCurrentUserId();
         List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
         String userData = dataManager.getOfficerDataById(userId);

@@ -26,7 +26,6 @@ public class Main extends Application {
         return dataManager;
     }
 
-    @Override
     public void start(Stage stage) throws IOException {
         dataManager = new DataManager();
 
@@ -53,7 +52,6 @@ public class Main extends Application {
         stage.show();
     }
 
-    @Override
     public void stop() {
         dataManager.saveOfficerData();
         dataManager.saveDepartmentData();
