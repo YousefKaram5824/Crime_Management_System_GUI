@@ -30,7 +30,7 @@ public class OfficerProfile extends Switching {
     private void loadUserProfile() {
         String userId = UserSession.getInstance().getCurrentUserId();
         List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
-        String userData = dataManager.getUserDataById(userId);
+        String userData = dataManager.getOfficerDataById(userId);
         String[] userDetails = userData.split(",");
         name.setText(userDetails[0]);
         id.setText(userDetails[1]);

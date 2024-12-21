@@ -38,7 +38,7 @@ public class Register extends Switching implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataManager = Main.getDataManager();
         rank.getItems().addAll("First Lieutenant", "Second Lieutenant", "Captain", "Major", "lieutenant Colonel");
-        List<String> departments = dataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             assignedDepartment.getItems().add(deptDetails[0]);
@@ -71,7 +71,7 @@ public class Register extends Switching implements Initializable {
             message.setTextFill(Color.RED);
             return;
         }
-        if (!dataManager.isUserIdUnique(ID)) {
+        if (dataManager.isOfficerIdUnique(ID)) {
             message.setText("User ID already exists!");
             message.setTextFill(Color.RED);
             return;
@@ -83,7 +83,7 @@ public class Register extends Switching implements Initializable {
         }
 
         String userData = String.join(",", Name, ID, Rank, Salary, Phone, Password, Department);
-        dataManager.getUserData().add(userData);
+        dataManager.getOfficerData().add(userData);
         message.setText("Registration successful!");
         message.setTextFill(Color.GREEN);
     }

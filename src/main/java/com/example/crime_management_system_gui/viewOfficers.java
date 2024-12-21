@@ -50,7 +50,7 @@ public class viewOfficers extends Switching implements Initializable {
     private void viewUserData() {
         clear();
         String userId = id.getText();
-        String userData = dataManager.getUserDataById(userId);
+        String userData = dataManager.getOfficerDataById(userId);
         List<String> casesIds = dataManager.getCasesIdsByOfficerId(userId);
 
         if (userData != null) {
@@ -73,13 +73,13 @@ public class viewOfficers extends Switching implements Initializable {
         String userId = id.getText();
         String newRank = ranking.getValue();
         if (newRank != null) {
-            String userData = dataManager.getUserDataById(userId);
+            String userData = dataManager.getOfficerDataById(userId);
             if (userData != null) {
-                for (int i = 0; i < dataManager.getUserData().size(); i++) {
-                    String[] userDetails = dataManager.getUserData().get(i).split(",");
+                for (int i = 0; i < dataManager.getOfficerData().size(); i++) {
+                    String[] userDetails = dataManager.getOfficerData().get(i).split(",");
                     if (userDetails[1].equals(userId)) {
                         userDetails[2] = newRank;
-                        dataManager.updateUserData(i, String.join(",", userDetails));
+                        dataManager.updateOfficerData(i, String.join(",", userDetails));
                         viewUserData();
                         break;
                     }

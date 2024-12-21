@@ -36,11 +36,11 @@ public class ForgotPassword extends Switching {
 
         boolean userFound = false;
 
-        for (int i = 0; i < dataManager.getUserData().size(); i++) {
-            String[] userDetails = dataManager.getUserData().get(i).split(",");
+        for (int i = 0; i < dataManager.getOfficerData().size(); i++) {
+            String[] userDetails = dataManager.getOfficerData().get(i).split(",");
             if (userDetails[1].equals(userId)) {
                 userDetails[5] = NewPassword;
-                dataManager.updateUserData(i, String.join(",", userDetails));
+                dataManager.updateOfficerData(i, String.join(",", userDetails));
                 userFound = true;
                 break;
             }

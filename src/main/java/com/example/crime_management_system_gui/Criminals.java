@@ -40,14 +40,14 @@ public class Criminals extends Switching {
             return;
         }
 
-        if (!dataManager.isCriminalIdUnique(ID)) {
+        if (dataManager.isCriminalIdUnique(ID)) {
             message.setText("Criminal ID already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
         String criminalData = String.join(",", Name, ID, Level, CurrentLocation);
-        dataManager.getCriminalsData().add(criminalData);
+        dataManager.getCriminalData().add(criminalData);
         message.setText("Criminal added successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
         clearFields();
@@ -74,6 +74,14 @@ public class Criminals extends Switching {
                 criminalDetails[2] = "High";
             } else if (numberOfCases > 10) {
                 criminalDetails[2] = "Very High";
+            }
+            for (int i = 0; i < dataManager.getCriminalData().size(); i++) {
+                String[] CriminalDetails = dataManager.getCriminalData().get(i).split(",");
+                if (CriminalDetails[1].equals(criminalId)) {
+                    CriminalDetails[2] = criminalDetails[2];
+                    dataManager.updateCriminalData(i, String.join(",", CriminalDetails));
+                    break;
+                }
             }
             viewLevel.setText(criminalDetails[2]);
             viewCurrentLocation.setText(criminalDetails[3]);

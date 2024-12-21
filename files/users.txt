@@ -13,3 +13,5 @@ test,poc12345,Major,1200000,123234567890,123,Robbery
 alaa,poc130,First Lieutenant,12000,0123456789,123,Robbery
 razan,poc131,Captain,12000,1234567890,123,Steale
 razan,poc132,Second Lieutenant,12000,1234567890,123,Steale
+ayoooooy,poc111,lieutenant Colonel,120000,123456789,123,Robbery
+yousef,poc110,First Lieutenant,12000,1234567890,123,Assualt

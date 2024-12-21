@@ -43,7 +43,7 @@ public class PoliceOfficers extends Switching implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataManager = Main.getDataManager();
-        List<String> Criminals = dataManager.getCriminalsData();
+        List<String> Criminals = dataManager.getCriminalData();
         for (String criminal : Criminals) {
             String[] criminalDetails = criminal.split(",");
             criminals.getItems().add(criminalDetails[0]);
@@ -97,7 +97,7 @@ public class PoliceOfficers extends Switching implements Initializable {
         String criminalAssigned = String.join(",", CaseId, StartDate.toString(), LastUpdate.toString(), isSolved, Criminal);
         String UpdatedCriminalCases = String.join(",", CaseId, LastUpdate.toString(), Criminal);
         dataManager.getCriminalCasesData().add(criminalAssigned);
-        dataManager.getUpdatedCriminalCases().add(UpdatedCriminalCases);
+        dataManager.getUpdatedCriminalCaseData().add(UpdatedCriminalCases);
         message.setText("Case Solved successful!");
         message.setTextFill(Color.GREEN);
     }
@@ -119,15 +119,15 @@ public class PoliceOfficers extends Switching implements Initializable {
             message.setTextFill(Color.RED);
             return;
         }
-        for (int i = 0; i < dataManager.getUpdatedCriminalCases().size(); i++) {
-            String[] caseDetails = dataManager.getUpdatedCriminalCases().get(i).split(",");
+        for (int i = 0; i < dataManager.getUpdatedCriminalCaseData().size(); i++) {
+            String[] caseDetails = dataManager.getUpdatedCriminalCaseData().get(i).split(",");
             if (caseDetails[0].equals(CaseId)) {
                 caseDetails[1] = LastUpdate;
                 dataManager.updateUpdatedCriminalCasesData(i, String.join(",", caseDetails));
             }
         }
         String UpdatedCriminalCases = String.join(",", CaseId, LastUpdate, Criminal);
-        dataManager.getUpdatedCriminalCases().add(UpdatedCriminalCases);
+        dataManager.getUpdatedCriminalCaseData().add(UpdatedCriminalCases);
 
         message.setText("Criminal added successfully!");
         message.setTextFill(Color.GREEN);

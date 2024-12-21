@@ -25,7 +25,7 @@ public class PoliceChief extends Switching implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<String> departments = dataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             dep.getItems().add(deptDetails[0]);
@@ -53,7 +53,7 @@ public class PoliceChief extends Switching implements Initializable {
 
     private void displayOfficersIds(String departmentName) {
         officer.getItems().clear();
-        List<String> officersIds = dataManager.getUserIdsByDepartmentName(departmentName);
+        List<String> officersIds = dataManager.getOfficersIdsByDepartmentName(departmentName);
 
         if (officersIds.isEmpty()) {
             message.setText("No cases assigned to this department yet.");
@@ -81,7 +81,7 @@ public class PoliceChief extends Switching implements Initializable {
             return;
         }
 
-        List<String> assignedCasesList = dataManager.getAssignedCases();
+        List<String> assignedCasesList = dataManager.getAssignedCaseData();
         for (String assignment : assignedCasesList) {
             String[] parts = assignment.split(",");
             if (parts[0].equals(selectedCase) && parts[1].equals(selectedOfficer)) {
@@ -92,7 +92,7 @@ public class PoliceChief extends Switching implements Initializable {
         }
 
         String assignData = String.join(",", selectedCase, selectedOfficer);
-        dataManager.getAssignedCases().add(assignData);
+        dataManager.getAssignedCaseData().add(assignData);
         message.setText("Officer assigned to case successfully.");
         message.setTextFill(Color.GREEN);
     }

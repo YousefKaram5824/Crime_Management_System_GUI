@@ -25,7 +25,7 @@ public class Cases extends Switching implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<String> departments = dataManager.getDepartmentsData();
+        List<String> departments = dataManager.getDepartmentData();
         for (String department : departments) {
             String[] deptDetails = department.split(",");
             crimeType.getItems().add(deptDetails[0]);
@@ -47,7 +47,7 @@ public class Cases extends Switching implements Initializable {
         }
 
         String reportData = String.join(",", reportID, Name, Witness, CrimeType, Description);
-        dataManager.getCases().add(reportData);
+        dataManager.getCaseData().add(reportData);
         clearFields();
         message.setText("Report submitted successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
@@ -55,7 +55,7 @@ public class Cases extends Switching implements Initializable {
 
     private String generateUniqueReportId() {
         Set<String> existingIds = new HashSet<>();
-        for (String report : dataManager.getCases()) {
+        for (String report : dataManager.getCaseData()) {
             String[] reportDetails = report.split(",");
             existingIds.add(reportDetails[0]);
         }

@@ -41,20 +41,20 @@ public class Departments extends Switching {
             return;
         }
 
-        if (!dataManager.isDepartmentIdUnique(ID)) {
+        if (dataManager.isDepartmentIdUnique(ID)) {
             message.setText("Department ID already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
-        if (!dataManager.isDepartmentNameUnique(Name)) {
+        if (dataManager.isDepartmentNameUnique(Name)) {
             message.setText("Department name already exists!");
             message.setTextFill(javafx.scene.paint.Color.RED);
             return;
         }
 
         String departmentData = String.join(",", Name, ID, date.toString());
-        dataManager.getDepartmentsData().add(departmentData);
+        dataManager.getDepartmentData().add(departmentData);
         message.setText("Department created successfully!");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
         clearFields();
@@ -87,7 +87,7 @@ public class Departments extends Switching {
 
     private void displayOfficersIds(String departmentName) {
         officers.getItems().clear();
-        List<String> officersIds = dataManager.getUserIdsByDepartmentName(departmentName);
+        List<String> officersIds = dataManager.getOfficersIdsByDepartmentName(departmentName);
 
         if (officersIds.isEmpty()) {
             message.setTextFill(Color.RED);

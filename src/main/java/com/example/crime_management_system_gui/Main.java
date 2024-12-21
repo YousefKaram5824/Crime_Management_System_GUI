@@ -30,8 +30,8 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         dataManager = new DataManager();
 
-        dataManager.loadUserData();
-        dataManager.loadCase();
+        dataManager.loadOfficerData();
+        dataManager.loadCaseData();
         dataManager.loadDepartmentData();
         dataManager.loadCriminalData();
         dataManager.loadAssignedCases();
@@ -55,10 +55,10 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        dataManager.saveUserData();
+        dataManager.saveOfficerData();
         dataManager.saveDepartmentData();
         dataManager.saveCriminalData();
-        dataManager.saveCase();
+        dataManager.saveCaseData();
         dataManager.saveAssignedCases();
         dataManager.saveCriminalCasesData();
         dataManager.saveUpdatedCriminalCases();
